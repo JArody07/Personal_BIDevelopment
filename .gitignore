@@ -1,2 +1,68 @@
+# ── OS cruft ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Power BI (PBIP) ───────────────────────────────────────
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+**/*.pbix.bak
+**/*.pbit.bak
+~$*.pbix
+~$*.pbit
+
+# ── Python ─────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+ENV/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# ── Secrets & environment (never commit real credentials) ──
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.*
+credentials.json
+*_credentials.*
+config.local.*
+
+# ── SQL / local databases & data dumps ──────────────────────
+*.mdf
+*.ldf
+*.bak
+*.sqlite
+*.sqlite3
+*.db
+/data/
+/exports/
+
+# ── Editor / IDE ─────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# ── Misc lock/temp files ─────────────────────────────────────
+*.tmp
+~$*
