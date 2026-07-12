@@ -1,0 +1,63 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Facts
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Dims
+
+	annotation PBI_QueryGroupOrder = 1
+
+/// Bank Sources/Exports
+queryGroup Sources
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup CapitalOne_Source
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup Avant_Source
+
+	annotation PBI_QueryGroupOrder = 5
+
+queryGroup Discover_Source
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup BancorpBank_Source
+
+	annotation PBI_QueryGroupOrder = 2
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["2026-03-22_360Checking   9096","CapitalOne_StagingQuery","DFS-Search-20260323","Discover_StagingQuery","tabula-Statement 01-23-26","tabula-Statement 02-23-26","tabula-Statement 03-23-26","tabula-Statement 04-23-26","tabula-Statement 05-23-26","tabula-Statement 06-23-26","tabula-Statement 01-23-26_format","tabula-Statement 02-23-26_format","tabula-Statement 03-23-26_format","tabula-Statement 04-23-26 format","tabula-Statement 05-23-26 format","tabula-Statement 06-23-26 format","Avant_StagingQuery","tabula-Chime-Checking-Statement-January-2026","tabula-Chime-Checking-Statement-February-2026","tabula-Chime-Checking-Statement-March-2026","tabula-Chime-Checking-Statement-January-2026_format","tabula-Chime-Checking-Statement-February-2026_format","tabula-Chime-Checking-Statement-March-2026_format","Bancorp_StagingQuery","tabula-Chime-Credit-Statement-January-2026","tabula-Chime-Credit-Statement-February-2026","tabula-Chime-Credit-Statement-March-2026","tabula-Chime-Credit-Statement-April-2026","tabula-Chime-Credit-Statement-January-2026_format","tabula-Chime-Credit-Statement-February-2026_format","tabula-Chime-Credit-Statement-March-2026_format","tabula-Chime-Credit-Statement-April-2026_format","BancorpBank_StagingQuery","CategoryOverrides","Budget_2026","Fact_BankTransactions","Gross_Income","DimDate","DimCategory","DimPayPeriod","CategoryMap","fnAssignCategory","StartingBalances"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_3388de26-9cb2-4f0d-a396-cb5275cac15d
+ref table Fact_BankTransactions
+ref table DimDate
+ref table LocalDateTable_868044e3-bc35-40d1-93f8-7e5e1def3ed8
+ref table LocalDateTable_41d36901-8eb3-4f38-a5ae-84184b2ca405
+ref table LocalDateTable_fd4a6447-e024-404b-a2f4-4bb60c5f1ca6
+ref table LocalDateTable_58eb6dd0-3036-4621-a388-104aa1a1e988
+ref table LocalDateTable_b52dc935-e034-4410-986e-4e3d58ff340a
+ref table DimCategory
+ref table StartingBalances
+ref table LocalDateTable_193ad474-db9b-4ef2-ba30-f0e6fe006dc0
+ref table Budget_2026
+ref table CategoryOverrides
+ref table LocalDateTable_eeecc842-e6c3-4c10-b994-0259b05d5f8c
+ref table DimPayPeriod
+ref table Gross_Income
+
+ref cultureInfo en-US
+

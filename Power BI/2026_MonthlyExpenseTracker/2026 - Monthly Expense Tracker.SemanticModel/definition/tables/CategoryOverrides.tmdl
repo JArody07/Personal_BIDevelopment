@@ -1,0 +1,156 @@
+/// Helps categorize Transaction Descriptions that might be too vague and end up falling in the incorrect categories.
+/// 
+/// Requires manual input but helps clean up the data since the data from the bank is at a higher grain level.
+table CategoryOverrides
+	lineageTag: 87a1deb4-55fc-4972-93c0-67e8ec744619
+
+	column Category
+		dataType: string
+		lineageTag: 9d5bad67-0dc0-4a69-84a2-6b3e963fea38
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d619f67b-d722-4b1e-920a-6b0f487c8bd4
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		variation Variation
+			isDefault
+			relationship: 4841a173-36c8-42c3-a5ad-c53d1c471891
+			defaultHierarchy: LocalDateTable_eeecc842-e6c3-4c10-b994-0259b05d5f8c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Transaction Description'
+		dataType: string
+		lineageTag: 77a59520-c217-43a2-b7f5-4bb2a10898b1
+		summarizeBy: none
+		sourceColumn: Transaction Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Amount'
+		dataType: double
+		lineageTag: 1eea305a-4ee4-4dfe-8314-844b41078b22
+		summarizeBy: sum
+		sourceColumn: Transaction Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition CategoryOverrides = m
+		mode: import
+		source = ```
+				let
+				    Source = #table(
+				        type table [
+				            #"Transaction Date"        = date,
+				            #"Transaction Description" = text,
+				            #"Transaction Amount"      = number,
+				            Category                  = text
+				        ],
+				        {
+				            {#date(2026, 7, 07), "Debit Card Purchase - PAYPAL CELLULARWEA SWA 888 221 1161 CA", -722.73, "Phone Bill"},
+				            {#date(2026, 6, 23), "AMAZON MKTPL*KT0AF0OO3 SEATTLE  WA", -37.56, "Online Shopping"},
+				            {#date(2026, 6, 22), "AMAZON MKTPL*2Q9QI7OJ3 SEATTLE  WA", -14.99, "Health & Wellness"},
+				            {#date(2026, 6, 22), "AMAZON MKTPL*5C1XB0GJ3 SEATTLE  WA", -33.05, "Health & Wellness"},
+				            {#date(2026, 6, 22), "AMAZON MKTPL*5X87Z01A3 SEATTLE  WA", -9.78, "Personal Hygiene"},
+				            {#date(2026, 6, 22), "AMAZON MKTPL*BJ6EB8Z63 SEATTLE  WA", -9.99, "Health & Wellness"},
+				            {#date(2026, 6, 22), "AMAZON MKTPL*L02XN5NM3 SEATTLE  WA", -21.51, "Online Shopping"},
+				            {#date(2026, 6, 22), "AMAZON MKTPL*XP4949BN3 AMZN.COM/BILLWA33509SXX46I", -16.00, "Personal Hygiene"},
+				            {#date(2026, 6, 22), "AMAZON RETA* 6J41A5563 SEATTLE  WA", -8.92, "Personal Hygiene"},
+				            {#date(2026, 6, 22), "AMAZON RETA* 805KN0BZ3 SEATTLE  WA", -7.86, "Health & Wellness"},
+				            {#date(2026, 6, 22), "AMAZON RETA* EA8A99PK3 SEATTLE  WA", -13.09, "Personal Hygiene"},
+				            {#date(2026, 6, 22), "AMAZON RETA* EA8A99PK3 SEATTLE  WA", -10.81, "Personal Hygiene"},
+				            {#date(2026, 6, 20), "AMAZON MKTPL*5E0W77Z73 SEATTLE  WA", -11.04, "Personal Hygiene"},
+				            {#date(2026, 6, 16), "AMAZON MKTPL*OD1BK1ND3 SEATTLE  WA", -28.18, "Household & Home Goods"},
+				            {#date(2026, 6, 15), "AMAZON MKTPL*XX4BU57W3 SEATTLE  WA", -38.60, "Car Maintenance"},
+				            {#date(2026, 6, 14), "AMAZON MKTPL*NZ8IL3BE3 SEATTLE  WA", -20.37, "Health & Wellness"},
+				            {#date(2026, 6, 01), "AMAZON MKTPL*5D1IH35P3 SEATTLE  WA", -42.75, "Health & Wellness"},
+				            {#date(2026, 6, 01), "AMAZON MKTPL*BT8SK2MG3 SEATTLE  WA", -13.25, "Online Shopping"},
+				            {#date(2026, 6, 01), "AMAZON MKTPL*D702I6TG3 SEATTLE  WA", -28.72, "Health & Wellness"},
+				            {#date(2026, 6, 01), "AMAZON MKTPL*U302Q5X23 SEATTLE  WA", -28.16, "Online Shopping"},
+				            {#date(2026, 6, 18), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -28.37, "Education"},
+				            {#date(2026, 6, 13), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
+				            {#date(2026, 6, 07), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
+				            {#date(2026, 6, 07), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -160.00, "Car Insurance"},
+				            {#date(2026, 6, 28), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -160.00, "Car Insurance"},
+				            {#date(2026, 6, 18), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -196.41, "Education"},
+				            {#date(2026, 7, 03), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -196.41, "Education"},
+				            {#date(2026, 6, 19), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -196.41, "Education"},
+				            {#date(2026, 7, 04), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
+				            {#date(2026, 5, 25), "AMAZON.COM*FT8UX7DJ3 AMZN.COM/BILLWA1L25359L0WG", -26.28, "Personal Hygiene"},
+				            {#date(2026, 5, 24), "ONO-052 (PARAMOUNT) 909-594-3388 CA43927309737574403", -36.09, "Eating Out"},
+				            {#date(2026, 5, 27), "Digital Card Purchase - 85C BAKERY CAFE USA CERRITOS CA", -25.83, "Eating Out"},
+				            {#date(2026, 5, 29), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -97.93, "Fitness"},
+				            {#date(2026, 5, 30), "Zelle money sent to CHRISTOPHER ALVAREZ", -16.50, "Eating Out"},
+				            {#date(2026, 5, 31), "Zelle money sent to CHRISTOPHER ALVAREZ", -43.25, "Eating Out"},
+				            {#date(2026, 5, 31), "Zelle money sent to CHRISTOPHER ALVAREZ", -5.9, "Eating Out"},
+				            {#date(2026, 6, 04), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -291.66, "Education"},
+				            {#date(2026, 6, 03), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -28.37, "Education"},
+				            {#date(2026, 5, 18), "Debit Card Purchase - AMAZON MKTPL LC5OW5HJ3 AMZN COM BIL WA", -33.14, "Household & Home Goods"},
+				            {#date(2026, 5, 20), "AMAZON MKTPLACE PMTS SEATTLE  WA  CREDIT", 14.35, "Refund"},
+				            {#date(2026, 5, 19), "AMAZON MKTPL*GD5XV36D3 SEATTLE  WA", -25.40, "Household & Home Goods"},
+				            {#date(2026, 5, 18), "AMAZON MKTPL*1651055H3 SEATTLE  WA", -24.30, "Household & Home Goods"},
+				            {#date(2026, 5, 15), "AMAZON RETA* J67TM5ED3 SEATTLE  WA", -5.92, "Health & Wellness"},
+				            {#date(2026, 5, 13), "AMAZON MKTPL*BF7QS1X01 SEATTLE  WA", -14.35, "Clothing & Apparel"},
+				            {#date(2026, 5, 13), "AMAZON RETA* HA75F5MQ3 SEATTLE  WA", -49.32, "Fitness"},
+				            {#date(2026, 5, 12), "AMAZON MKTPL*BV25M95P0 SEATTLE  WA", -22.08, "Clothing & Apparel"},
+				            {#date(2026, 5, 12), "AMAZON RETA* 7S6RO65G3 SEATTLE  WA", -40.26, "Health & Wellness"},
+				            {#date(2026, 4, 30), "AMAZON MKTPL*BJ9QO9341 SEATTLE  WA", -16.00, "Personal Hygiene"},
+				            {#date(2026, 4, 28), "AMAZON RETA* BV1X11CY2 SEATTLE  WA", -15.96, "Health & Wellness"},
+				            {#date(2026, 5, 18), "Debit Card Purchase - AMAZON COM YS4ZY6L53 AMZN COM BIL WA", -18.79, "Health & Wellness"},
+				            {#date(2026, 5, 16), "Debit Card Purchase - AMAZON COM 050VO1I63 AMZN COM BIL WA", -2.85, "Health & Wellness"},
+				            {#date(2026, 5, 11), "Debit Card Purchase - AMAZON MKTPL BF0LB94B1 AMZN COM BIL WA", -22.09, "Fitness"},
+				            {#date(2026, 5, 04), "Debit Card Purchase - AMAZON COM BJ1DN7L90 AMZN COM BIL WA", -26.76, "Health & Wellness"},
+				            {#date(2026, 5, 03), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -180.00, "Car Insurance"},
+				            {#date(2026, 5, 14), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -97.93, "Fitness"},
+				            {#date(2026, 5, 15), "Debit Card Purchase - AMAZON COM 415VW6EK3 AMZN COM BIL WA", -49.73, "Fitness"},
+				            {#date(2026, 5, 02), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -20.00, "Car Maintenance"},
+				            {#date(2026, 4, 28), "AMAZON MKTPL*BS41G9UT1 AMZN.COM/BILLWA4NPT3MNXLK7", -42.09, "Personal Hygiene"},
+				            {#date(2026, 4, 28), "AMAZON.COM*BS22M49B1 AMZN.COM/BILLWA1YLUU26OJK6", -7.75, "Personal Hygiene"},
+				            {#date(2026, 4, 28), "AMAZON.COM*BV9689CV2 AMZN.COM/BILLWA4T8E2EP5DXA", -7.70, "Personal Hygiene"},
+				            {#date(2026, 4, 28), "AMAZON MKTPL*BS68Q89Q1 AMZN.COM/BILLWA63CMBO80TKJ", -26.98, "Household & Home Goods"},
+				            {#date(2026, 4, 26), "AMAZON.COM*BS15G0571 AMZN.COM/BILLWA4QUBFQZ99SJ", -198.89, "Health & Wellness"},                   
+				            {#date(2026, 4, 25), "AMAZON.COM*BJ9X578P2 AMZN.COM/BILLWA227DA45CLGB", -9.86, "Personal Hygiene"},  
+				            {#date(2026, 4, 25), "AMAZON MKTPL*BY7CR07W0 AMZN.COM/BILLWA5OQEDA4CUHG", -2.83, "Car Maintenance"},  
+				            {#date(2026, 4, 23), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -95.17, "Health & Wellness"},
+				            {#date(2026, 4, 21), "Zelle money sent to MATTHEW BUENROSTRO", -25.00, "Clothing & Apparel"},
+				            {#date(2026, 4, 19), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -210.00, "Groceries"},
+				            {#date(2026, 4, 12), "AMAZON MKTPL*BC4PR4UX0 SEATTLE  WA", -193.35, "Fitness"},
+				            {#date(2026, 4, 11), "AMAZON MKTPL*BY83X9GF2 SEATTLE  WA", -17.67, "Household & Home Goods"},
+				            {#date(2026, 4, 10), "AMAZON MKTPL*BC2BM9W41 SEATTLE  WA", -46.4, "Household & Home Goods"},
+				            {#date(2026, 4, 10), "Debit Card Purchase - AMAZON MKTPL BC7TE0GS0 AMZN COM BIL WA", -22.09, "Clothing & Apparel"},
+				            {#date(2026, 4, 9), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -95.17, "Health & Wellness"},
+				            {#date(2026, 4, 8), "AMAZON.COM*BC6Q71D71 AMZN.COM/BILLWA6V4Y86ZC286", -5.92, "Health & Wellness"}, 
+				            {#date(2026, 4, 5), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -20, "Personal Hygiene"}, 
+				            {#date(2026, 4, 5), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -160, "Groceries"}, 
+				            {#date(2026, 3, 28), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -160, "Car Insurance"},            
+				            {#date(2026, 3, 23), "AMAZON MKTPL*B56EC2JL1 AMZN.COM/BILLWA29QX1ZJBKSO", -8.88, "Health & Wellness"},
+				            {#date(2026, 3, 23),  "AMAZON MKTPL*BD04U59B0 AMZN.COM/BILLWA2X74UQP9B28", -13.50, "Health & Wellness"},
+				            {#date(2026, 3, 23),  "AMAZON MKTPL*BD78019R0 AMZN.COM/BILLWA6BWONN76D0S", -34.98, "Health & Wellness"},
+				            {#date(2026, 3, 23),  "AMAZON MKTPL*BD9HJ59V0 AMZN.COM/BILLWA2S39U3UTWB0", -10.54, "Personal Hygiene"},
+				            {#date(2026, 3, 23),  "AMAZON.COM*BD4XU69O0 AMZN.COM/BILLWA3DQ3LJI5TLY", -9.38, "Health & Wellness"},
+				            {#date(2026, 3, 23),  "AMAZON.COM*BG0EQ5G02 AMZN.COM/BILLWA6GUHVIRBQU2", -10.30, "Personal Hygiene"},
+				            {#date(2026, 3, 23),  "AMAZON.COM*BG1LC8X12 AMZN.COM/BILLWA6GE8S83I4F1", -15.43, "Health & Wellness"},
+				            {#date(2026, 3, 23),  "AMAZON.COM*BG9248GY2 AMZN.COM/BILLWA5H9GKLNZWLP", -18.77, "Health & Wellness"},
+				            {#date(2026, 3, 15),  "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300, "Groceries"},
+				            {#date(2026, 3, 1),  "AMAZON MKTPLACE PMTS SEATTLE  WA  CREDIT", 14.92, "Income"}
+				        }
+				    )
+				in
+				    Source
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

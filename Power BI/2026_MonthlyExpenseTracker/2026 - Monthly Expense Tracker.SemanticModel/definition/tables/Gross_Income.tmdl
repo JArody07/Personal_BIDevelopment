@@ -1,0 +1,71 @@
+table Gross_Income
+	lineageTag: 009f3a1b-e650-4942-a0ee-7873615b5ab1
+
+	measure 'Gross Income' =
+			
+			SUM(Gross_Income[Income])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 26e44502-d7ac-44b4-8539-ed0124c4b6b4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Median Monthly Amount' =
+			
+			MEDIANX(
+			    VALUES(DimDate[YearMonth]),
+			    SUM(Gross_Income[Income])
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 816dded7-2c17-4853-994b-251a4ef4fdfc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: fb341236-d1c3-4093-bbfc-e5ef137e2576
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transaction_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 06a4f437-39f7-406a-9af2-ebe1ad0c2aa7
+		summarizeBy: none
+		sourceColumn: Transaction_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Income
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 44ec83c2-b294-4609-8140-1d44fa163964
+		summarizeBy: sum
+		sourceColumn: Income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition Gross_Income = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\iCloud\Numbers\Tracker\Annual & Monthly Tracker\2026\Master Tracker 2026 (Power BI Model).xlsx"), null, true),
+				    Gross_Income_Sheet = Source{[Item="Gross_Income",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Gross_Income_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Month", Int64.Type}, {"Transaction_Date", type date}, {"Income", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Month] <> null)),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Filtered Rows",{{"Income", Currency.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "394ab03e2f05bbcc26c8",
+  "position": {
+    "x": 0,
+    "y": 511.728813559322,
+    "z": 3,
+    "height": 208.27118644067795,
+    "width": 208.27118644067795,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gross_Income"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "Sum(Gross_Income.Month)",
+              "nativeQueryRef": "Month"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Gross_Income"
+                    }
+                  },
+                  "Property": "Gross Income"
+                }
+              },
+              "queryRef": "Gross_Income.Gross Income",
+              "nativeQueryRef": "Gross Income"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Gross_Income"
+                  }
+                },
+                "Property": "Month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "82.63290702878078D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Gross_Income.Month)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.71186227960246D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gross_Income.Gross Income"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,26 @@
+table DimPayPeriod
+	lineageTag: fcaa1baa-ab60-4c11-8f75-0918a9133e39
+
+	column PayPeriod
+		dataType: string
+		lineageTag: 96e6f3c3-14de-414d-b2d6-e7539a44db19
+		summarizeBy: none
+		sourceColumn: PayPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPayPeriod = m
+		mode: import
+		queryGroup: Dims
+		source =
+				let
+				    Source = Fact_BankTransactions,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"PayPeriod"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "74c63c5d48e94946d14c",
+  "displayName": "Transaction Record",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

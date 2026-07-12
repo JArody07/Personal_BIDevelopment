@@ -1,0 +1,35 @@
+/// References CategoryMap and includes only unique Categories and their Financial Plan.
+table DimCategory
+	lineageTag: bec22e11-25a1-4d25-838a-cac2fb52fa01
+
+	column Category
+		dataType: string
+		lineageTag: c141da2d-d1cc-46e1-ae6b-d0f3b6f1d16f
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancePlanCategory
+		dataType: string
+		lineageTag: 4269b42f-6a22-4f60-93f6-bd71d5b00669
+		summarizeBy: none
+		sourceColumn: FinancePlanCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCategory = m
+		mode: import
+		queryGroup: Dims
+		source =
+				let
+				    Source = CategoryMap,
+				    #"Removed Columns" = Table.RemoveColumns(Source, {"Keyword", "Priority"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

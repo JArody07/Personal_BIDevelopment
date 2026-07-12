@@ -1,0 +1,58 @@
+/// - Used as reference ONLY.
+table Budget_2026
+	lineageTag: 6af2fb49-8627-4d91-a509-6c13b7053285
+
+	measure 'Monthly Budget' =
+			
+			SUM(Budget_2026[Amount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 57fa09c2-aa71-4fbb-8df6-c40e9a94b87b
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Category
+		dataType: string
+		lineageTag: 861e480c-a3e2-4c3b-ad9a-bbd435c19368
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a2f9357a-9812-4e5e-a286-1b521f7fd6d5
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column '% Occupancy'
+		dataType: double
+		lineageTag: e1842db7-3269-4f9d-81d3-727b159486ca
+		summarizeBy: sum
+		sourceColumn: % Occupancy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Budget_2026 = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("hZPRb5swEMb/FSva3jJkMBjymiltoqVr1GzqQ1pNHpwSq/RAtqnEfz8nNnhTyfqIvh939919PhxmD4BmNp+RT/G8yGhEKbFfrIh48Xn2PD/MfiiBum2UEUY26Mh04JJowRx2q5oSlAR9IXI6EHEa8dQjQpOlrGtPDECUcqevaiiNkqU0feCKwPHccY/CgAoEz0aC8XFmffqLCDWSzBEbtDUQTICys+gg6hvtTg1CINjQiEa5d70VHVaqHxxlgyNf4KtQ5E5I2wsFluAMsXGY3C9mB0o3KGqy7o8S0HFxlg/HiBJ/izWI2pzIU0dpwskj1DWC1h4fh2Oxo2+kGWVGR5n72dfNK5AHaIVUvgQPHdOFg+6xlnYH+1PTthKPF+4LIa4SpcHmTvSvQ5ImgQ3qTo1biMebsIj5m+y737pUsj3nzE2UMRtDt6s4cdDPX2vR+QgtokX2bzRWNqR4JPedGyQP0cg88YETBZU0xM5b/d/RqurK8CDeyXvTVfZfsm2EtxKHAyT+PkuBL+QG/JN5V+NO6nJaWX7fba/0RVG+XA3EXrxZ504urM6Ty27s1f0FUhp/u2aoGQpPLK1vrdwpBVj208ytjbWyCd/gG+jzWqdqPf8B", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Transactions = _t, Amount = _t, #"% Occupancy" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Transactions", type text}, {"Amount", type text}, {"% Occupancy", Percentage.Type}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Amount", Currency.Type}}),
+				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type1", {{"Amount", 0}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Errors",{{"% Occupancy", type number}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type2",{{"Transactions", "Category"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

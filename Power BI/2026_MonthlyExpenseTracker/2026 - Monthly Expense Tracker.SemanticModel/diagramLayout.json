@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 44.799999237060547,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "fb92dafc-b34c-4ba7-baaa-c4dd475c7e8e",
+          "size": {
+            "height": 230,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 418,
+            "y": 358
+          },
+          "nodeIndex": "Fact_BankTransactions",
+          "nodeLineageTag": "0492f3b9-ccc7-4cb1-848f-4ed1c58d9b5c",
+          "size": {
+            "height": 344,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 282,
+            "y": 0
+          },
+          "nodeIndex": "DimCategory",
+          "nodeLineageTag": "bec22e11-25a1-4d25-838a-cac2fb52fa01",
+          "size": {
+            "height": 230,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 855,
+            "y": 0
+          },
+          "nodeIndex": "StartingBalances",
+          "nodeLineageTag": "d0266428-47a4-4319-9c20-f967b0aa4244",
+          "size": {
+            "height": 230,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 572,
+            "y": 0
+          },
+          "nodeIndex": "Budget_2026",
+          "nodeLineageTag": "6af2fb49-8627-4d91-a509-6c13b7053285",
+          "size": {
+            "height": 229,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1131,
+            "y": 0
+          },
+          "nodeIndex": "CategoryOverrides",
+          "nodeLineageTag": "87a1deb4-55fc-4972-93c0-67e8ec744619",
+          "size": {
+            "height": 227,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1401,
+            "y": 0
+          },
+          "nodeIndex": "DimPayPeriod",
+          "nodeLineageTag": "fcaa1baa-ab60-4c11-8f75-0918a9133e39",
+          "size": {
+            "height": 221,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 748.60000610351563,
+            "y": 353
+          },
+          "nodeIndex": "Gross_Income",
+          "nodeLineageTag": "009f3a1b-e650-4942-a0ee-7873615b5ab1",
+          "size": {
+            "height": 339,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

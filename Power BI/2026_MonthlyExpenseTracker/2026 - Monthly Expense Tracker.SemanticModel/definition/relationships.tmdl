@@ -1,0 +1,57 @@
+relationship 4372209d-467b-4bd6-9b9d-bd5fea3222ac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.Date
+	toColumn: LocalDateTable_868044e3-bc35-40d1-93f8-7e5e1def3ed8.Date
+
+relationship 7718436e-a03f-4e09-821b-31141d2e7f46
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.MonthStart
+	toColumn: LocalDateTable_41d36901-8eb3-4f38-a5ae-84184b2ca405.Date
+
+relationship be8e50f8-4850-48f9-b7cd-837de75c6479
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.MonthEnd
+	toColumn: LocalDateTable_fd4a6447-e024-404b-a2f4-4bb60c5f1ca6.Date
+
+relationship 87ea194b-fb70-457b-9738-21f3208da0e3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.WeekStart_Mon
+	toColumn: LocalDateTable_58eb6dd0-3036-4621-a388-104aa1a1e988.Date
+
+relationship 2d75d8ed-4c23-44bc-818e-df19f4800ec8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.WeekEnd_Sun
+	toColumn: LocalDateTable_b52dc935-e034-4410-986e-4e3d58ff340a.Date
+
+relationship c85c0f57-0deb-cb87-eba5-4b0a1a0b85e4
+	fromColumn: Fact_BankTransactions.'Transaction Date'
+	toColumn: DimDate.Date
+
+relationship 5a3db34f-25f3-4f84-8277-e80d0ded96c9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: StartingBalances.AsOfDate
+	toColumn: LocalDateTable_193ad474-db9b-4ef2-ba30-f0e6fe006dc0.Date
+
+relationship bec9d0a0-c695-3453-3384-df3adf985bd0
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Budget_2026.Category
+	toColumn: DimCategory.Category
+
+relationship 4841a173-36c8-42c3-a5ad-c53d1c471891
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CategoryOverrides.'Transaction Date'
+	toColumn: LocalDateTable_eeecc842-e6c3-4c10-b994-0259b05d5f8c.Date
+
+relationship 9b9d4674-d03d-6840-0ee2-c8080c2e222a
+	fromColumn: Fact_BankTransactions.Category
+	toColumn: DimCategory.Category
+
+relationship 5c4444ef-8033-e462-3041-757f7729a5a9
+	fromColumn: Fact_BankTransactions.PayPeriod
+	toColumn: DimPayPeriod.PayPeriod
+
+relationship 61e21637-c214-a8b5-4d94-236957e9c427
+	fromColumn: Gross_Income.Transaction_Date
+	toColumn: DimDate.Date
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "2026 - Monthly Expense Tracker"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a49bb5d4-4096-436d-ba44-b5e7cf3d7714"
+  }
+}

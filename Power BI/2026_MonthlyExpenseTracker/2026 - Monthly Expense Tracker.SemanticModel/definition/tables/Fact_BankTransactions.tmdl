@@ -1,0 +1,206 @@
+table Fact_BankTransactions
+	lineageTag: 0492f3b9-ccc7-4cb1-848f-4ed1c58d9b5c
+
+	measure 'Total Transactions' =
+			
+			SUM(Fact_BankTransactions[Transaction Amount])
+		lineageTag: 0ba5afc9-547b-442f-aa7e-750cdcd17b2f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses' =
+			
+			CALCULATE(
+			    [Total Transactions],
+			    Fact_BankTransactions[Transaction Amount] < 0,
+			    DimCategory[FinancePlanCategory] <> "Internal Transfer"
+			)
+		lineageTag: 81aed8ae-ad16-42dc-9d7f-e48495fe29c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Income' =
+			
+			CALCULATE(
+			    [Total Transactions],
+			    Fact_BankTransactions[Transaction Amount] > 0
+			)
+		lineageTag: cef2544a-cc2f-4f86-bdc2-9a4d79a68c14
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Cash Flow' =
+			
+			[Total Income] + [Total Expenses]
+		lineageTag: 3e533897-efa1-469c-9844-917f4e972926
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses (Display)' =
+			
+			ABS([Total Expenses])
+		lineageTag: 6aa3d02f-d93c-4e1d-a745-663a7d110e7d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Needs %' =
+			
+			DIVIDE(
+			    CALCULATE([Total Expenses], DimCategory[FinancePlanCategory] = "Needs"),
+			    [Total Expenses]
+			)
+		lineageTag: dec6862d-5d02-43c7-a77f-a29a70d8bf18
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Wants %' =
+			
+			DIVIDE(
+			    CALCULATE([Total Expenses], DimCategory[FinancePlanCategory] = "Wants"),
+			    [Total Expenses]
+			)
+		lineageTag: fd442dac-3102-4fe5-b6e6-5bb0e6c190c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Savings %' =
+			
+			DIVIDE(
+			    CALCULATE([Total Expenses], DimCategory[FinancePlanCategory] = "Savings"),
+			    [Total Expenses]
+			)
+		lineageTag: 95eda2a7-0216-4719-a621-f5b53b9f8648
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Transaction Count' =
+			
+			COUNTROWS(Fact_BankTransactions)
+		formatString: 0
+		lineageTag: 3fe26e30-b547-4d94-91e1-f907d9b2f136
+
+	measure 'Running Balance' = ```
+			
+			VAR CurrentDate = MAX(Fact_BankTransactions[Transaction Date])
+			VAR CurrentAccount = SELECTEDVALUE(Fact_BankTransactions[AccountSource])
+			VAR OpeningBal = 
+			    LOOKUPVALUE(
+			        StartingBalances[OpeningBalance],
+			        StartingBalances[AccountSource], CurrentAccount
+			    )
+			VAR CumulativeTransactions = 
+			    CALCULATE(
+			        [Total Transactions],
+			        FILTER(
+			            ALL(Fact_BankTransactions),
+			            Fact_BankTransactions[Transaction Date] <= CurrentDate
+			                && Fact_BankTransactions[AccountSource] = CurrentAccount
+			        )
+			    )
+			RETURN
+			    OpeningBal + CumulativeTransactions
+			```
+		lineageTag: 4242ec24-1b32-4aa5-96a4-cd8eb87b63cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Budget Variance' =
+			
+			[Monthly Budget] + [Total Expenses]
+		lineageTag: bd7b0556-e007-4986-9a09-57b5c78d5c3b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ed88984d-2c0d-43c2-89e4-3e53e99e7a02
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Transaction Description'
+		dataType: string
+		lineageTag: 1b206778-2ad5-4bd8-bd61-4540bc97399b
+		summarizeBy: none
+		sourceColumn: Transaction Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Amount'
+		dataType: double
+		lineageTag: 5d0e587c-7fbb-417e-928d-e8c1ea56563d
+		summarizeBy: sum
+		sourceColumn: Transaction Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AccountSource
+		dataType: string
+		lineageTag: 83cfa3c5-6bd8-4f3c-b15b-fddf775359df
+		summarizeBy: none
+		sourceColumn: AccountSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 186f80c8-da57-4177-9a87-7ad703319938
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayPeriod
+		dataType: string
+		lineageTag: b3775aa7-dcb0-4868-8697-c206aea3fa1a
+		summarizeBy: none
+		sourceColumn: PayPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_BankTransactions = m
+		mode: import
+		queryGroup: Facts
+		source = ```
+				let
+				    Source            = Table.Combine({CapitalOne_StagingQuery, Discover_StagingQuery, Avant_StagingQuery, BancorpBank_StagingQuery}),
+				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignCategory([Transaction Description]), type text),
+				    #"Sorted Rows"    = Table.Sort(#"Added Category", {{"Transaction Date", Order.Descending}}),
+				    #"Changed Type"   = Table.TransformColumnTypes(#"Sorted Rows", {{"Transaction Date", type date}}),
+				
+				    #"Merged Overrides"    = Table.NestedJoin(#"Changed Type",
+				                                {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                                CategoryOverrides,
+				                                {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                                "_Override", JoinKind.LeftOuter),
+				    #"Expanded Override"   = Table.ExpandTableColumn(#"Merged Overrides", "_Override", {"Category"}, {"_Override.Category"}),
+				        #"Resolved Category" = Table.AddColumn(#"Expanded Override", "Category_Final",
+				                               each if [_Override.Category] <> null
+				                                    then [_Override.Category]
+				                                    else [Category], type text),
+				    #"Dropped Originals" = Table.RemoveColumns(#"Resolved Category", {"Category", "_Override.Category"}),
+				    #"Renamed Category"  = Table.RenameColumns(#"Dropped Originals", {{"Category_Final", "Category"}}),
+				    #"Sorted Rows1" = Table.Sort(#"Renamed Category",{{"Transaction Date", Order.Descending}}),
+				    #"Added PayPeriod" = Table.AddColumn(#"Sorted Rows1", "PayPeriod",
+				        each if Date.Day([Transaction Date]) <= 15
+				             then Text.From(Date.MonthName([Transaction Date])) 
+				                  & " " & Text.From(Date.Year([Transaction Date])) 
+				                  & " - Income #1"
+				             else Text.From(Date.MonthName([Transaction Date])) 
+				                  & " " & Text.From(Date.Year([Transaction Date])) 
+				                  & " - Income #2",
+				        type text)
+				in
+				    #"Added PayPeriod"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

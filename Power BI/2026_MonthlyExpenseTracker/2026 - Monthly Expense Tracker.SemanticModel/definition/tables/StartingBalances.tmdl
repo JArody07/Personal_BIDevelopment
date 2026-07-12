@@ -1,0 +1,50 @@
+table StartingBalances
+	lineageTag: d0266428-47a4-4319-9c20-f967b0aa4244
+
+	column AccountSource
+		dataType: string
+		lineageTag: b7d113d6-23c7-471d-b37d-9390e4efff2b
+		summarizeBy: none
+		sourceColumn: AccountSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpeningBalance
+		dataType: double
+		lineageTag: e2df8435-1e37-4662-aa9a-951854407800
+		summarizeBy: sum
+		sourceColumn: OpeningBalance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AsOfDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ff716113-fc76-41b7-b295-7da13eeaf754
+		summarizeBy: none
+		sourceColumn: AsOfDate
+
+		variation Variation
+			isDefault
+			relationship: 5a3db34f-25f3-4f84-8277-e80d0ded96c9
+			defaultHierarchy: LocalDateTable_193ad474-db9b-4ef2-ba30-f0e6fe006dc0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition StartingBalances = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wck4syCxJzFHwz0tVcM5ITc7OzEtX0lEytNAzNwHSBoa6QGRkYGSmFKsTreSSWZycX5ZapOBclJqSWaLgnFiUAlRlamCAqdaxLDGvBE2hkaklmsJYAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [AccountSource = _t, OpeningBalance = _t, AsOfDate = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"AccountSource", type text}, {"OpeningBalance", type number}, {"AsOfDate", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

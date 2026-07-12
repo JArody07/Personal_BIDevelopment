@@ -1,0 +1,311 @@
+table DimDate
+	lineageTag: fb92dafc-b34c-4ba7-baaa-c4dd475c7e8e
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e53677ab-e6cf-43d4-ada6-bbba123e2918
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 4372209d-467b-4bd6-9b9d-bd5fea3222ac
+			defaultHierarchy: LocalDateTable_868044e3-bc35-40d1-93f8-7e5e1def3ed8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 074b8494-bc59-453c-b1a3-519fe400e822
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 108563c8-d101-4a75-aa81-32751307ae29
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: a4dbfcd1-b1ec-491b-8057-e32c3ba51e3d
+		summarizeBy: sum
+		sourceColumn: QuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 58009664-2e87-4cd0-bc43-a19802c83b74
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		dataType: string
+		lineageTag: abf1e6c7-7318-4fdd-9af7-bf73cca9a56b
+		summarizeBy: none
+		sourceColumn: YearQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f4b115c-1271-429e-964f-7bbfd44c6d63
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: a796f16f-fb25-41c3-8c97-5093a8715584
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthShort
+		dataType: string
+		lineageTag: 5d3de15f-fac1-48b4-88d0-6140bc751674
+		summarizeBy: none
+		sourceColumn: MonthShort
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: f19b3def-d1cd-4858-a106-63d3ba74520c
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthStart
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f772f3fc-c353-4019-94c9-ef86ed657a4d
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		variation Variation
+			isDefault
+			relationship: 7718436e-a03f-4e09-821b-31141d2e7f46
+			defaultHierarchy: LocalDateTable_41d36901-8eb3-4f38-a5ae-84184b2ca405.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MonthEnd
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c6f260d6-d953-4346-9ca4-ebf0e5bd0e04
+		summarizeBy: none
+		sourceColumn: MonthEnd
+
+		variation Variation
+			isDefault
+			relationship: be8e50f8-4850-48f9-b7cd-837de75c6479
+			defaultHierarchy: LocalDateTable_fd4a6447-e024-404b-a2f4-4bb60c5f1ca6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DayOfMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: a514c287-7bfe-4278-afa8-86b7f6f1dacb
+		summarizeBy: sum
+		sourceColumn: DayOfMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekNumber_Mon1
+		dataType: int64
+		formatString: 0
+		lineageTag: b743e2c6-bbe4-48d1-a20f-eb5d8f2af797
+		summarizeBy: sum
+		sourceColumn: DayOfWeekNumber_Mon1
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekName
+		dataType: string
+		lineageTag: 5fad2623-c8d1-4b4a-a8d2-db8a049be331
+		summarizeBy: none
+		sourceColumn: DayOfWeekName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d5ee1711-e58b-4e6f-94f1-8e5bfc3120c6
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISOWeekNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 3593e6b5-a574-4f8d-99ef-1b48ded79aa0
+		summarizeBy: sum
+		sourceColumn: ISOWeekNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekStart_Mon
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1f379c10-fadf-4294-9288-401270a88a82
+		summarizeBy: none
+		sourceColumn: WeekStart_Mon
+
+		variation Variation
+			isDefault
+			relationship: 87ea194b-fb70-457b-9738-21f3208da0e3
+			defaultHierarchy: LocalDateTable_58eb6dd0-3036-4621-a388-104aa1a1e988.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WeekEnd_Sun
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f2fe44a9-f2da-42e6-880b-026468853e1d
+		summarizeBy: none
+		sourceColumn: WeekEnd_Sun
+
+		variation Variation
+			isDefault
+			relationship: 2d75d8ed-4c23-44bc-818e-df19f4800ec8
+			defaultHierarchy: LocalDateTable_b52dc935-e034-4410-986e-4e3d58ff340a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IsToday
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2d1fd021-a994-4ea9-842c-b539f1db161d
+		summarizeBy: none
+		sourceColumn: IsToday
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		queryGroup: Dims
+		source =
+				let
+				    // ── Configuration ──
+				    StartDate = #date(2015, 1, 1),
+				    EndDate   = #date(2050, 12, 31),
+				
+				    // ── Generate date list ──
+				    DayCount  = Duration.Days(EndDate - StartDate) + 1,
+				    DateList  = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+				    ToTable   = Table.FromList(DateList, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+				    TypeDate  = Table.TransformColumnTypes(ToTable, {{"Date", type date}}),
+				
+				    // ── Add columns ──
+				    AddDateKey          = Table.AddColumn(TypeDate, "DateKey",
+				                            each Date.Year([Date]) * 10000 + Date.Month([Date]) * 100 + Date.Day([Date]),
+				                            Int64.Type),
+				
+				    AddYear             = Table.AddColumn(AddDateKey, "Year",
+				                            each Date.Year([Date]),
+				                            Int64.Type),
+				
+				    AddQuarterNumber    = Table.AddColumn(AddYear, "QuarterNumber",
+				                            each Date.QuarterOfYear([Date]),
+				                            Int64.Type),
+				
+				    AddQuarter          = Table.AddColumn(AddQuarterNumber, "Quarter",
+				                            each "Q" & Text.From(Date.QuarterOfYear([Date])),
+				                            type text),
+				
+				    AddYearQuarter      = Table.AddColumn(AddQuarter, "YearQuarter",
+				                            each Text.From(Date.Year([Date])) & "-Q" & Text.From(Date.QuarterOfYear([Date])),
+				                            type text),
+				
+				    AddMonthNumber      = Table.AddColumn(AddYearQuarter, "MonthNumber",
+				                            each Date.Month([Date]),
+				                            Int64.Type),
+				
+				    AddMonthName        = Table.AddColumn(AddMonthNumber, "MonthName",
+				                            each Date.MonthName([Date]),
+				                            type text),
+				
+				    AddMonthShort       = Table.AddColumn(AddMonthName, "MonthShort",
+				                            each Text.Start(Date.MonthName([Date]), 3),
+				                            type text),
+				
+				    AddYearMonth        = Table.AddColumn(AddMonthShort, "YearMonth",
+				                            each Text.From(Date.Year([Date])) & "-" & Text.PadStart(Text.From(Date.Month([Date])), 2, "0"),
+				                            type text),
+				
+				    AddMonthStart       = Table.AddColumn(AddYearMonth, "MonthStart",
+				                            each Date.StartOfMonth([Date]),
+				                            type date),
+				
+				    AddMonthEnd         = Table.AddColumn(AddMonthStart, "MonthEnd",
+				                            each Date.EndOfMonth([Date]),
+				                            type date),
+				
+				    AddDayOfMonth       = Table.AddColumn(AddMonthEnd, "DayOfMonth",
+				                            each Date.Day([Date]),
+				                            Int64.Type),
+				
+				    // Power Query WEEKDAY: Day.Monday = 1 ... Day.Sunday = 7
+				    AddDayOfWeekNum     = Table.AddColumn(AddDayOfMonth, "DayOfWeekNumber_Mon1",
+				                            each Date.DayOfWeek([Date], Day.Monday) + 1,
+				                            Int64.Type),
+				
+				    AddDayOfWeekName    = Table.AddColumn(AddDayOfWeekNum, "DayOfWeekName",
+				                            each Date.DayOfWeekName([Date]),
+				                            type text),
+				
+				    AddIsWeekend        = Table.AddColumn(AddDayOfWeekName, "IsWeekend",
+				                            each Date.DayOfWeek([Date], Day.Monday) + 1 > 5,
+				                            type logical),
+				
+				    AddISOWeek          = Table.AddColumn(AddIsWeekend, "ISOWeekNumber",
+				                            each Date.WeekOfYear([Date], Day.Monday),
+				                            Int64.Type),
+				
+				    AddWeekStartMon     = Table.AddColumn(AddISOWeek, "WeekStart_Mon",
+				                            each Date.StartOfWeek([Date], Day.Monday),
+				                            type date),
+				
+				    AddWeekEndSun       = Table.AddColumn(AddWeekStartMon, "WeekEnd_Sun",
+				                            each Date.EndOfWeek([Date], Day.Monday),
+				                            type date),
+				
+				    AddIsToday          = Table.AddColumn(AddWeekEndSun, "IsToday",
+				                            each [Date] = DateTime.Date(DateTime.LocalNow()),
+				                            type logical)
+				in
+				    AddIsToday
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

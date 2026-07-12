@@ -1,0 +1,757 @@
+expression '2026-03-22_360Checking   9096' =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-07-11_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
+		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Transaction Date", Order.Ascending}}),
+		    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 0, 1, Int64.Type)
+		in
+		    #"Added Index"
+	lineageTag: 33e9ccd4-17a2-4135-89ce-85cb071e1314
+	queryGroup: CapitalOne_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression DFS-Search-20260323 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Discover Bank\DFS-Search-20260712.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Trans. Date", type date}, {"Post Date", type date}, {"Description", type text}, {"Amount", type number}, {"Category", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 5487ccba-795f-4a57-b7c4-19e08c39a429
+	queryGroup: Discover_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression CapitalOne_StagingQuery = ```
+		let
+		    Source = #"2026-03-22_360Checking   9096",
+		    #"Removed Columns" = Table.RemoveColumns(Source, {"Account Number", "Balance", "Index"}),
+		    // Create normalized amount using Transaction Type as the sign indicator
+		    #"Added NormalizedAmount" = Table.AddColumn(
+		        #"Removed Columns", "NormalizedAmount",
+		        each if [Transaction Type] = "Debit" 
+		             then [Transaction Amount] * -1 
+		             else [Transaction Amount],
+		        type number
+		    ),
+		    // Drop the original columns we no longer need
+		    #"Removed Originals" = Table.RemoveColumns(
+		        #"Added NormalizedAmount", {"Transaction Type", "Transaction Amount"}
+		    ),
+		    // Rename to the standard schema name
+		    #"Renamed Amount" = Table.RenameColumns(
+		        #"Removed Originals", {{"NormalizedAmount", "TransactionAmount"}}
+		    ),
+		    #"Added AccountSource" = Table.AddColumn(
+		        #"Renamed Amount", "AccountSource", 
+		        each "Capital One Checking", type text
+		    ),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added AccountSource",{{"TransactionAmount", "Transaction Amount"}})
+		in
+		    #"Renamed Columns"
+		```
+	lineageTag: 172e5bde-5964-4547-930b-fe52c0114a46
+	queryGroup: CapitalOne_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Discover_StagingQuery = ```
+		let
+		    Source = #"DFS-Search-20260323",
+		    #"Removed Columns" = Table.RemoveColumns(Source, {"Post Date", "Category"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns", {
+		        {"Trans. Date", "Transaction Date"}, 
+		        {"Description", "Transaction Description"}, 
+		        {"Amount", "Transaction Amount"}
+		    }),
+		    // Flip sign to match unified convention
+		    #"Normalized Amount" = Table.TransformColumns(
+		        #"Renamed Columns", 
+		        {"Transaction Amount", each _ * -1, type number}
+		    ),
+		    #"Added AccountSource" = Table.AddColumn(
+		        #"Normalized Amount", "AccountSource", 
+		        each "Discover Credit Card", type text
+		    )
+		in
+		    #"Added AccountSource"
+		```
+	lineageTag: adf2fe3b-aead-44a8-91c2-7040be7ee241
+	queryGroup: Discover_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+/// Matches the Transaction Description with the corresponding Category, Financial Plan, and Priority.
+/// 
+/// This will get overwritten by CategoryOverrides.
+expression CategoryMap = ```
+		let
+		    Source = #table(
+		        type table [
+		            Keyword = text,
+		            Category = text,
+		            FinancePlanCategory = text,
+		            Priority = Int64.Type
+		        ],
+		        {
+		            // Income
+		            {"TDA MAGNETICS LL PAYROLL", "Income", "Income", 1},
+		            {"Monthly Interest Paid", "Income", "Income", 1},
+		            {"Cash Added", "Income", "Income", 1},
+		            {"FRANCHISE TAX", "Income", "Income", 1},
+		            {"IRS  TREAS", "Income", "Income", 1},
+		            {"REWARDS STATEMENT CREDIT", "Income", "Income", 1},
+		            {"Tda Magnetics Ll, Payroll", "Income", "Income", 1},
+		            {"Deposit from Western Governor", "Income", "Income", 1},   
+		            {"Cash back", "Income", "Income", 1},      
+		
+		            // Transportation
+		            {"DINO", "Transportation", "Needs", 1},
+		            {"SINCLAIR", "Transportation", "Needs", 1},
+		
+		            // Groceries
+		            {"SAMS CLUB", "Groceries", "Needs", 1},
+		            {"SAMSCLUB", "Groceries", "Needs", 1},
+		            {"EL SUPER", "Groceries", "Needs", 1},
+		            {"NORTHGATE MARKET", "Groceries", "Needs", 1},
+		            {"MARTIN", "Groceries", "Needs", 1},
+		            {"DOLLARTREE", "Groceries", "Needs", 1},
+		            {"WAL-MART", "Groceries", "Needs", 1},
+		
+		            // Rent
+		            {"DIANA MATIESU", "Rent", "Needs", 1},
+		            {"Rent - Preauthorized", "Rent", "Needs", 1},
+		            {"ARMI PROPERTIES", "Rent", "Needs", 1},
+		
+		            // Utilities: Gas, Electricity, Water, Trash, Internet, and Phone
+		            {"SoCalGas", "Gas Bill", "Needs", 1},
+		            {"SO CAL EDISON", "Electricity Bill", "Needs", 1},
+		            {"Trash Bill", "Trash Bill", "Needs", 1},
+		            {"Water and Trash", "Water Bill", "Needs", 1},
+		            {"MINT MOBILE", "Phone Bill", "Needs", 1},
+		            {"SPECTRUM", "Internet Bill", "Needs", 2},
+		            {"FRONTIER COMMUNI STAMFORD", "Internet Bill", "Needs", 2},
+		
+		            // Car Maintenance
+		            {"G&J", "Car Maintenance", "Needs", 1},
+		            {"AUTO REPAIR", "Car Maintenance", "Needs", 1},
+		            {"Direct Debit: St Of Ca Dmv, Internet", "Car Maintenance", "Needs", 1},
+		            {"Long Beach Car Wash 2", "Car Maintenance", "Needs", 1},
+		            {"ST OF CA DMV", "Car Maintenance", "Needs", 1},
+		
+		            // Personal Hygiene
+		            {"VIDAL LOPEZ", "Personal Hygiene", "Needs", 1},
+		            {"OMAR SALINAS", "Personal Hygiene", "Needs", 1},
+		            {"Transfer to vidalblades18@gmail.com", "Personal Hygiene", "Needs", 1},
+		
+		            // Health & Wellness
+		            {"SOPHIA", "Health & Wellness", "Needs", 1},
+		            {"CVS/PHARMACY", "Health & Wellness", "Needs", 1},
+		
+		            // Fitness
+		            {"BLINK BELLFLOWER", "Fitness", "Wants", 1},
+		
+		            // Home Repairs
+		            {"JOSE PALACIOS", "Home Repairs", "Wants", 1},
+		
+		            // Car Payment
+		
+		            // Car Insurance
+		            {"STATE FARM", "Car Insurance", "Needs", 1},
+		
+		            // Subscriptions & Recurring
+		            {"APPLE COM BILL", "Subscriptions", "Wants", 1},
+		            {"MICROSOFT", "Subscriptions", "Wants", 1},
+		            {"YOUTUBE", "Subscriptions", "Wants", 1},
+		            {"APPLE COM BILL", "Subscriptions", "Wants", 1},
+		            {"GOOGLE *", "Subscriptions", "Wants", 1},
+		            {"CLAUDE", "Subscriptions", "Wants", 1},
+		            {"AMAZON PRIME", "Subscriptions", "Wants", 1},
+		            {"www.Perplexity.Ai", "Subscriptions", "Wants", 1},
+		            {"Apple.com/Bill", "Subscriptions", "Wants", 1},
+		            {"Costco Membership Fee", "Subscriptions", "Wants", 1},
+		            {"Google You Tube Premium", "Subscriptions", "Wants", 1},
+		            {"CBI PARALLELS", "Subscriptions", "Wants", 1},
+		            
+		            // Lifestyle
+		            {"U HAUL", "U_Haul", "Wants", 1},
+		
+		            // Entertainment & Social
+		            {"THE FOAT", "Entertainment & Social", "Wants", 1},
+		
+		            // Clothing & Apparel
+		            {"SEPHORA", "Clothing & Apparel", "Wants", 1},
+		            {"ROSS STORES", "Clothing & Apparel", "Wants", 1},
+		
+		            // Household & Home Goods
+		            {"LOWES", "Household & Home Goods", "Wants", 1},
+		            {"Mcm, Inc. Mcmpay.com", "Household & Home Goods", "Wants", 1},
+		
+		            // Eating Out
+		            {"OUTBACK", "Eating Out", "Wants", 1},
+		            {"BIRRIA TORRANCE", "Eating Out", "Wants", 1},
+		            {"RICO BROTHERS", "Eating Out", "Wants", 1},
+		            {"DOUBLZ", "Eating Out", "Wants", 1},
+		            {"BIG RAYS", "Eating Out", "Wants", 1},
+		            {"TACOS GIYO", "Eating Out", "Wants", 1},
+		            {"WAIKIKI HAWAIIAN", "Eating Out", "Wants", 1},
+		            {"LITTLE CAESARS", "Eating Out", "Wants", 1},
+		            {"CHILI'S", "Eating Out", "Wants", 1},
+		            {"GOGI", "Eating Out", "Wants", 1},
+		            {"TAM S SUPER BURGERS", "Eating Out", "Wants", 1},
+		            {"LOUISIANA FRIED", "Eating Out", "Wants", 1},
+		            {"CHIPOTLE", "Eating Out", "Wants", 1},
+		            {"CALI PIZZA", "Eating Out", "Wants", 1},
+		            {"POLLO CAMPERO", "Eating Out", "Wants", 1},
+		            {"IN-N-OUT", "Eating Out", "Wants", 1},
+		            {"SQ *ANTEIKU", "Eating Out", "Wants", 1},
+		            {"JACK IN THE BOX", "Eating Out", "Wants", 1},
+		            {"POPEYES", "Eating Out", "Wants", 1},
+		            {"RESTAURANT", "Eating Out", "Wants", 1},
+		            {"CEMITAS POBLANAS", "Eating Out", "Wants", 1},
+		            {"Rally's", "Eating Out", "Wants", 1},
+		            {"Starbucks", "Eating Out", "Wants", 1},
+		            {"Raising Canes", "Eating Out", "Wants", 1},
+		            {"TACOS Y MARISCOS EL TIO", "Eating Out", "Wants", 1},
+		            {"EL POLLO LOCO", "Eating Out", "Wants", 1},
+		            {"TAMS SUPER BURGERS", "Eating Out", "Wants", 1},
+		            {"ROUND1", "Eating Out", "Wants", 1},
+		            {"EGG BELLFLOWER", "Eating Out", "Wants", 1},
+		            {"ONO", "Eating Out", "Wants", 1},
+		
+		            // Shoppping
+		            {"AMAZON", "Online Shopping", "Wants", 1},
+		            {"AMZN", "Online Shopping", "Wants", 1},
+		            {"G* GOAT", "Online Shopping", "Wants", 1},
+		
+		            // Savings
+		            {"360 Performance Savings", "Savings", "Savings", 1},
+		            {"Secured Deposit Account", "Savings", "Savings", 1},
+		            {"Transfer to Chime Savings Account", "Savings", "Savings", 1},
+		            {"Round Up to Savings Account", "Savings", "Savings", 1},
+		            {"Transfer to Savings Account", "Savings", "Savings", 1},
+		            
+		
+		            // Withdrawals
+		            {"ATM Withdrawal", "Withdrawal", "Wants", 1},
+		
+		            // Education
+		            {"LINUX", "Education", "Wants", 1},
+		            {"PASADENA CENTER PARKIN", "Education", "Wants", 1},
+		            {"Wgu", "Education", "Wants", 1},
+		            {"Parchment Univ Docs", "Education", "Wants", 1},
+		
+		            // Internal transfers
+		            {"DISCOVER SECUR DPST", "Credit Card Payment", "Internal Transfer", 1},
+		            {"Relocation of funds", "Internal Transfer", "Internal Transfer", 1},
+		            {"Statement Credit Reward", "Credit Card Rewards", "Internal Transfer", 1},
+		            {"PAYMENT - THANK YOU", "Credit Card Payment", "Internal Transfer", 1},
+		            {"Avant LLC", "Credit Card Payment", "Internal Transfer", 1},
+		            {"DISCOVER E-PAYMENT", "Credit Card Payment", "Internal Transfer", 1},
+		            {"CREDIT", "Refund", "Internal Transfer", 1},
+		            {"Direct Debit: Capital One, Transfer", "Refund", "Internal Transfer", 1},
+		            {"Moved from Checking Account", "Internal Transfer", "Internal Transfer", 1},
+		            {"Moved to Checking Account", "Internal Transfer", "Internal Transfer", 1},
+		            {"Transfer from Savings Account", "Internal Transfer", "Internal Transfer", 1},
+		            {"Capital One, Acctverify", "Internal Transfer", "Internal Transfer", 1},
+		            {"Direct Debit: Capital One, Acctverify", "Internal Transfer", "Internal Transfer", 1},
+		            {"Ally Bank, Acctverify", "Internal Transfer", "Internal Transfer", 1},
+		            {"Chime Card Payment", "Internal Transfer", "Internal Transfer", 1},
+		            {"Card Payment from Secured Account", "Internal Transfer", "Internal Transfer", 1},
+		            {"DIRECTPAY FULL", "Credit Card Payment", "Internal Transfer", 1},
+		            
+		            // Internal transfers
+		            {"ZIP", "BNPL", "Wants", 1},
+		
+		            // Catch-all Zelle (Priority 2 — checked after specific people above)
+		            {"Zelle money sent", "Zelle - Outgoing", "Wants", 2},
+		            {"Zelle money received", "Income", "Income", 2},
+		            {"Transfer to Emma F.", "Zelle - Outgoing", "Wants", 1},
+		            {"Moneygram Us Online", "Zelle - Outgoing", "Wants", 1},
+		            {"Transfer to Celerino R.", "Zelle - Outgoing", "Wants", 1},
+		            {"MONEYGRAM US", "Zelle - Outgoing", "Wants", 1}
+		        }
+		    ),
+		    #"Sorted Rows" = Table.Sort(Source,{{"Keyword", Order.Descending}})
+		in
+		    #"Sorted Rows"
+		```
+	lineageTag: 2899ee5d-c343-4aba-bcf3-fcc925416bff
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression fnAssignCategory =
+		let
+		    fnAssignCategory = (description as text) =>
+		    let
+		        upperDesc = Text.Upper(description),
+		
+		        // Filter CategoryMap for any keyword found in the description
+		        matchedRows = Table.SelectRows(
+		            CategoryMap,
+		            each Text.Contains(upperDesc, Text.Upper([Keyword]))
+		        ),
+		
+		        // Sort by Priority so specific matches (1) beat catch-alls (2)
+		        sortedMatches = Table.Sort(matchedRows, {{"Priority", Order.Ascending}}),
+		
+		        // Return the first match or "Uncategorized"
+		        result = if Table.RowCount(sortedMatches) > 0
+		                 then sortedMatches{0}[Category]
+		                 else "Uncategorized"
+		    in
+		        result
+		in
+		    fnAssignCategory
+	lineageTag: febccf17-1e0d-4aab-80ec-7c7141449047
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'tabula-Statement 01-23-26' =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 01-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: ef84b15a-8062-4c42-a197-affb5f42fc8e
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 02-23-26' =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 02-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 879abc08-c9a8-45b1-a83a-cba62e371797
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 03-23-26' =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 03-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 264bcdae-650b-4784-b3de-2dcff4993256
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Avant_StagingQuery = ```
+		let
+		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format"}),
+		    #"Sorted Rows" = Table.Sort(Source,{{"Date", Order.Ascending}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Sorted Rows",{"Date_1"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Date", "Transaction Date"}}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"Reference Number"}),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns1",{{"Amount", "Transaction Amount"}}),
+		    #"Normalized Amount" = Table.TransformColumns(
+		        #"Renamed Columns1", 
+		        {"Transaction Amount", each _ * -1, type number}
+		    ),
+		    #"Added AccountSource" = Table.AddColumn(
+		        #"Normalized Amount", "AccountSource", 
+		        each "Avant Credit Card", type text
+		    )
+		in
+		    #"Added AccountSource"
+		```
+	lineageTag: b3033e06-7619-4979-8394-d838513b0f79
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 01-23-26_format' =
+		let
+		    Source = #"tabula-Statement 01-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 3866ce51-8d62-49b2-89c1-a52caf353791
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 02-23-26_format' =
+		let
+		    Source = #"tabula-Statement 02-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 4089ef69-36ab-42c4-8613-6aab09739913
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 03-23-26_format' =
+		let
+		    Source = #"tabula-Statement 03-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 3061c6d7-7598-4c30-a3f6-8aa6f106074b
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 04-23-26' =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 04-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 12a15eab-a9d7-423f-a981-435d5cc56e2e
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 04-23-26 format' =
+		let
+		    Source = #"tabula-Statement 04-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 3d45596d-ffb7-4c6b-b7ff-9581d92d9f80
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 05-23-26' =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 05-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 6aeb8075-9790-4968-9bfc-754714d80a84
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 05-23-26 format' =
+		let
+		    Source = #"tabula-Statement 05-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 06578141-796b-4e46-991f-0247dc4d2b45
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Checking-Statement-January-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Checking-Statement-January-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"NET AMOUNT", Currency.Type}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: dafe7e1d-7c30-4037-8cbf-1d6fe8858513
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Checking-Statement-February-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Checking-Statement-February-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"NET AMOUNT", Currency.Type}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: 1242d2e6-8ba7-450f-b7cd-fc19cb728fbe
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Checking-Statement-March-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Checking-Statement-March-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"NET AMOUNT", Currency.Type}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: a8cace32-b7b7-4a9a-85e8-eaee35a44242
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Bancorp_StagingQuery =
+		let
+		    Source = Table.Combine({#"tabula-Chime-Checking-Statement-January-2026_format", #"tabula-Chime-Checking-Statement-February-2026_format", #"tabula-Chime-Checking-Statement-March-2026_format"}),
+		    #"Sorted Rows" = Table.Sort(Source,{{"SETTLEMENT DATE", Order.Descending}}),
+		    #"Added Custom" = Table.AddColumn(#"Sorted Rows", "AccountSource", each "Bancorp Bank Checking"),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"AccountSource", type text}}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"SETTLEMENT DATE", "Transaction Date"}, {"DESCRIPTION", "Transaction Description"}, {"NET AMOUNT", "Transaction Amount"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: 53a2610f-8353-44f5-b32d-5f7ee94670bf
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Checking-Statement-January-2026_format =
+		let
+		    Source = #"tabula-Chime-Checking-Statement-January-2026",
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"AMOUNT", "TYPE"}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns",{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "NET AMOUNT"}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE"}),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Columns1", each ([SETTLEMENT DATE] <> null))
+		in
+		    #"Filtered Rows"
+	lineageTag: 9a0bd2ab-2e32-443e-9434-d892f4bfd8d3
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Checking-Statement-February-2026_format =
+		let
+		    Source = #"tabula-Chime-Checking-Statement-February-2026",
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"AMOUNT", "TYPE"}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns",{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "NET AMOUNT"}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE"}),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Columns1", each ([SETTLEMENT DATE] <> null))
+		in
+		    #"Filtered Rows"
+	lineageTag: eb50cfc0-353a-4e99-b6a5-8f2d1a0338d9
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Checking-Statement-March-2026_format =
+		let
+		    Source = #"tabula-Chime-Checking-Statement-March-2026",
+		    #"Removed Columns" = Table.RemoveColumns(Source,{"AMOUNT", "TYPE"}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns",{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "NET AMOUNT"}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE"}),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Columns1", each ([SETTLEMENT DATE] <> null))
+		in
+		    #"Filtered Rows"
+	lineageTag: b5fcfaee-159d-4d83-b69c-874cc65cd11d
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-January-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-January-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type text}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: 43b280cd-ca28-4644-8d90-6ae4f5b37cce
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-February-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-February-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: bd6de104-cad4-40de-b28b-5a1c7d28a5b9
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-March-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-March-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type text}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: efcf6aad-410a-4dc4-b5ef-ff5b4e546c2f
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-April-2026 =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-April-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
+		in
+		    #"Changed Type"
+	lineageTag: b84cf8c0-d0aa-4658-b544-458ff0368678
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression BancorpBank_StagingQuery =
+		let
+		    Source = Table.Combine({#"tabula-Chime-Credit-Statement-January-2026_format", #"tabula-Chime-Credit-Statement-February-2026_format", #"tabula-Chime-Credit-Statement-March-2026_format", #"tabula-Chime-Credit-Statement-April-2026_format"}),
+		    #"Sorted Rows" = Table.Sort(Source,{{"SETTLEMENT DATE", Order.Descending}}),
+		    #"Added Custom" = Table.AddColumn(#"Sorted Rows", "AccountSource", each "Bancorp Bank Checking"),
+		    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"SETTLEMENT DATE", "Transaction Date"}, {"DESCRIPTION", "Transaction Description"}, {"AMOUNT", "Transaction Amount"}}),
+		    #"Sorted Rows1" = Table.Sort(#"Renamed Columns",{{"Transaction Date", Order.Descending}})
+		in
+		    #"Sorted Rows1"
+	lineageTag: 729e08a0-b390-4fd8-a5a8-5657fb1a0338
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-January-2026_format =
+		let
+		    Source = #"tabula-Chime-Credit-Statement-January-2026",
+		    #"Reordered Columns" = Table.ReorderColumns(Source,{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "TYPE", "AMOUNT", "ACCOUNT"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE", "TYPE", "ACCOUNT"})
+		in
+		    #"Removed Columns"
+	lineageTag: adab9b21-4cf9-4e15-b71d-a86cb4c8bffc
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-February-2026_format =
+		let
+		    Source = #"tabula-Chime-Credit-Statement-February-2026",
+		    #"Reordered Columns" = Table.ReorderColumns(Source,{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "TYPE", "AMOUNT", "ACCOUNT"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE", "TYPE", "ACCOUNT"})
+		in
+		    #"Removed Columns"
+	lineageTag: d2c51e8f-7991-425d-903d-8b54360df8a0
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-March-2026_format =
+		let
+		    Source = #"tabula-Chime-Credit-Statement-March-2026",
+		    #"Reordered Columns" = Table.ReorderColumns(Source,{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "TYPE", "AMOUNT", "ACCOUNT"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE", "TYPE", "ACCOUNT"})
+		in
+		    #"Removed Columns"
+	lineageTag: 0df60957-d5dc-4543-bc84-22b3c09ab04f
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression tabula-Chime-Credit-Statement-April-2026_format =
+		let
+		    Source = #"tabula-Chime-Credit-Statement-April-2026",
+		    #"Reordered Columns" = Table.ReorderColumns(Source,{"SETTLEMENT DATE", "TRANSACTION DATE", "DESCRIPTION", "TYPE", "AMOUNT", "ACCOUNT"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"TRANSACTION DATE", "TYPE", "ACCOUNT"})
+		in
+		    #"Removed Columns"
+	lineageTag: 0fa59d75-30b1-451c-81c0-a967967237ef
+	queryGroup: BancorpBank_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 06-23-26 format' =
+		let
+		    Source = #"tabula-Statement 06-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 832d9e04-a276-4c4b-9ba4-8120b6dbf9b0
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 06-23-26' =
+		let
+		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 06-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		  #"Changed column type"
+	lineageTag: 27e3b323-db42-48c2-b745-296720118086
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
