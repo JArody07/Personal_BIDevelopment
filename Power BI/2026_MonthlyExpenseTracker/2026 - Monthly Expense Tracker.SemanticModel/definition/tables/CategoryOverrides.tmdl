@@ -58,7 +58,9 @@ table CategoryOverrides
 				            Category                  = text
 				        ],
 				        {
-				
+				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -50.00, "Groceries"},
+				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
+				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -160.00, "Car Insurance"},
 				            {#date(2026, 7, 30), "AMAZON.COM*KZ8EB8N03 AMZN.COM/BILLWA1X3FW08JYYH", -16.12, "Health & Wellness"},
 				            {#date(2026, 7, 20), "AMAZON MKTPL*B56V47CN3 AMZN.COM/BILLWALA4H6S3ICW6", -9.93, "Household & Home Goods"},
 				            {#date(2026, 7, 20), "AMAZON MKTPL*L066A5JG3 AMZN.COM/BILLWA6PNUR2XW9S2", -46.40, "Household & Home Goods"},
