@@ -58,6 +58,18 @@ table CategoryOverrides
 				            Category                  = text
 				        ],
 				        {
+				
+				            {#date(2026, 7, 30), "AMAZON.COM*KZ8EB8N03 AMZN.COM/BILLWA1X3FW08JYYH", -16.12, "Health & Wellness"},
+				            {#date(2026, 7, 20), "AMAZON MKTPL*B56V47CN3 AMZN.COM/BILLWALA4H6S3ICW6", -9.93, "Household & Home Goods"},
+				            {#date(2026, 7, 20), "AMAZON MKTPL*L066A5JG3 AMZN.COM/BILLWA6PNUR2XW9S2", -46.40, "Household & Home Goods"},
+				            {#date(2026, 7, 03), "AMAZON.COM*6J4H444A3 AMZN.COM/BILLWA53LFA69Z47Y", -5.49, "Clothing & Apparel"},
+				            {#date(2026, 7, 16), "Debit Card Purchase - ZIP APP PAY LATER 8882743159 NY", -83.36, "Household & Home Goods"},
+				            {#date(2026, 7, 17), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -196.41, "Education"}, 
+				            {#date(2026, 7, 19), "AMAZON MKTPL*0V1EF8583 AMZN.COM/BILLWA6M7IHKX8EGO", -46.40, "Household & Home Goods"}, 
+				            {#date(2026, 7, 27), "360 Checking Card Adjustment Signature (Credit) ZIP APP PAY LATER 8882743159 NY", 1.00, "Household & Home Goods"}, 
+				            {#date(2026, 7, 29), "Debit Card Purchase - AMAZON MKTPL 7P5SU8AJ3 AMZN COM BIL WA", -26.98, "Household & Home Goods"},   
+				            {#date(2026, 7, 31), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -83.37, "Household & Home Goods"},         
+				            {#date(2026, 7, 18), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", - 200.00, "Groceries"},
 				            {#date(2026, 7, 07), "Debit Card Purchase - PAYPAL CELLULARWEA SWA 888 221 1161 CA", -722.73, "Phone Bill"},
 				            {#date(2026, 6, 23), "AMAZON MKTPL*KT0AF0OO3 SEATTLE  WA", -37.56, "Online Shopping"},
 				            {#date(2026, 6, 22), "AMAZON MKTPL*2Q9QI7OJ3 SEATTLE  WA", -14.99, "Health & Wellness"},
@@ -145,9 +157,10 @@ table CategoryOverrides
 				            {#date(2026, 3, 15),  "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300, "Groceries"},
 				            {#date(2026, 3, 1),  "AMAZON MKTPLACE PMTS SEATTLE  WA  CREDIT", 14.92, "Income"}
 				        }
-				    )
+				    ),
+				    #"Sorted Rows" = Table.Sort(Source,{{"Transaction Date", Order.Descending}})
 				in
-				    Source
+				    #"Sorted Rows"
 				```
 
 	annotation PBI_NavigationStepName = Navigation
