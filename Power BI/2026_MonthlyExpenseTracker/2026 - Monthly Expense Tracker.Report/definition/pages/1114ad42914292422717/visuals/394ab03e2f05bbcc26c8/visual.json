@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "394ab03e2f05bbcc26c8",
   "position": {
     "x": 0,
-    "y": 511.728813559322,
-    "z": 3,
-    "height": 208.27118644067795,
+    "y": 474.30508474576266,
+    "z": 3000,
+    "height": 245.69491525423729,
     "width": 208.27118644067795,
-    "tabOrder": 3
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "tableEx",
@@ -41,7 +41,8 @@
                 }
               },
               "queryRef": "Gross_Income.Gross Income",
-              "nativeQueryRef": "Gross Income"
+              "nativeQueryRef": "Gross Income",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
         }
@@ -97,7 +98,52 @@
       ],
       "columnHeaders": [
         {
-          "properties": {}
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Gross_Income.Month)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Gross_Income.Gross Income"
+          }
         }
       ]
     },

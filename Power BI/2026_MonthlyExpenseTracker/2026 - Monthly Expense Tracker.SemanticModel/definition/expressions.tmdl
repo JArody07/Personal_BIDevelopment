@@ -1,6 +1,6 @@
 expression '2026-03-22_360Checking   9096' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-07-11_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-08-07_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
 		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Transaction Date", Order.Ascending}}),
@@ -12,11 +12,11 @@ expression '2026-03-22_360Checking   9096' =
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Table
+	annotation PBI_ResultType = Exception
 
 expression DFS-Search-20260323 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Discover Bank\DFS-Search-20260712.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Discover Bank\DFS-Search-20260808.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Trans. Date", type date}, {"Post Date", type date}, {"Description", type text}, {"Amount", type number}, {"Category", type text}})
 		in
@@ -26,7 +26,7 @@ expression DFS-Search-20260323 =
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 
 expression CapitalOne_StagingQuery = ```
 		let
@@ -118,6 +118,7 @@ expression CategoryMap = ```
 		            // Transportation
 		            {"DINO", "Transportation", "Needs", 1},
 		            {"SINCLAIR", "Transportation", "Needs", 1},
+		            {"UNION 76", "Transportation", "Needs", 1},
 		
 		            // Groceries
 		            {"SAMS CLUB", "Groceries", "Needs", 1},
@@ -157,9 +158,11 @@ expression CategoryMap = ```
 		            // Health & Wellness
 		            {"SOPHIA", "Health & Wellness", "Needs", 1},
 		            {"CVS/PHARMACY", "Health & Wellness", "Needs", 1},
+		            {"VIACARECOMMUNITY", "Health & Wellness", "Needs", 1},
 		
 		            // Fitness
 		            {"BLINK BELLFLOWER", "Fitness", "Wants", 1},
+		            {"EOS", "Fitness", "Wants", 1},
 		
 		            // Home Repairs
 		            {"JOSE PALACIOS", "Home Repairs", "Wants", 1},
@@ -182,20 +185,26 @@ expression CategoryMap = ```
 		            {"Costco Membership Fee", "Subscriptions", "Wants", 1},
 		            {"Google You Tube Premium", "Subscriptions", "Wants", 1},
 		            {"CBI PARALLELS", "Subscriptions", "Wants", 1},
+		            {"CANVA", "Subscriptions", "Wants", 1},
 		            
 		            // Lifestyle
 		            {"U HAUL", "U_Haul", "Wants", 1},
 		
 		            // Entertainment & Social
 		            {"THE FOAT", "Entertainment & Social", "Wants", 1},
+		            {"CINEMARK", "Entertainment & Social", "Wants", 1},            
 		
 		            // Clothing & Apparel
 		            {"SEPHORA", "Clothing & Apparel", "Wants", 1},
 		            {"ROSS STORES", "Clothing & Apparel", "Wants", 1},
+		            {"MAXAROMA", "Clothing & Apparel", "Wants", 1},
+		            {"MACYS", "Clothing & Apparel", "Wants", 1},
+		
 		
 		            // Household & Home Goods
 		            {"LOWES", "Household & Home Goods", "Wants", 1},
 		            {"Mcm, Inc. Mcmpay.com", "Household & Home Goods", "Wants", 1},
+		            {"BEST BUY", "Household & Home Goods", "Wants", 1},
 		
 		            // Eating Out
 		            {"OUTBACK", "Eating Out", "Wants", 1},
@@ -228,6 +237,8 @@ expression CategoryMap = ```
 		            {"ROUND1", "Eating Out", "Wants", 1},
 		            {"EGG BELLFLOWER", "Eating Out", "Wants", 1},
 		            {"ONO", "Eating Out", "Wants", 1},
+		            {"RAMEN HUB", "Eating Out", "Wants", 1},
+		            {"TALIZA COFFEE", "Eating Out", "Wants", 1},
 		
 		            // Shoppping
 		            {"AMAZON", "Online Shopping", "Wants", 1},
@@ -240,7 +251,6 @@ expression CategoryMap = ```
 		            {"Transfer to Chime Savings Account", "Savings", "Savings", 1},
 		            {"Round Up to Savings Account", "Savings", "Savings", 1},
 		            {"Transfer to Savings Account", "Savings", "Savings", 1},
-		            
 		
 		            // Withdrawals
 		            {"ATM Withdrawal", "Withdrawal", "Wants", 1},
@@ -362,7 +372,7 @@ expression 'tabula-Statement 03-23-26' =
 
 expression Avant_StagingQuery = ```
 		let
-		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format"}),
+		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format", #"tabula-Statement 07-23-26 format"}),
 		    #"Sorted Rows" = Table.Sort(Source,{{"Date", Order.Ascending}}),
 		    #"Removed Columns" = Table.RemoveColumns(#"Sorted Rows",{"Date_1"}),
 		    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Date", "Transaction Date"}}),
@@ -749,6 +759,35 @@ expression 'tabula-Statement 06-23-26' =
 		in
 		  #"Changed column type"
 	lineageTag: 27e3b323-db42-48c2-b745-296720118086
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 07-23-26 format' =
+		let
+		    Source = #"tabula-Statement 07-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 5f95c1e6-b873-4910-8008-c821656a7e76
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 07-23-26' =
+		let
+		  Source = Csv.Document(File.Contents("Y:\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 07-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		  #"Changed column type"
+	lineageTag: a3930a62-0eff-454d-91e9-93701ba92506
 	queryGroup: Avant_Source
 
 	annotation PBI_NavigationStepName = Navigation

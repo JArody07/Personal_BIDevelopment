@@ -23,11 +23,17 @@ table DimCategory
 		queryGroup: Dims
 		source =
 				let
-				    Source = CategoryMap,
-				    #"Removed Columns" = Table.RemoveColumns(Source, {"Keyword", "Priority"}),
-				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
-				in
-				    #"Removed Duplicates"
+				            FromCategoryMap = Table.RemoveColumns(CategoryMap, {"Keyword", "Priority"}),
+				            FromBudget = Table.AddColumn(
+				                Table.SelectColumns(Budget_2026, {"Category"}),
+				                "FinancePlanCategory",
+				                each "Uncategorized",
+				                type text
+				            ),
+				            Combined = Table.Combine({FromCategoryMap, FromBudget}),
+				            #"Removed Duplicates" = Table.Distinct(Combined, {"Category"})
+				        in
+				            #"Removed Duplicates"
 
 	annotation PBI_NavigationStepName = Navigation
 

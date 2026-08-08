@@ -12,8 +12,8 @@ table Fact_BankTransactions
 			
 			CALCULATE(
 			    [Total Transactions],
-			    Fact_BankTransactions[Transaction Amount] < 0,
-			    DimCategory[FinancePlanCategory] <> "Internal Transfer"
+			    DimCategory[FinancePlanCategory] <> "Internal Transfer",
+			    DimCategory[FinancePlanCategory] <> "Income"
 			)
 		lineageTag: 81aed8ae-ad16-42dc-9d7f-e48495fe29c8
 
