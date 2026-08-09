@@ -174,7 +174,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'August'"
+                                "Value": "'January'"
                               }
                             }
                           ]
@@ -213,7 +213,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'August'"
+                                      "Value": "'January'"
                                     }
                                   }
                                 ]
@@ -237,7 +237,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "August"
+                            "0": "January"
                           }
                         ]
                       }

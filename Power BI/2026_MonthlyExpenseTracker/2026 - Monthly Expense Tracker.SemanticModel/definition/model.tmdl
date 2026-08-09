@@ -9,36 +9,40 @@ model Model
 
 queryGroup Facts
 
-	annotation PBI_QueryGroupOrder = 0
+	annotation PBI_QueryGroupOrder = 1
 
 queryGroup Dims
 
-	annotation PBI_QueryGroupOrder = 1
+	annotation PBI_QueryGroupOrder = 2
 
 /// Bank Sources/Exports
 queryGroup Sources
 
-	annotation PBI_QueryGroupOrder = 6
+	annotation PBI_QueryGroupOrder = 7
 
 queryGroup CapitalOne_Source
 
-	annotation PBI_QueryGroupOrder = 4
+	annotation PBI_QueryGroupOrder = 5
 
 queryGroup Avant_Source
 
-	annotation PBI_QueryGroupOrder = 5
+	annotation PBI_QueryGroupOrder = 6
 
 queryGroup Discover_Source
 
-	annotation PBI_QueryGroupOrder = 3
+	annotation PBI_QueryGroupOrder = 4
 
 queryGroup BancorpBank_Source
 
-	annotation PBI_QueryGroupOrder = 2
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup Amazon_StagingQuery
+
+	annotation PBI_QueryGroupOrder = 0
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["2026-03-22_360Checking   9096","CapitalOne_StagingQuery","DFS-Search-20260323","Discover_StagingQuery","tabula-Statement 01-23-26","tabula-Statement 02-23-26","tabula-Statement 03-23-26","tabula-Statement 04-23-26","tabula-Statement 05-23-26","tabula-Statement 06-23-26","tabula-Statement 07-23-26","tabula-Statement 01-23-26_format","tabula-Statement 02-23-26_format","tabula-Statement 03-23-26_format","tabula-Statement 04-23-26 format","tabula-Statement 05-23-26 format","tabula-Statement 06-23-26 format","tabula-Statement 07-23-26 format","Avant_StagingQuery","tabula-Chime-Checking-Statement-January-2026","tabula-Chime-Checking-Statement-February-2026","tabula-Chime-Checking-Statement-March-2026","tabula-Chime-Checking-Statement-January-2026_format","tabula-Chime-Checking-Statement-February-2026_format","tabula-Chime-Checking-Statement-March-2026_format","Bancorp_StagingQuery","tabula-Chime-Credit-Statement-January-2026","tabula-Chime-Credit-Statement-February-2026","tabula-Chime-Credit-Statement-March-2026","tabula-Chime-Credit-Statement-April-2026","tabula-Chime-Credit-Statement-January-2026_format","tabula-Chime-Credit-Statement-February-2026_format","tabula-Chime-Credit-Statement-March-2026_format","tabula-Chime-Credit-Statement-April-2026_format","BancorpBank_StagingQuery","CategoryOverrides","Budget_2026","Fact_BankTransactions","Gross_Income","DimDate","DimCategory","DimPayPeriod","CategoryMap","fnAssignCategory","StartingBalances"]
+annotation PBI_QueryOrder = ["2026-03-22_360Checking   9096","CapitalOne_StagingQuery","DFS-Search-20260323","Discover_StagingQuery","tabula-Statement 01-23-26","tabula-Statement 02-23-26","tabula-Statement 03-23-26","tabula-Statement 04-23-26","tabula-Statement 05-23-26","tabula-Statement 06-23-26","tabula-Statement 07-23-26","tabula-Statement 01-23-26_format","tabula-Statement 02-23-26_format","tabula-Statement 03-23-26_format","tabula-Statement 04-23-26 format","tabula-Statement 05-23-26 format","tabula-Statement 06-23-26 format","tabula-Statement 07-23-26 format","Avant_StagingQuery","tabula-Chime-Checking-Statement-January-2026","tabula-Chime-Checking-Statement-February-2026","tabula-Chime-Checking-Statement-March-2026","tabula-Chime-Checking-Statement-January-2026_format","tabula-Chime-Checking-Statement-February-2026_format","tabula-Chime-Checking-Statement-March-2026_format","Bancorp_StagingQuery","tabula-Chime-Credit-Statement-January-2026","tabula-Chime-Credit-Statement-February-2026","tabula-Chime-Credit-Statement-March-2026","tabula-Chime-Credit-Statement-April-2026","tabula-Chime-Credit-Statement-January-2026_format","tabula-Chime-Credit-Statement-February-2026_format","tabula-Chime-Credit-Statement-March-2026_format","tabula-Chime-Credit-Statement-April-2026_format","BancorpBank_StagingQuery","CategoryOverrides","Budget_2026","Fact_BankTransactions","Gross_Income","DimDate","DimCategory","DimPayPeriod","CategoryMap","fnAssignCategory","StartingBalances","Amazon_StagingQuery","AmazonCategoryMap","fnAssignAmazonCategory","Amazon_CategorizedOrders","Fact_BankTransactions_PreOverride","Amazon_BankMatch"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -58,6 +62,15 @@ ref table CategoryOverrides
 ref table LocalDateTable_eeecc842-e6c3-4c10-b994-0259b05d5f8c
 ref table DimPayPeriod
 ref table Gross_Income
+ref table Amazon_StagingQuery
+ref table LocalDateTable_fd25ea4e-d31f-476a-8772-383f95a59cd6
+ref table AmazonCategoryMap
+ref table Amazon_CategorizedOrders
+ref table LocalDateTable_61f7d7a7-4885-4b71-ad53-9f5a3e164cab
+ref table Fact_BankTransactions_PreOverride
+ref table LocalDateTable_29f6aea1-a03e-4027-8184-371b4b15292b
+ref table Amazon_BankMatch
+ref table LocalDateTable_e765f1c4-14cd-4d24-86e0-5b6bd626c723
 
 ref cultureInfo en-US
 

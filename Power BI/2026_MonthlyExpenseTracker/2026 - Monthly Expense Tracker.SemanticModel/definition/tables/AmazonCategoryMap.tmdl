@@ -1,0 +1,121 @@
+table AmazonCategoryMap
+	lineageTag: b0b81768-7fcd-46cb-badd-6c26d9ad24a3
+
+	column Keyword
+		dataType: string
+		lineageTag: 5aefbc9b-ad65-43a1-be61-9ceb247d711f
+		summarizeBy: none
+		sourceColumn: Keyword
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 73661dd8-c40f-4bae-a4c0-0e02eb2fc7f4
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 064222c2-3bb1-4ad2-94e5-409324f83242
+		summarizeBy: sum
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AmazonCategoryMap = m
+		mode: import
+		queryGroup: Amazon_StagingQuery
+		source =
+				let
+				    Source = #table(
+				        type table [Keyword = text, Category = text, Priority = Int64.Type],
+				        {
+				            // Health & Wellness
+				            {"GAS-X", "Health & Wellness", 1},
+				            {"DULCOLAX", "Health & Wellness", 1},
+				            {"AZO", "Health & Wellness", 1},
+				            {"ALEVE", "Health & Wellness", 1},
+				            {"ADVIL", "Health & Wellness", 1},
+				            {"XL-3", "Health & Wellness", 1},
+				            {"BRONSON", "Health & Wellness", 1},
+				            {"NATURE MADE", "Health & Wellness", 1},
+				            {"IBUPROFEN", "Health & Wellness", 1},
+				            {"SUMIFUN", "Health & Wellness", 1},
+				            {"LIDOCAINE", "Health & Wellness", 1},
+				            {"VITAMIN", "Health & Wellness", 2},
+				            {"SUPPLEMENT", "Health & Wellness", 2},
+				
+				            // Personal Hygiene
+				            {"CERAVE", "Personal Hygiene", 1},
+				            {"NIVEA", "Personal Hygiene", 1},
+				            {"SHAMPOO", "Personal Hygiene", 1},
+				            {"CONDITIONER", "Personal Hygiene", 1},
+				            {"TOOTHBRUSH", "Personal Hygiene", 1},
+				            {"RAZOR", "Personal Hygiene", 1},
+				            {"LANOLIN", "Personal Hygiene", 1},
+				            {"DEODORANT", "Personal Hygiene", 1},
+				            {"L'OREAL", "Personal Hygiene", 1},
+				            {"LOREAL", "Personal Hygiene", 1},
+				            {"THE ORDINARY", "Personal Hygiene", 1},
+				            {"SERUM", "Personal Hygiene", 1},
+				            {"CLEANSING", "Personal Hygiene", 1},
+				            {"EAU DE PARFUM", "Personal Hygiene", 1},
+				            {"BODY LOTION", "Personal Hygiene", 1},
+				
+				            // Household & Home Goods
+				            {"WINIX", "Household & Home Goods", 1},
+				            {"LEVOIT", "Household & Home Goods", 1},
+				            {"AIR PURIFIER", "Household & Home Goods", 1},
+				            {"HUMIDIFIER", "Household & Home Goods", 1},
+				            {"SWIFFER", "Household & Home Goods", 1},
+				            {"MOP", "Household & Home Goods", 1},
+				            {"CESTA", "Household & Home Goods", 1},
+				            {"CANASTA", "Household & Home Goods", 1},
+				            {"SECURITY CAMERA", "Household & Home Goods", 1},
+				            {"SHOWER HEAD", "Household & Home Goods", 1},
+				            {"PLUNGER", "Household & Home Goods", 1},
+				            {"PRINTER", "Household & Home Goods", 1},
+				            {"INK CARTRIDGE", "Household & Home Goods", 1},
+				            {"PORTABLE AIR CONDITIONER", "Household & Home Goods", 1},
+				
+				            // Fitness
+				            {"TREADMILL", "Fitness", 1},
+				            {"BENCH PRESS", "Fitness", 1},
+				            {"DUFFEL", "Fitness", 1},
+				            {"KNEE BRACE", "Fitness", 1},
+				
+				            // Car Maintenance
+				            {"CASTROL", "Car Maintenance", 1},
+				            {"VALVOLINE", "Car Maintenance", 1},
+				            {"MOTOR OIL", "Car Maintenance", 1},
+				            {"TRANSMISSION FLUID", "Car Maintenance", 1},
+				            {"OIL FILTER", "Car Maintenance", 1},
+				            {"KEY FOB", "Car Maintenance", 1},
+				
+				            // Clothing & Apparel
+				            {"VESTIDO", "Clothing & Apparel", 1},
+				            {"BLUSA", "Clothing & Apparel", 1},
+				            {"CAMISETA", "Clothing & Apparel", 1},
+				            {"CAMISA", "Clothing & Apparel", 1},
+				            {"PANTALONES", "Clothing & Apparel", 1},
+				            {"SANDALIAS", "Clothing & Apparel", 1},
+				            {"SUJETADOR", "Clothing & Apparel", 1},
+				            {"SUETER", "Clothing & Apparel", 1},
+				            {"CHALECO", "Clothing & Apparel", 1},
+				            {"RAINBOOT", "Clothing & Apparel", 1},
+				            {"ARETES", "Clothing & Apparel", 1},
+				            {"PULSERA", "Clothing & Apparel", 1},
+				            {"ANILLO", "Clothing & Apparel", 1}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

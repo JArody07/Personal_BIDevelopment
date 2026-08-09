@@ -1,0 +1,69 @@
+table Fact_BankTransactions_PreOverride
+	lineageTag: 8c876072-4c7f-41a2-b175-e3a43e99a895
+
+	column 'Transaction Description'
+		dataType: string
+		lineageTag: 33b80492-308b-4504-9d3f-e6072e4ec22c
+		summarizeBy: none
+		sourceColumn: Transaction Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 847d8305-c2dc-487f-871c-d13e5c2b3371
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		variation Variation
+			isDefault
+			relationship: c2d9282e-593b-46ad-8d71-280a36a71361
+			defaultHierarchy: LocalDateTable_29f6aea1-a03e-4027-8184-371b4b15292b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Transaction Amount'
+		dataType: double
+		lineageTag: 1e87e34a-4a0d-40b4-9d08-f5ced347a744
+		summarizeBy: sum
+		sourceColumn: Transaction Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AccountSource
+		dataType: string
+		lineageTag: 23ceaf09-0366-4227-9389-503b191cffee
+		summarizeBy: none
+		sourceColumn: AccountSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 8bbd3576-8993-409f-8c55-80df3f7a9336
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_BankTransactions_PreOverride = m
+		mode: import
+		queryGroup: Amazon_StagingQuery
+		source =
+				let
+				    Source            = Table.Combine({CapitalOne_StagingQuery, Discover_StagingQuery, Avant_StagingQuery, BancorpBank_StagingQuery}),
+				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignCategory([Transaction Description]), type text),
+				    #"Sorted Rows"    = Table.Sort(#"Added Category", {{"Transaction Date", Order.Descending}}),
+				    #"Changed Type"   = Table.TransformColumnTypes(#"Sorted Rows", {{"Transaction Date", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
