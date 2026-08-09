@@ -55,3 +55,23 @@ relationship 61e21637-c214-a8b5-4d94-236957e9c427
 	fromColumn: Gross_Income.Transaction_Date
 	toColumn: DimDate.Date
 
+relationship 34201cb7-a2be-480f-ac87-87f2a02bf5f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Amazon_StagingQuery.'Order Date'
+	toColumn: LocalDateTable_fd25ea4e-d31f-476a-8772-383f95a59cd6.Date
+
+relationship 74ae6da6-a773-4ddd-92df-8b2102dd3bbd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Amazon_CategorizedOrders.'Order Date'
+	toColumn: LocalDateTable_61f7d7a7-4885-4b71-ad53-9f5a3e164cab.Date
+
+relationship c2d9282e-593b-46ad-8d71-280a36a71361
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_BankTransactions_PreOverride.'Transaction Date'
+	toColumn: LocalDateTable_29f6aea1-a03e-4027-8184-371b4b15292b.Date
+
+relationship 4ccc3c31-cfda-4146-8725-a09ea25177cc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Amazon_BankMatch.'Transaction Date'
+	toColumn: LocalDateTable_e765f1c4-14cd-4d24-86e0-5b6bd626c723.Date
+

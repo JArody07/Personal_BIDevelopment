@@ -1,0 +1,96 @@
+table Amazon_StagingQuery
+	lineageTag: 0da671f0-d39a-4e39-9c57-4f0374d43bf8
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: 92991023-d466-48bc-bbf6-966592c957a3
+		summarizeBy: none
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c3eb973f-291a-4947-981f-b3afb9824e7b
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		variation Variation
+			isDefault
+			relationship: 34201cb7-a2be-480f-ac87-87f2a02bf5f5
+			defaultHierarchy: LocalDateTable_fd25ea4e-d31f-476a-8772-383f95a59cd6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Total Amount'
+		dataType: double
+		lineageTag: 6e8f8b40-3f89-4c2f-868a-777470177cc2
+		summarizeBy: sum
+		sourceColumn: Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AllItemTitles
+		dataType: string
+		lineageTag: 6dd6413c-ea99-4e7e-a826-a9706ee30cc1
+		summarizeBy: none
+		sourceColumn: AllItemTitles
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryItemTitle
+		dataType: string
+		lineageTag: b49dbece-5714-4732-b92c-3965b38e35bc
+		summarizeBy: none
+		sourceColumn: PrimaryItemTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCount
+		dataType: int64
+		formatString: 0
+		lineageTag: dfc3c449-be09-424b-9647-ed7ac7ce77ca
+		summarizeBy: sum
+		sourceColumn: ItemCount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Amazon_StagingQuery = m
+		mode: import
+		queryGroup: Amazon_StagingQuery
+		source =
+				let
+				  Source = Csv.Document(
+				      File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Amazon Purchases\amazon-orders-2026-08-08.csv"),
+				      [Delimiter = ",", Columns = 18, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
+				  ),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Order ID", type text}, {"Order Date", type date}, {"Total Amount", type number}, {"Currency", type text}, {"Total Savings", type number}, {"Status", type text}, {"Item Title", type text}, {"Item ASIN", type text}, {"Item Quantity", Int64.Type}, {"Item Price", type number}, {"Item Discount", type number}, {"Promotions", type text}, {"Item URL", type text}, {"Details URL", type text}, {"Recipient Name", type text}, {"Recipient Street", type text}, {"Recipient City / Postal", type text}, {"Recipient Country", type text}}),
+				
+				  // Cancelled / $0 rows never hit the bank
+				  #"Filtered Rows" = Table.SelectRows(#"Changed column type", each [Total Amount] <> 0 and [Status] <> "Cancelled"),
+				  #"Selected Columns" = Table.SelectColumns(#"Filtered Rows", {"Order ID", "Order Date", "Total Amount", "Item Title", "Item Price"}),
+				
+				  // Collapse item-grain to order-grain: one Order ID + Total Amount = one bank charge
+				  #"Grouped Orders" = Table.Group(
+				      #"Selected Columns",
+				      {"Order ID", "Order Date", "Total Amount"},
+				      {
+				          {"AllItemTitles", each Text.Combine(List.Distinct(_[Item Title]), "; "), type text},
+				          {"PrimaryItemTitle", each Table.Sort(_, {{"Item Price", Order.Descending}}){0}[Item Title], type text},
+				          {"ItemCount", each Table.RowCount(_), Int64.Type}
+				      }
+				  ),
+				  #"Sorted Rows" = Table.Sort(#"Grouped Orders", {{"Order Date", Order.Descending}})
+				in
+				  #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

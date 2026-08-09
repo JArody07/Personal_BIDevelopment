@@ -1,0 +1,108 @@
+table Amazon_BankMatch
+	lineageTag: f181a1bf-d1df-4f63-8c20-f1e97748820a
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 14f05fc6-2ecd-4702-aa5a-88d67cebe74b
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		variation Variation
+			isDefault
+			relationship: 4ccc3c31-cfda-4146-8725-a09ea25177cc
+			defaultHierarchy: LocalDateTable_e765f1c4-14cd-4d24-86e0-5b6bd626c723.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Transaction Description'
+		dataType: string
+		lineageTag: 04067ee0-3e76-480e-9c4b-99a97570e0a2
+		summarizeBy: none
+		sourceColumn: Transaction Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Amount'
+		dataType: double
+		lineageTag: 2544db29-de38-4bbe-ad47-3d581943c98b
+		summarizeBy: sum
+		sourceColumn: Transaction Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AmazonCategory
+		dataType: string
+		lineageTag: 2e2250e7-4e44-462d-a08a-58d4dd0314c1
+		summarizeBy: none
+		sourceColumn: AmazonCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column MatchCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fe2f7ac-17f0-40fe-81fb-106bd7a76d38
+		summarizeBy: sum
+		sourceColumn: MatchCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column MatchedOrderIDs
+		dataType: string
+		lineageTag: 0d5fd51f-496d-4af5-bb6f-101545d495c2
+		summarizeBy: none
+		sourceColumn: MatchedOrderIDs
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Amazon_BankMatch = m
+		mode: import
+		queryGroup: Amazon_StagingQuery
+		source =
+				let
+				    BankSource = Fact_BankTransactions_PreOverride,
+				
+				    AmazonLikeRows = Table.SelectRows(BankSource, each
+				        Text.Contains(Text.Upper([Transaction Description]), "AMAZON")
+				        or Text.Contains(Text.Upper([Transaction Description]), "AMZN")
+				    ),
+				
+				    #"Added Candidates" = Table.AddColumn(AmazonLikeRows, "Candidates", each
+				        let
+				            txnDate = [Transaction Date],
+				            txnAmt  = [Transaction Amount] * -1   // bank amount is negative; Amazon Total Amount is positive
+				        in
+				            Table.SelectRows(Amazon_CategorizedOrders, each
+				                Number.Round([Total Amount], 2) = Number.Round(txnAmt, 2)
+				                and Duration.Days(txnDate - [Order Date]) >= -1
+				                and Duration.Days(txnDate - [Order Date]) <= 5
+				            )
+				    ),
+				
+				    #"Added Match Count" = Table.AddColumn(#"Added Candidates", "MatchCount", each Table.RowCount([Candidates]), Int64.Type),
+				
+				    #"Added Resolved Category" = Table.AddColumn(#"Added Match Count", "AmazonCategory", each
+				        if [MatchCount] = 0 then null
+				        else if [MatchCount] = 1 then [Candidates]{0}[Category]
+				        else
+				            let distinctCats = List.Distinct([Candidates][Category])
+				            in if List.Count(distinctCats) = 1 then distinctCats{0} else "Amazon - Needs Review"
+				    ),
+				
+				    #"Added Match Detail" = Table.AddColumn(#"Added Resolved Category", "MatchedOrderIDs", each Text.Combine([Candidates][Order ID], "; ")),
+				
+				    #"Removed Helper" = Table.RemoveColumns(#"Added Match Detail", {"Candidates"}),
+				    #"Selected Columns" = Table.SelectColumns(#"Removed Helper",
+				        {"Transaction Date", "Transaction Description", "Transaction Amount", "AmazonCategory", "MatchCount", "MatchedOrderIDs"})
+				in
+				    #"Selected Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

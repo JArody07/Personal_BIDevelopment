@@ -1,0 +1,84 @@
+table Amazon_CategorizedOrders
+	lineageTag: d7bb19a7-7e64-466c-86cd-61c9ccb6fc40
+
+	column 'Order ID'
+		dataType: string
+		lineageTag: 861c451e-f5b9-4736-8a59-7053bf6fbdf5
+		summarizeBy: none
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f6d9c928-439f-46cb-a371-173807a3f80a
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		variation Variation
+			isDefault
+			relationship: 74ae6da6-a773-4ddd-92df-8b2102dd3bbd
+			defaultHierarchy: LocalDateTable_61f7d7a7-4885-4b71-ad53-9f5a3e164cab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Total Amount'
+		dataType: double
+		lineageTag: d0445909-ddd2-4308-be89-a3c3a6fd1b06
+		summarizeBy: sum
+		sourceColumn: Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AllItemTitles
+		dataType: string
+		lineageTag: 83de8b0f-8301-4257-8b7a-d668c09db660
+		summarizeBy: none
+		sourceColumn: AllItemTitles
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryItemTitle
+		dataType: string
+		lineageTag: 73b340cd-420f-4913-a928-be0fa628814c
+		summarizeBy: none
+		sourceColumn: PrimaryItemTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 11aa1d5e-c7ee-4c88-9151-f0a281d0580d
+		summarizeBy: sum
+		sourceColumn: ItemCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 2ccab3b7-e83d-45f8-9690-a98ec7154be6
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Amazon_CategorizedOrders = m
+		mode: import
+		queryGroup: Amazon_StagingQuery
+		source =
+				let
+				    Source = Amazon_StagingQuery,
+				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignAmazonCategory([PrimaryItemTitle], [AllItemTitles]), type text)
+				in
+				    #"Added Category"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

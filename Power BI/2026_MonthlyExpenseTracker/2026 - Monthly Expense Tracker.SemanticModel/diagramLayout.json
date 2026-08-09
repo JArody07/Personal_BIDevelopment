@@ -111,6 +111,70 @@
             "width": 234
           },
           "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1685,
+            "y": 201
+          },
+          "nodeIndex": "Amazon_StagingQuery",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1969,
+            "y": 239
+          },
+          "nodeIndex": "Amazon_BankMatch",
+          "nodeLineageTag": "f181a1bf-d1df-4f63-8c20-f1e97748820a",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2253,
+            "y": 227
+          },
+          "nodeIndex": "Amazon_CategorizedOrders",
+          "nodeLineageTag": "d7bb19a7-7e64-466c-86cd-61c9ccb6fc40",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2537,
+            "y": 275
+          },
+          "nodeIndex": "AmazonCategoryMap",
+          "nodeLineageTag": "b0b81768-7fcd-46cb-badd-6c26d9ad24a3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2821,
+            "y": 251
+          },
+          "nodeIndex": "Fact_BankTransactions_PreOverride",
+          "nodeLineageTag": "8c876072-4c7f-41a2-b175-e3a43e99a895",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

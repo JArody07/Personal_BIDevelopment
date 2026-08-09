@@ -794,3 +794,31 @@ expression 'tabula-Statement 07-23-26' =
 
 	annotation PBI_ResultType = Table
 
+expression fnAssignAmazonCategory =
+		let
+		    fnAssignAmazonCategory = (primaryTitle as text, allTitles as text) =>
+		    let
+		        upperPrimary = Text.Upper(primaryTitle),
+		        upperAll     = Text.Upper(allTitles),
+		
+		        matchedPrimary = Table.SelectRows(AmazonCategoryMap, each Text.Contains(upperPrimary, Text.Upper([Keyword]))),
+		        sortedPrimary  = Table.Sort(matchedPrimary, {{"Priority", Order.Ascending}}),
+		
+		        matchedAll = Table.SelectRows(AmazonCategoryMap, each Text.Contains(upperAll, Text.Upper([Keyword]))),
+		        sortedAll  = Table.Sort(matchedAll, {{"Priority", Order.Ascending}}),
+		
+		        result =
+		            if Table.RowCount(sortedPrimary) > 0 then sortedPrimary{0}[Category]
+		            else if Table.RowCount(sortedAll) > 0 then sortedAll{0}[Category]
+		            else "Uncategorized - Amazon Review"
+		    in
+		        result
+		in
+		    fnAssignAmazonCategory
+	lineageTag: b5a0b6b1-38a1-4cd3-a324-a2d74fee9afa
+	queryGroup: Amazon_StagingQuery
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
