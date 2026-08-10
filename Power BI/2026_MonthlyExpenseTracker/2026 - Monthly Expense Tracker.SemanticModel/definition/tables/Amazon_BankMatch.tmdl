@@ -75,23 +75,29 @@ table Amazon_BankMatch
 				    #"Added Candidates" = Table.AddColumn(AmazonLikeRows, "Candidates", each
 				        let
 				            txnDate = [Transaction Date],
-				            txnAmt  = [Transaction Amount] * -1   // bank amount is negative; Amazon Total Amount is positive
-				        in
-				            Table.SelectRows(Amazon_CategorizedOrders, each
+				            txnAmt  = [Transaction Amount] * -1,
+				            AmountMatches = Table.SelectRows(Amazon_CategorizedOrders, each
 				                Number.Round([Total Amount], 2) = Number.Round(txnAmt, 2)
 				                and Duration.Days(txnDate - [Order Date]) >= -1
-				                and Duration.Days(txnDate - [Order Date]) <= 5
-				            )
+				                and Duration.Days(txnDate - [Order Date]) <= 25
+				            ),
+				            WithGap = Table.AddColumn(AmountMatches, "DayGap", each Duration.Days(txnDate - [Order Date]), Int64.Type)
+				        in
+				            Table.Sort(WithGap, {{"DayGap", Order.Ascending}})
 				    ),
 				
 				    #"Added Match Count" = Table.AddColumn(#"Added Candidates", "MatchCount", each Table.RowCount([Candidates]), Int64.Type),
 				
 				    #"Added Resolved Category" = Table.AddColumn(#"Added Match Count", "AmazonCategory", each
 				        if [MatchCount] = 0 then null
-				        else if [MatchCount] = 1 then [Candidates]{0}[Category]
 				        else
-				            let distinctCats = List.Distinct([Candidates][Category])
-				            in if List.Count(distinctCats) = 1 then distinctCats{0} else "Amazon - Needs Review"
+				            let
+				                nearest    = [Candidates]{0},
+				                isCloseTie = [MatchCount] > 1 and ([Candidates]{1}[DayGap] - nearest[DayGap]) <= 2
+				            in
+				                if isCloseTie and [Candidates]{1}[Category] <> nearest[Category]
+				                then "Amazon - Needs Review"
+				                else nearest[Category]
 				    ),
 				
 				    #"Added Match Detail" = Table.AddColumn(#"Added Resolved Category", "MatchedOrderIDs", each Text.Combine([Candidates][Order ID], "; ")),

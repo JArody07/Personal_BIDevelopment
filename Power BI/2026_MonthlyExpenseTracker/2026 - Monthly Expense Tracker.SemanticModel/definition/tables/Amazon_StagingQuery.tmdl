@@ -65,10 +65,7 @@ table Amazon_StagingQuery
 		queryGroup: Amazon_StagingQuery
 		source =
 				let
-				  Source = Csv.Document(
-				      File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Amazon Purchases\amazon-orders-2026-08-08.csv"),
-				      [Delimiter = ",", Columns = 18, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]
-				  ),
+				  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Amazon Purchases\amazon-orders-2026.csv"),[Delimiter=",", Columns=18, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Order ID", type text}, {"Order Date", type date}, {"Total Amount", type number}, {"Currency", type text}, {"Total Savings", type number}, {"Status", type text}, {"Item Title", type text}, {"Item ASIN", type text}, {"Item Quantity", Int64.Type}, {"Item Price", type number}, {"Item Discount", type number}, {"Promotions", type text}, {"Item URL", type text}, {"Details URL", type text}, {"Recipient Name", type text}, {"Recipient Street", type text}, {"Recipient City / Postal", type text}, {"Recipient Country", type text}}),
 				

@@ -179,7 +179,7 @@ expression CategoryMap = ```
 		            {"APPLE COM BILL", "Subscriptions", "Wants", 1},
 		            {"GOOGLE *", "Subscriptions", "Wants", 1},
 		            {"CLAUDE", "Subscriptions", "Wants", 1},
-		            {"AMAZON PRIME", "Subscriptions", "Wants", 1},
+		            {"AMAZON PRIME", "Subscriptions", "Wants", 0},
 		            {"www.Perplexity.Ai", "Subscriptions", "Wants", 1},
 		            {"Apple.com/Bill", "Subscriptions", "Wants", 1},
 		            {"Costco Membership Fee", "Subscriptions", "Wants", 1},
@@ -241,7 +241,7 @@ expression CategoryMap = ```
 		            {"TALIZA COFFEE", "Eating Out", "Wants", 1},
 		
 		            // Shoppping
-		            {"AMAZON", "Online Shopping", "Wants", 1},
+		            {"AMAZON", "Online Shopping", "Wants", 2},
 		            {"AMZN", "Online Shopping", "Wants", 1},
 		            {"G* GOAT", "Online Shopping", "Wants", 1},
 		

@@ -167,38 +167,39 @@ table Fact_BankTransactions
 	partition Fact_BankTransactions = m
 		mode: import
 		queryGroup: Facts
-		source = ```
+		source =
 				let
-				    Source            = Table.Combine({CapitalOne_StagingQuery, Discover_StagingQuery, Avant_StagingQuery, BancorpBank_StagingQuery}),
-				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignCategory([Transaction Description]), type text),
-				    #"Sorted Rows"    = Table.Sort(#"Added Category", {{"Transaction Date", Order.Descending}}),
-				    #"Changed Type"   = Table.TransformColumnTypes(#"Sorted Rows", {{"Transaction Date", type date}}),
+				    Source = Fact_BankTransactions_PreOverride,
 				
-				    #"Merged Overrides"    = Table.NestedJoin(#"Changed Type",
-				                                {"Transaction Date", "Transaction Description", "Transaction Amount"},
-				                                CategoryOverrides,
-				                                {"Transaction Date", "Transaction Description", "Transaction Amount"},
-				                                "_Override", JoinKind.LeftOuter),
-				    #"Expanded Override"   = Table.ExpandTableColumn(#"Merged Overrides", "_Override", {"Category"}, {"_Override.Category"}),
-				        #"Resolved Category" = Table.AddColumn(#"Expanded Override", "Category_Final",
-				                               each if [_Override.Category] <> null
-				                                    then [_Override.Category]
+				    #"Merged Overrides"  = Table.NestedJoin(Source,
+				                              {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                              CategoryOverrides,
+				                              {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                              "_Override", JoinKind.LeftOuter),
+				    #"Expanded Override" = Table.ExpandTableColumn(#"Merged Overrides", "_Override", {"Category"}, {"_Override.Category"}),
+				
+				    #"Merged AmazonMatch"  = Table.NestedJoin(#"Expanded Override",
+				                              {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                              Amazon_BankMatch,
+				                              {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                              "_Amazon", JoinKind.LeftOuter),
+				    #"Expanded AmazonMatch" = Table.ExpandTableColumn(#"Merged AmazonMatch", "_Amazon", {"AmazonCategory"}, {"_Amazon.AmazonCategory"}),
+				
+				    #"Resolved Category" = Table.AddColumn(#"Expanded AmazonMatch", "Category_Final",
+				                               each if [_Override.Category] <> null then [_Override.Category]
+				                                    else if [_Amazon.AmazonCategory] <> null then [_Amazon.AmazonCategory]
 				                                    else [Category], type text),
-				    #"Dropped Originals" = Table.RemoveColumns(#"Resolved Category", {"Category", "_Override.Category"}),
+				
+				    #"Dropped Originals" = Table.RemoveColumns(#"Resolved Category", {"Category", "_Override.Category", "_Amazon.AmazonCategory"}),
 				    #"Renamed Category"  = Table.RenameColumns(#"Dropped Originals", {{"Category_Final", "Category"}}),
-				    #"Sorted Rows1" = Table.Sort(#"Renamed Category",{{"Transaction Date", Order.Descending}}),
-				    #"Added PayPeriod" = Table.AddColumn(#"Sorted Rows1", "PayPeriod",
+				    #"Sorted Rows1"      = Table.Sort(#"Renamed Category", {{"Transaction Date", Order.Descending}}),
+				    #"Added PayPeriod"   = Table.AddColumn(#"Sorted Rows1", "PayPeriod",
 				        each if Date.Day([Transaction Date]) <= 15
-				             then Text.From(Date.MonthName([Transaction Date])) 
-				                  & " " & Text.From(Date.Year([Transaction Date])) 
-				                  & " - Income #1"
-				             else Text.From(Date.MonthName([Transaction Date])) 
-				                  & " " & Text.From(Date.Year([Transaction Date])) 
-				                  & " - Income #2",
+				             then Text.From(Date.MonthName([Transaction Date])) & " " & Text.From(Date.Year([Transaction Date])) & " - Income #1"
+				             else Text.From(Date.MonthName([Transaction Date])) & " " & Text.From(Date.Year([Transaction Date])) & " - Income #2",
 				        type text)
 				in
 				    #"Added PayPeriod"
-				```
 
 	annotation PBI_NavigationStepName = Navigation
 
