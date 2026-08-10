@@ -48,6 +48,7 @@ table AmazonCategoryMap
 				            {"LIDOCAINE", "Health & Wellness", 1},
 				            {"VITAMIN", "Health & Wellness", 2},
 				            {"SUPPLEMENT", "Health & Wellness", 2},
+				            {"TOALLITAS", "Health & Wellness", 2},
 				
 				            // Personal Hygiene
 				            {"CERAVE", "Personal Hygiene", 1},
@@ -109,7 +110,12 @@ table AmazonCategoryMap
 				            {"RAINBOOT", "Clothing & Apparel", 1},
 				            {"ARETES", "Clothing & Apparel", 1},
 				            {"PULSERA", "Clothing & Apparel", 1},
-				            {"ANILLO", "Clothing & Apparel", 1}
+				            {"ANILLO", "Clothing & Apparel", 1},
+				            {"ABANICO", "Clothing & Apparel", 1},
+				            {"MONEDEROS", "Clothing & Apparel", 1},
+				            {"MONEDERO", "Clothing & Apparel", 1},
+				            {"BOLSOS", "Clothing & Apparel", 1},
+				            {"BOLSO", "Clothing & Apparel", 1}
 				        }
 				    )
 				in

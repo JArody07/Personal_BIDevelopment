@@ -292,7 +292,7 @@ expression CategoryMap = ```
 		            {"MONEYGRAM US", "Zelle - Outgoing", "Wants", 1}
 		        }
 		    ),
-		    #"Sorted Rows" = Table.Sort(Source,{{"Keyword", Order.Descending}})
+		    #"Sorted Rows" = Table.Sort(Source,{{"Category", Order.Ascending}})
 		in
 		    #"Sorted Rows"
 		```
