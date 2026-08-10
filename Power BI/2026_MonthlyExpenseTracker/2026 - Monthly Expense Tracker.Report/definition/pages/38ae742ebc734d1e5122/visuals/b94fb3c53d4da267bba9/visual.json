@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "b94fb3c53d4da267bba9",
+  "position": {
+    "x": 263.75757575757575,
+    "y": 0,
+    "z": 3,
+    "height": 130.90909090909091,
+    "width": 249.21212121212122,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Total Expenses (Excl. Savings) (Display)"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Total Expenses (Excl. Savings) (Display)",
+              "nativeQueryRef": "Total Expenses (Excl. Savings) (Display)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Fact_BankTransactions"
+                  }
+                },
+                "Property": "Total Expenses (Excl. Savings) (Display)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a7305698dd980d59b946",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Total Expenses (Excl. Savings) (Display)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

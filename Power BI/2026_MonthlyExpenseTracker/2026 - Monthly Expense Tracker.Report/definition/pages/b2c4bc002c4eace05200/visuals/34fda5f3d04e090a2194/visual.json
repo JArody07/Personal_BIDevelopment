@@ -1,0 +1,261 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "34fda5f3d04e090a2194",
+  "position": {
+    "x": 594.42424242424238,
+    "y": 84.36363636363636,
+    "z": 1003,
+    "height": 635.15151515151513,
+    "width": 685.57575757575762,
+    "tabOrder": 1003
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCategory"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimCategory.Category",
+              "nativeQueryRef": "Category"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Budget_2026"
+                    }
+                  },
+                  "Property": "Monthly Budget"
+                }
+              },
+              "queryRef": "Budget_2026.Monthly Budget",
+              "nativeQueryRef": "Monthly Budget",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Benchmark Month Expenses"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Benchmark Month Expenses",
+              "nativeQueryRef": "Benchmark Month Expenses",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Current Month Expenses"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Current Month Expenses",
+              "nativeQueryRef": "Current Month Expenses",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Previous Month Expenses"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Previous Month Expenses",
+              "nativeQueryRef": "Previous Month Expenses",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCategory.Category"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Budget_2026.Monthly Budget"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Benchmark Month Expenses"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Current Month Expenses"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Previous Month Expenses"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

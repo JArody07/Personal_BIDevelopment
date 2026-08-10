@@ -3,10 +3,10 @@
   "name": "d73ccf17970588874b0a",
   "position": {
     "x": 0,
-    "y": 0,
+    "y": 85.333333333333329,
     "z": 0,
-    "height": 720.4173913043478,
-    "width": 623.58260869565208,
+    "height": 635.15151515151513,
+    "width": 532.36363636363637,
     "tabOrder": 0
   },
   "visual": {
@@ -320,6 +320,44 @@
               }
             ],
             "metadata": "Fact_BankTransactions.Budget Variance"
+          }
+        },
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ]

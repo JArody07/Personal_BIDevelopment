@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "7662c5b453a1c5b683dd",
+  "name": "29de23001004d996a84b",
   "position": {
-    "x": 0,
+    "x": 532.36363636363637,
     "y": 0,
-    "z": 1000,
+    "z": 1002,
     "height": 72.228571428571428,
     "width": 216.68571428571428,
-    "tabOrder": 1000
+    "tabOrder": 1002
   },
   "visual": {
     "visualType": "slicer",
@@ -20,15 +20,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimDate"
+                      "Entity": "BenchmarkMonthSelector"
                     }
                   },
                   "Property": "YearMonth"
                 }
               },
-              "queryRef": "DimDate.YearMonth",
-              "nativeQueryRef": "YearMonth",
-              "active": true
+              "queryRef": "BenchmarkMonthSelector.YearMonth",
+              "nativeQueryRef": "Benchmark Month",
+              "active": true,
+              "displayName": "Benchmark Month"
             }
           ]
         }
@@ -51,58 +52,13 @@
       "general": [
         {
           "properties": {
-            "selfFilterEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "selfFilter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "d",
-                    "Entity": "DimDate",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Contains": {
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "d"
-                              }
-                            },
-                            "Property": "YearMonth"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "'2026'"
-                          }
-                        }
-                      }
-                    },
-                    "Annotations": {
-                      "PowerBI.MParameterBehavior": 1
-                    }
-                  }
-                ]
-              }
-            },
             "filter": {
               "filter": {
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "d",
-                    "Entity": "DimDate",
+                    "Name": "b",
+                    "Entity": "BenchmarkMonthSelector",
                     "Type": 0
                   }
                 ],
@@ -115,7 +71,7 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "d"
+                                  "Source": "b"
                                 }
                               },
                               "Property": "YearMonth"
@@ -126,7 +82,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'2026-08'"
+                                "Value": "'2026-04'"
                               }
                             }
                           ]

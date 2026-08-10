@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "7662c5b453a1c5b683dd",
+  "name": "dafbfee156c013340be8",
   "position": {
-    "x": 0,
+    "x": 1084.5714285714287,
     "y": 0,
-    "z": 1000,
-    "height": 72.228571428571428,
-    "width": 216.68571428571428,
-    "tabOrder": 1000
+    "z": 2,
+    "height": 130.90909090909091,
+    "width": 195.87878787878788,
+    "tabOrder": 2
   },
   "visual": {
     "visualType": "slicer",
@@ -95,52 +95,29 @@
                   }
                 ]
               }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "d",
-                    "Entity": "DimDate",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Property": "YearMonth"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'2026-08'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
             }
           }
         }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "66d569e2ad188c805d68",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "YearMonth"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

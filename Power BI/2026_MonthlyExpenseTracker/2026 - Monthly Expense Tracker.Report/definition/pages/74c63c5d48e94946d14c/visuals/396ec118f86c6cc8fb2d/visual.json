@@ -157,120 +157,6 @@
           "properties": {}
         }
       ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "314.9785322992666D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Fact_BankTransactions.Transaction Description"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "92.01694949345271D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "DimDate.Date"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "136.06779699272516D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "DimCategory.Category"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "159.99466892168772D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Fact_BankTransactions.AccountSource"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "102.99477417262952D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "DimCategory.FinancePlanCategory"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "75.12976162204825D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Fact_BankTransactions.Transaction Amount DAX"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "71.48381060355172D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Fact_BankTransactions.Transaction Count"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "148.78435309580985D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "DimPayPeriod.PayPeriod"
-          }
-        }
-      ],
       "values": [
         {
           "properties": {
@@ -311,6 +197,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
                 }
               }
             }
@@ -482,5 +375,155 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "31ba2ad1b995120873d7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ddce09d93ab6196b56cd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "efd742cb5c16a1c2410c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Transaction Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a86c8b8d13d0dc194656",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "AccountSource"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d07c85b8c000a623c412",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "FinancePlanCategory"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f091e39034e8496e4e21",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Total Transactions"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "Fact_BankTransactions",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "Total Transactions"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "cafea29da0861bc207d2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Transaction Count"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "946f699254ec73e9975b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimPayPeriod"
+              }
+            },
+            "Property": "PayPeriod"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

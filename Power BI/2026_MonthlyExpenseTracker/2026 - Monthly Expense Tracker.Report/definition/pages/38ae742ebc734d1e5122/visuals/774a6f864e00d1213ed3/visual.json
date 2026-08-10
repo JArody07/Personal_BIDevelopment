@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "774a6f864e00d1213ed3",
+  "position": {
+    "x": 569.14285714285711,
+    "y": 0,
+    "z": 4,
+    "height": 130.90909090909091,
+    "width": 249.21212121212122,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Net Cash Flow"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Net Cash Flow",
+              "nativeQueryRef": "Net Cash Flow"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Fact_BankTransactions"
+                  }
+                },
+                "Property": "Net Cash Flow"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3e9259b0a770c6144430",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Net Cash Flow"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
