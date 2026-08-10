@@ -71,6 +71,8 @@ ref table Fact_BankTransactions_PreOverride
 ref table LocalDateTable_29f6aea1-a03e-4027-8184-371b4b15292b
 ref table Amazon_BankMatch
 ref table LocalDateTable_e765f1c4-14cd-4d24-86e0-5b6bd626c723
+ref table BenchmarkMonthSelector
+ref table LocalDateTable_e0b2524b-059c-4af8-9681-d918060267e8
 
 ref cultureInfo en-US
 

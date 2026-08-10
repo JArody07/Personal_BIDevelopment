@@ -23,7 +23,7 @@ table Fact_BankTransactions
 			
 			CALCULATE(
 			    [Total Transactions],
-			    Fact_BankTransactions[Transaction Amount] > 0
+			    DimCategory[FinancePlanCategory] = "Income"
 			)
 		lineageTag: cef2544a-cc2f-4f86-bdc2-9a4d79a68c14
 
@@ -31,7 +31,7 @@ table Fact_BankTransactions
 
 	measure 'Net Cash Flow' =
 			
-			[Total Income] + [Total Expenses]
+			[Total Income] + [Total Expenses (Excl. Savings)]
 		lineageTag: 3e533897-efa1-469c-9844-917f4e972926
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -108,6 +108,87 @@ table Fact_BankTransactions
 			
 			[Monthly Budget] + [Total Expenses]
 		lineageTag: bd7b0556-e007-4986-9a09-57b5c78d5c3b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Benchmark Month Expenses' =
+			
+			VAR BenchmarkDate = SELECTEDVALUE(BenchmarkMonthSelector[MonthStart])
+			RETURN
+			    ABS(
+			        CALCULATE([Total Expenses], ALL(DimDate), DimDate[MonthStart] = BenchmarkDate)
+			    )
+		lineageTag: 9504a82b-2eed-418c-9a26-3efce6dc95b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Benchmark Month Variance' =
+			
+			VAR BenchmarkDate = SELECTEDVALUE(BenchmarkMonthSelector[MonthStart])
+			RETURN
+			    [Monthly Budget] + CALCULATE([Total Expenses], ALL(DimDate), DimDate[MonthStart] = BenchmarkDate)
+		lineageTag: 129bfeae-2950-4d53-8efb-f07b6e6e528c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous Month Expenses' =
+			
+			VAR CurrentMonthStart = DATE(YEAR(TODAY()), MONTH(TODAY()), 1)
+			VAR PreviousMonthStart = EDATE(CurrentMonthStart, -1)
+			RETURN
+			    ABS(
+			        CALCULATE([Total Expenses], ALL(DimDate), DimDate[MonthStart] = PreviousMonthStart)
+			    )
+		lineageTag: a4d1fda7-0b52-428b-a772-71ec360a21d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous Month Variance' =
+			
+			VAR CurrentMonthStart = DATE(YEAR(TODAY()), MONTH(TODAY()), 1)
+			VAR PreviousMonthStart = EDATE(CurrentMonthStart, -1)
+			RETURN
+			    [Monthly Budget] + CALCULATE([Total Expenses], ALL(DimDate), DimDate[MonthStart] = PreviousMonthStart)
+		lineageTag: 19ae5bdf-bd20-4508-bc7f-785f8b384303
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current Month Expenses' =
+			
+			VAR CurrentMonthStart = DATE(YEAR(TODAY()), MONTH(TODAY()), 1)
+			RETURN
+			    ABS(
+			        CALCULATE([Total Expenses], ALL(DimDate), DimDate[MonthStart] = CurrentMonthStart)
+			    )
+		lineageTag: 6e620f0a-7887-48b5-8e57-d312eefc5ef3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current Month Variance' =
+			
+			VAR CurrentMonthStart = DATE(YEAR(TODAY()), MONTH(TODAY()), 1)
+			RETURN
+			    [Monthly Budget] + CALCULATE([Total Expenses], ALL(DimDate), DimDate[MonthStart] = CurrentMonthStart)
+		lineageTag: f2e689fc-b3c8-4bf2-b58f-2bcce22c47fc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses (Excl. Savings)' =
+			
+			CALCULATE(
+			    [Total Transactions],
+			    DimCategory[FinancePlanCategory] <> "Internal Transfer",
+			    DimCategory[FinancePlanCategory] <> "Income",
+			    DimCategory[FinancePlanCategory] <> "Savings"
+			)
+		lineageTag: cdb608a4-988d-4156-8382-28ee00d9d4f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses (Excl. Savings) (Display)' =
+			
+			ABS([Total Expenses (Excl. Savings)])
+		lineageTag: 4c24aa1d-1437-4155-9831-59095d7b7c3f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 

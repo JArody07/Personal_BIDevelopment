@@ -1,0 +1,45 @@
+table BenchmarkMonthSelector
+	lineageTag: e9470be2-d593-49c2-80c5-40699425518d
+
+	column YearMonth
+		lineageTag: af65b4ea-691c-4477-958d-6f8661689bba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthStart
+		formatString: General Date
+		lineageTag: d3f2806e-adf5-46b6-b710-a12d64499c33
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthStart]
+
+		variation Variation
+			isDefault
+			relationship: 90ddcfac-a61d-4d3e-8c45-cf2fb31f1aab
+			defaultHierarchy: LocalDateTable_e0b2524b-059c-4af8-9681-d918060267e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BenchmarkMonthSelector = calculated
+		mode: import
+		source =
+				
+				VAR MinDate = CALCULATE(MIN(Fact_BankTransactions[Transaction Date]), ALL(Fact_BankTransactions))
+				VAR MaxDate = CALCULATE(MAX(Fact_BankTransactions[Transaction Date]), ALL(Fact_BankTransactions))
+				RETURN
+				    SELECTCOLUMNS(
+				        FILTER(
+				            DimDate,
+				            DimDate[Date] = DimDate[MonthStart]
+				                && DimDate[MonthStart] >= DATE(YEAR(MinDate), MONTH(MinDate), 1)
+				                && DimDate[MonthStart] <= DATE(YEAR(MaxDate), MONTH(MaxDate), 1)
+				        ),
+				        "YearMonth", DimDate[YearMonth],
+				        "MonthStart", DimDate[MonthStart]
+				    )
+
+	annotation PBI_Id = 5d6f62735b0c46359f3daf58d0f51478
+

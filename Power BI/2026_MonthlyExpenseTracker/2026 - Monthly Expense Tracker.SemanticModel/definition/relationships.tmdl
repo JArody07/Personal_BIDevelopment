@@ -75,3 +75,8 @@ relationship 4ccc3c31-cfda-4146-8725-a09ea25177cc
 	fromColumn: Amazon_BankMatch.'Transaction Date'
 	toColumn: LocalDateTable_e765f1c4-14cd-4d24-86e0-5b6bd626c723.Date
 
+relationship 90ddcfac-a61d-4d3e-8c45-cf2fb31f1aab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: BenchmarkMonthSelector.MonthStart
+	toColumn: LocalDateTable_e0b2524b-059c-4af8-9681-d918060267e8.Date
+
