@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "d20e06f54d29bb176abb",
   "position": {
-    "x": 1115.8709677419354,
-    "y": 259.09677419354841,
+    "x": 730.51428571428573,
+    "y": 0.91428571428571426,
     "z": 4000,
-    "height": 74.3225806451613,
-    "width": 164.12903225806451,
+    "height": 74.057142857142864,
+    "width": 180.11428571428573,
     "tabOrder": 4000
   },
   "visual": {
@@ -56,47 +56,6 @@
                 "Literal": {
                   "Value": "true"
                 }
-              }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "d",
-                    "Entity": "DimCategory",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Property": "Category"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'Clothing & Apparel'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
               }
             }
           }
