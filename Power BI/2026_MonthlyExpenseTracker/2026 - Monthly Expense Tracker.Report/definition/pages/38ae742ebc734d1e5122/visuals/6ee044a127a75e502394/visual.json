@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "774a6f864e00d1213ed3",
+  "name": "6ee044a127a75e502394",
   "position": {
-    "x": 819.622641509434,
+    "x": 0,
     "y": 0,
-    "z": 4000,
+    "z": 4001,
     "height": 131.32075471698113,
     "width": 191.09433962264148,
-    "tabOrder": 4000
+    "tabOrder": 4001
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Fact_BankTransactions"
+                      "Entity": "Gross_Income"
                     }
                   },
-                  "Property": "Net Cash Flow"
+                  "Property": "Gross Income"
                 }
               },
-              "queryRef": "Fact_BankTransactions.Net Cash Flow",
-              "nativeQueryRef": "Net Cash Flow",
+              "queryRef": "Gross_Income.Gross Income",
+              "nativeQueryRef": "Gross Income",
               "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
@@ -40,10 +40,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "Fact_BankTransactions"
+                    "Entity": "Gross_Income"
                   }
                 },
-                "Property": "Net Cash Flow"
+                "Property": "Gross Income"
               }
             },
             "direction": "Descending"
@@ -53,6 +53,34 @@
       }
     },
     "objects": {
+      "fillCustom": [
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
       "value": [
         {
           "properties": {
@@ -60,6 +88,20 @@
               "expr": {
                 "Literal": {
                   "Value": "'center'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -71,23 +113,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "29e112167b69b8ddad00",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_BankTransactions"
-              }
-            },
-            "Property": "Net Cash Flow"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

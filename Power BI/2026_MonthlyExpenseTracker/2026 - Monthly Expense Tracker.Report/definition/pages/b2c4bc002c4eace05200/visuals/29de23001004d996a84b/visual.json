@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "29de23001004d996a84b",
   "position": {
-    "x": 532.36363636363637,
+    "x": 1062.8571428571429,
     "y": 0,
-    "z": 1002,
+    "z": 3000,
     "height": 72.228571428571428,
     "width": 216.68571428571428,
-    "tabOrder": 1002
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",
@@ -98,5 +98,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d53319000a6858d919b2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BenchmarkMonthSelector"
+              }
+            },
+            "Property": "YearMonth"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

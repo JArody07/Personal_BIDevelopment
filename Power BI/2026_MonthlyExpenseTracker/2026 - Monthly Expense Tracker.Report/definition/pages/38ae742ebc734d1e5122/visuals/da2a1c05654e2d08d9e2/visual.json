@@ -3,10 +3,10 @@
   "name": "da2a1c05654e2d08d9e2",
   "position": {
     "x": 0,
-    "y": 165.81818181818181,
+    "y": 152.13559322033896,
     "z": 0,
-    "height": 554.66666666666663,
-    "width": 1280,
+    "height": 568.67796610169489,
+    "width": 1279.7288135593219,
     "tabOrder": 0
   },
   "visual": {
@@ -72,11 +72,12 @@
                       "Entity": "Fact_BankTransactions"
                     }
                   },
-                  "Property": "Total Expenses"
+                  "Property": "Total Expenses or Income"
                 }
               },
-              "queryRef": "Fact_BankTransactions.Total Expenses",
-              "nativeQueryRef": "Total Expenses"
+              "queryRef": "Fact_BankTransactions.Total Expenses or Income",
+              "nativeQueryRef": "Total Expenses or Income",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
         }
@@ -97,6 +98,39 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
@@ -126,6 +160,27 @@
                   "Value": "'Center'"
                 }
               }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "autoExpand": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -143,7 +198,14 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "autoExpand": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -160,6 +222,96 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "bandedRowHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Fact_BankTransactions"
+                                        }
+                                      },
+                                      "Property": "Total Expenses or Income"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Fact_BankTransactions"
+                                        }
+                                      },
+                                      "Property": "Total Expenses or Income"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "1e+31D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#108401'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Fact_BankTransactions.Total Expenses or Income"
           }
         }
       ],
@@ -182,7 +334,7 @@
             }
           },
           "selector": {
-            "metadata": "Fact_BankTransactions.Total Expenses"
+            "metadata": "Fact_BankTransactions.Total Expenses or Income"
           }
         }
       ]
@@ -243,7 +395,7 @@
         }
       },
       {
-        "name": "9683e19de009a92e2d39",
+        "name": "5949d4d83955961ae668",
         "field": {
           "HierarchyLevel": {
             "Expression": {
@@ -268,7 +420,7 @@
         "type": "Categorical"
       },
       {
-        "name": "36f295af118821d8510b",
+        "name": "ede9252abac80aa004d4",
         "field": {
           "Measure": {
             "Expression": {
@@ -276,7 +428,7 @@
                 "Entity": "Fact_BankTransactions"
               }
             },
-            "Property": "Total Expenses"
+            "Property": "Total Expenses or Income"
           }
         },
         "type": "Advanced"

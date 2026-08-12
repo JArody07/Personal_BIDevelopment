@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "68580a625b5aba149f6a",
   "position": {
-    "x": 480,
+    "x": 823.71428571428567,
     "y": 0,
     "z": 3000,
     "height": 74.971428571428575,
@@ -77,5 +77,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d280e53c7ebad36b8bdc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "FinancePlanCategory"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

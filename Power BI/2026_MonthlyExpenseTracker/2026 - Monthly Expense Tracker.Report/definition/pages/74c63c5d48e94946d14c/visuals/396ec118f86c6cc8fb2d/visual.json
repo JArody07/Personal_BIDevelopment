@@ -350,6 +350,22 @@
             }
           }
         }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "122.88135781515588D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.AccountSource"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -379,7 +395,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "31ba2ad1b995120873d7",
+        "name": "d4660389d0b1ddcc74e6",
         "field": {
           "Column": {
             "Expression": {
@@ -393,7 +409,7 @@
         "type": "Categorical"
       },
       {
-        "name": "ddce09d93ab6196b56cd",
+        "name": "5ae58729a639822496b6",
         "field": {
           "Column": {
             "Expression": {
@@ -407,7 +423,7 @@
         "type": "Categorical"
       },
       {
-        "name": "efd742cb5c16a1c2410c",
+        "name": "aaa0edbde1208db04594",
         "field": {
           "Column": {
             "Expression": {
@@ -421,7 +437,7 @@
         "type": "Categorical"
       },
       {
-        "name": "a86c8b8d13d0dc194656",
+        "name": "9e05054e866a37c191ad",
         "field": {
           "Column": {
             "Expression": {
@@ -435,7 +451,7 @@
         "type": "Categorical"
       },
       {
-        "name": "d07c85b8c000a623c412",
+        "name": "568447097a49e4cb0b00",
         "field": {
           "Column": {
             "Expression": {
@@ -449,7 +465,7 @@
         "type": "Categorical"
       },
       {
-        "name": "f091e39034e8496e4e21",
+        "name": "64feae9eda528035e408",
         "field": {
           "Measure": {
             "Expression": {
@@ -460,44 +476,10 @@
             "Property": "Total Transactions"
           }
         },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "Fact_BankTransactions",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 1,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "f"
-                        }
-                      },
-                      "Property": "Total Transactions"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "0L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "type": "Advanced"
       },
       {
-        "name": "cafea29da0861bc207d2",
+        "name": "4f52d8cb8ede6c8c9093",
         "field": {
           "Measure": {
             "Expression": {
@@ -511,7 +493,7 @@
         "type": "Advanced"
       },
       {
-        "name": "946f699254ec73e9975b",
+        "name": "cbe9910ed4423d50b96b",
         "field": {
           "Column": {
             "Expression": {

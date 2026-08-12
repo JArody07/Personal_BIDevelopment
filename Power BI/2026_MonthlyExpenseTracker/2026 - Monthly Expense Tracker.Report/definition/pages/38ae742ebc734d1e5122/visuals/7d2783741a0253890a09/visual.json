@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "7d2783741a0253890a09",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 1,
-    "height": 130.90909090909091,
-    "width": 219.15151515151516,
-    "tabOrder": 1
+    "x": 268.07547169811318,
+    "y": 0.90566037735849048,
+    "z": 1000,
+    "height": 131.32075471698113,
+    "width": 191.09433962264148,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Fact_BankTransactions.Total Income",
-              "nativeQueryRef": "Total Income",
+              "nativeQueryRef": "Net Income",
+              "displayName": "Net Income",
               "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
@@ -52,12 +53,30 @@
         "isDefaultSort": true
       }
     },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "b8ed0385d92830c2103e",
+        "name": "0cceb806385dd70591bc",
         "field": {
           "Measure": {
             "Expression": {

@@ -4,10 +4,10 @@
   "position": {
     "x": 594.42424242424238,
     "y": 84.36363636363636,
-    "z": 1003,
+    "z": 4000,
     "height": 635.15151515151513,
     "width": 685.57575757575762,
-    "tabOrder": 1003
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "tableEx",
@@ -257,5 +257,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2fcf11438796d660658b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bd76d4c077ae0dc186b0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Budget_2026"
+              }
+            },
+            "Property": "Monthly Budget"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1230af0e25d89de01995",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Benchmark Month Expenses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d546af034d57c4093a38",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Current Month Expenses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eca34c0738d9e221ea67",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Previous Month Expenses"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

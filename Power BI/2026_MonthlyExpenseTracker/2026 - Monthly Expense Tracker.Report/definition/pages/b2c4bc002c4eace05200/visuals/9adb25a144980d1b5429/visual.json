@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "9adb25a144980d1b5429",
   "position": {
-    "x": 266.66666666666669,
+    "x": 796.28571428571422,
     "y": 0,
-    "z": 1001,
+    "z": 2000,
     "height": 72.228571428571428,
     "width": 216.68571428571428,
-    "tabOrder": 1001
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -128,5 +128,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "87790961099d76365535",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

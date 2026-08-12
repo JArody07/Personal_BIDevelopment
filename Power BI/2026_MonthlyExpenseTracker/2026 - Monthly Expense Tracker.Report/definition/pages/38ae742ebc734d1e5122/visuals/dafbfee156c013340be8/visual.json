@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "dafbfee156c013340be8",
   "position": {
-    "x": 1084.5714285714287,
+    "x": 1086.7924528301885,
     "y": 0,
-    "z": 2,
-    "height": 130.90909090909091,
-    "width": 195.87878787878788,
-    "tabOrder": 2
+    "z": 2000,
+    "height": 131.32075471698113,
+    "width": 192.90566037735849,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "DimDate.YearMonth",
-              "nativeQueryRef": "YearMonth",
-              "active": true
+              "nativeQueryRef": "Date",
+              "active": true,
+              "displayName": "Date"
             }
           ]
         }
@@ -98,26 +99,21 @@
             }
           }
         }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "66d569e2ad188c805d68",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "YearMonth"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

@@ -57,55 +57,73 @@
                 }
               },
               "queryRef": "Fact_BankTransactions.Net Cash Flow",
-              "nativeQueryRef": "Net Cash Flow"
+              "nativeQueryRef": "Net Cash Flow",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
         }
       }
     },
-    "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "368b64500d813ac00c98",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "DimDate"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
                   }
-                },
-                "Hierarchy": "Date Hierarchy"
+                }
               }
             },
-            "Level": "Month"
+            "fillTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
           }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "4590c3297d47d2401aad",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_BankTransactions"
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "innerPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "20L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
               }
             },
-            "Property": "Net Cash Flow"
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
           }
-        },
-        "type": "Advanced"
-      }
-    ]
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
   }
 }
