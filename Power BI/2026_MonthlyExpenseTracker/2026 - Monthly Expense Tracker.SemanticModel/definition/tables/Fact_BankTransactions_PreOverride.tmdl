@@ -45,7 +45,7 @@ table Fact_BankTransactions_PreOverride
 
 	column Category
 		dataType: string
-		lineageTag: 8bbd3576-8993-409f-8c55-80df3f7a9336
+		lineageTag: 47e8ad88-61ad-415d-bf49-a27eb0a82b50
 		summarizeBy: none
 		sourceColumn: Category
 
@@ -56,9 +56,22 @@ table Fact_BankTransactions_PreOverride
 		queryGroup: Amazon_StagingQuery
 		source =
 				let
-				    Source            = Table.Combine({CapitalOne_StagingQuery, Discover_StagingQuery, Avant_StagingQuery, BancorpBank_StagingQuery}),
-				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignCategory([Transaction Description]), type text),
-				    #"Sorted Rows"    = Table.Sort(#"Added Category", {{"Transaction Date", Order.Descending}}),
+				    Source            = Table.Combine({CapitalOne_StagingQuery, Discover_StagingQuery, Avant_StagingQuery, BancorpBank_StagingQuery, CapitalOneSavings_StagingQuery}),
+				    #"Filtered Rows"  = Table.SelectRows(Source, each [Transaction Date] >= #date(2026, 1, 1)),
+				    #"Added Category" = Table.AddColumn(#"Filtered Rows", "Category", each fnAssignCategory([Transaction Description]), type text),
+				    #"Fixed Self-Transfers" = Table.AddColumn(#"Added Category", "Category_Step1",
+				        each if [AccountSource] = "Capital One Savings" and Text.Contains(Text.Upper([Transaction Description]), "360 CHECKING")
+				             then "Internal Transfer"
+				             else [Category],
+				        type text),
+				    #"Fixed One-Directional Sign" = Table.AddColumn(#"Fixed Self-Transfers", "Category_Fixed",
+				        each if List.Contains({"Rent", "Savings"}, [Category_Step1]) and [Transaction Amount] > 0
+				             then "Internal Transfer"
+				             else [Category_Step1],
+				        type text),
+				    #"Removed Category" = Table.RemoveColumns(#"Fixed One-Directional Sign", {"Category", "Category_Step1"}),
+				    #"Renamed Category" = Table.RenameColumns(#"Removed Category", {{"Category_Fixed", "Category"}}),
+				    #"Sorted Rows"    = Table.Sort(#"Renamed Category", {{"Transaction Date", Order.Descending}}),
 				    #"Changed Type"   = Table.TransformColumnTypes(#"Sorted Rows", {{"Transaction Date", type date}})
 				in
 				    #"Changed Type"

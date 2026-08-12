@@ -1,6 +1,6 @@
 expression '2026-03-22_360Checking   9096' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-08-09_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-08-11_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
 		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Transaction Date", Order.Ascending}}),
@@ -12,7 +12,7 @@ expression '2026-03-22_360Checking   9096' =
 
 	annotation PBI_NavigationStepName = Navigation
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 
 expression DFS-Search-20260323 =
 		let
@@ -131,14 +131,12 @@ expression CategoryMap = ```
 		
 		            // Rent
 		            {"DIANA MATIESU", "Rent", "Needs", 1},
-		            {"Rent - Preauthorized", "Rent", "Needs", 1},
 		            {"ARMI PROPERTIES", "Rent", "Needs", 1},
 		
 		            // Utilities: Gas, Electricity, Water, Trash, Internet, and Phone
 		            {"SoCalGas", "Gas Bill", "Needs", 1},
 		            {"SO CAL EDISON", "Electricity Bill", "Needs", 1},
-		            {"Trash Bill", "Trash Bill", "Needs", 1},
-		            {"Water and Trash", "Water Bill", "Needs", 1},
+		
 		            {"MINT MOBILE", "Phone Bill", "Needs", 1},
 		            {"SPECTRUM", "Internet Bill", "Needs", 2},
 		            {"FRONTIER COMMUNI STAMFORD", "Internet Bill", "Needs", 2},
@@ -279,6 +277,9 @@ expression CategoryMap = ```
 		            {"Chime Card Payment", "Internal Transfer", "Internal Transfer", 1},
 		            {"Card Payment from Secured Account", "Internal Transfer", "Internal Transfer", 1},
 		            {"DIRECTPAY FULL", "Credit Card Payment", "Internal Transfer", 1},
+		            {"Rent - Preauthorized", "Internal Transfer", "Internal Transfer", 1},
+		            {"Trash Bill", "Internal Transfer", "Internal Transfer", 1},
+		            {"Water and Trash", "Internal Transfer", "Internal Transfer", 1},
 		            
 		            // Internal transfers
 		            {"ZIP", "BNPL", "Wants", 1},
@@ -821,4 +822,43 @@ expression fnAssignAmazonCategory =
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Function
+
+expression '2026-08-11_360PerformanceSavings   0002' =
+		let
+		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\Performance_Savings\2026-08-11_360PerformanceSavings...0002.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+		  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+		  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}})
+		in
+		  #"Changed column type"
+	lineageTag: a0f9f9a7-d191-49b1-9a13-5ca3668fc91b
+	queryGroup: CapitalOne_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression CapitalOneSavings_StagingQuery =
+		let
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\Performance_Savings\2026-08-11_360PerformanceSavings...0002.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+		    #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+		    #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Changed column type", {"Account Number", "Balance"}),
+		    #"Added NormalizedAmount" = Table.AddColumn(
+		        #"Removed Columns", "NormalizedAmount",
+		        each if [Transaction Type] = "Debit"
+		             then [Transaction Amount] * -1
+		             else [Transaction Amount],
+		        type number
+		    ),
+		    #"Removed Originals" = Table.RemoveColumns(#"Added NormalizedAmount", {"Transaction Type", "Transaction Amount"}),
+		    #"Renamed Amount" = Table.RenameColumns(#"Removed Originals", {{"NormalizedAmount", "Transaction Amount"}}),
+		    #"Added AccountSource" = Table.AddColumn(#"Renamed Amount", "AccountSource", each "Capital One Savings", type text)
+		in
+		    #"Added AccountSource"
+	lineageTag: 8a7a4039-1785-478c-b026-ffd6ddb48a39
+	queryGroup: CapitalOne_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
 

@@ -192,6 +192,21 @@ table Fact_BankTransactions
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Total Expenses or Income' = ```
+			
+			VAR IsIncomeCategory = SELECTEDVALUE(DimCategory[FinancePlanCategory]) = "Income"
+			RETURN
+			    IF(
+			        ISINSCOPE(DimCategory[Category]) && IsIncomeCategory,
+			        [Total Income],
+			        [Total Expenses]
+			    )
+			
+			```
+		lineageTag: e17df493-6cdf-4907-b533-86371dea00ab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Transaction Date'
 		dataType: dateTime
 		formatString: Long Date

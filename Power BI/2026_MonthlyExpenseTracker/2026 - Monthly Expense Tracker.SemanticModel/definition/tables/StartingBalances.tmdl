@@ -39,7 +39,7 @@ table StartingBalances
 		mode: import
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wck4syCxJzFHwz0tVcM5ITc7OzEtX0lEytNAzNwHSBoa6QGRkYGSmFKsTreSSWZycX5ZapOBclJqSWaLgnFiUAlRlamCAqdaxLDGvBE2hkaklmsJYAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [AccountSource = _t, OpeningBalance = _t, AsOfDate = _t]),
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wck4syCxJzFHwz0tVcM5ITc7OzEtX0lEytNAzNwHSBoa6QGRkYGSmFKsTreSSWZycX5ZapOBclJqSWaLgnFiUAlRlamCAqdaxLDGvBE2hkaklpkJkJwQnlgEdUAxShKYwFgA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [AccountSource = _t, OpeningBalance = _t, AsOfDate = _t]),
 				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"AccountSource", type text}, {"OpeningBalance", type number}, {"AsOfDate", type date}})
 				in
 				    #"Changed Type"

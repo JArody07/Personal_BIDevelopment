@@ -58,6 +58,9 @@ table CategoryOverrides
 				            Category                  = text
 				        ],
 				        {
+				
+				
+				            {#date(2026, 1, 16), "SoCalGas Bill - Preauthorized Deposit from THE BANCORP BANK checking account XXXXXXXX8311", 75.00, "Internal Transfer"},
 				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -50.00, "Groceries"},
 				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
 				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -160.00, "Car Insurance"},
