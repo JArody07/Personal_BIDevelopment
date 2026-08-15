@@ -2246,6 +2246,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Current Month Expenses": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -13837,6 +13847,72 @@ cultureInfo en-US
 			    }
 			  },
 			  "Relationships": {
+			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.quarter": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_start_date_hierarchies_have_month_start_quarters"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_year": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.year": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_start_date_hierarchies_have_month_start_years"
+			        }
+			      ]
+			    },
 			    "benchmark_month_selector_month_start_has_date_hierarchy": {
 			      "Binding": {
 			        "ConceptualEntity": "BenchmarkMonthSelector"
@@ -16242,7 +16318,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_quarters"
+			          "ID": "month_start_date_hierarchies_have_month_start_quarters1"
 			        }
 			      ]
 			    },
@@ -16275,7 +16351,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_years"
+			          "ID": "month_start_date_hierarchies_have_month_start_years1"
 			        }
 			      ]
 			    },
@@ -20416,72 +20492,6 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.75,
 			          "ID": "benchmark_month_selectors_select"
-			        }
-			      ]
-			    },
-			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_year": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.year": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_years1"
-			        }
-			      ]
-			    },
-			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_quarter": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.quarter": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.quarter"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.quarter"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_quarters1"
 			        }
 			      ]
 			    },

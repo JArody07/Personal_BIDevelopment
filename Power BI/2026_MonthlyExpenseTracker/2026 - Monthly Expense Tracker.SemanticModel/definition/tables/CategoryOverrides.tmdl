@@ -60,6 +60,8 @@ table CategoryOverrides
 				        {
 				
 				
+				            {#date(2026, 8, 14), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -68.81, "Household & Home Goods"},
+				            {#date(2026, 8, 08), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -130.00, "Health & Wellness"},
 				            {#date(2026, 1, 16), "SoCalGas Bill - Preauthorized Deposit from THE BANCORP BANK checking account XXXXXXXX8311", 75.00, "Internal Transfer"},
 				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -50.00, "Groceries"},
 				            {#date(2026, 8, 01), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
