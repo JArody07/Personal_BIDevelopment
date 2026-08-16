@@ -4,7 +4,13 @@ The purpose of this repository is primarily for personal projects.
 
 ## Contribution Workflow
 
+
+
 - Cloning the Repo:
+
+  - Just perform a basic git cloning grabbing the URL from the remote repo:
+
+    `git clone <repository_url>`
 
 - Branching:
 
