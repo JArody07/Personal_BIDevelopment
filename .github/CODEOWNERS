@@ -1,0 +1,8 @@
+# A CODEOWNERS file is a special configuration file in a GitHub repository used to automatically request reviews from specific individuals or teams responsible for specific files or directories in the repo.
+
+# When a Pull Request (PR) modifies any of these owned files, GitHub automatically requests reviews from those designated owners, streamlining the review process and enforcing code quality.
+
+# 1. Global Owner
+# The asterisk (*) matches everything. These people/teams will own all files
+# unless a more specific pattern lower down overrides it.
+*   @JArody07
