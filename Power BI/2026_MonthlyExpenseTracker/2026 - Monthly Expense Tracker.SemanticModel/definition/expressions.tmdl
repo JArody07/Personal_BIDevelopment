@@ -1,6 +1,6 @@
 expression '2026-03-22_360Checking   9096' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-08-11_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\2026-08-14_360Checking...9096.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
 		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Transaction Date", Order.Ascending}}),
@@ -825,7 +825,7 @@ expression fnAssignAmazonCategory =
 
 expression '2026-08-11_360PerformanceSavings   0002' =
 		let
-		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\Performance_Savings\2026-08-11_360PerformanceSavings...0002.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\Performance_Savings\2026-08-14_360PerformanceSavings...0002.csv"),[Delimiter=",", Columns=6, QuoteStyle=QuoteStyle.None]),
 		  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 		  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}})
 		in
@@ -839,9 +839,8 @@ expression '2026-08-11_360PerformanceSavings   0002' =
 
 expression CapitalOneSavings_StagingQuery =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\Performance_Savings\2026-08-11_360PerformanceSavings...0002.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
-		    #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-		    #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
+		    Source = #"2026-08-11_360PerformanceSavings   0002",
+		    #"Changed column type" = Table.TransformColumnTypes(Source, {{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
 		    #"Removed Columns" = Table.RemoveColumns(#"Changed column type", {"Account Number", "Balance"}),
 		    #"Added NormalizedAmount" = Table.AddColumn(
 		        #"Removed Columns", "NormalizedAmount",

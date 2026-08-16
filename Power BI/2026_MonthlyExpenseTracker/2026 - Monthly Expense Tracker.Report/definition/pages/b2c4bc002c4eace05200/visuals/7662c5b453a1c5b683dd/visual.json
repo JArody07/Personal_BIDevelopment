@@ -5,8 +5,8 @@
     "x": 0,
     "y": 0,
     "z": 1000,
-    "height": 72.228571428571428,
-    "width": 216.68571428571428,
+    "height": 72.406779661016941,
+    "width": 219.66101694915253,
     "tabOrder": 1000
   },
   "visual": {
@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "DimDate.YearMonth",
-              "nativeQueryRef": "YearMonth",
-              "active": true
+              "nativeQueryRef": "Current Month Expenses",
+              "active": true,
+              "displayName": "Current Month Expenses"
             }
           ]
         }
