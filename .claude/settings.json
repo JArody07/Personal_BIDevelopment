@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(Power BI/**/*.tmdl)",
+      "Edit(Power BI/**/*.json)",
+      "Write(Power BI/**/*.tmdl)",
+      "Write(Power BI/**/*.json)"
+    ]
+  }
+}
