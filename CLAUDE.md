@@ -23,3 +23,9 @@ Personal BI repository. Primary project: **2026 Monthly Expense Tracker**, a Pow
 - **Read access to `.tmdl`/`.json` files is fine; do not Edit/Write them directly** — these are Power BI's generated project format. Make model/report changes in Power BI Desktop and let it regenerate the files, unless explicitly asked to hand-edit TMDL/JSON. (Enforced in `.claude/settings.json`.)
 - `LocalDateTable_*.tmdl` and `DateTableTemplate_*.tmdl` files are Power BI's auto-generated hidden date tables — not user-authored, ignore when reasoning about the model.
 - `cultures/en-US.tmdl` is auto-generated translation metadata — very large, not useful context.
+
+## Content
+
+This repo doubles as portfolio/learning content — I post about progress on LinkedIn. When asked to draft a post, pull the narrative from whatever's actually being worked on (recent commits, current session context) unless I hand you a specific topic. For voice/tone/structure rules, see [.claude/rules/linkedin-voice.md](.claude/rules/linkedin-voice.md).
+
+<!-- Repo narrative notes go here as they develop — e.g. why this project exists, what "done" looks like, milestones worth posting about. -->
