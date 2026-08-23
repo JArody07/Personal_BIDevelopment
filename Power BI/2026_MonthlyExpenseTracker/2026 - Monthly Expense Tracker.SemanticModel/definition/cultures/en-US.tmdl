@@ -2248,7 +2248,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Current Month Expenses": {
+			          "Current Month": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
