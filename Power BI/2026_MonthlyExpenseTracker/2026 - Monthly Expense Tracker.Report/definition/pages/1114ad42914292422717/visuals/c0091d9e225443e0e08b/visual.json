@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "c0091d9e225443e0e08b",
   "position": {
     "x": 217.22033898305082,
@@ -90,7 +90,7 @@
             "start": {
               "expr": {
                 "Literal": {
-                  "Value": "3000D"
+                  "Value": "5500D"
                 }
               }
             },
@@ -168,7 +168,7 @@
             "dataLabelDecimalPoints": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "2D"
                 }
               }
             },
@@ -423,5 +423,48 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "69a5ee6fd04a063b94b4",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "DimDate"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "Date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a7efc6438d8cded9eddb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Gross_Income"
+              }
+            },
+            "Property": "Gross Income"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

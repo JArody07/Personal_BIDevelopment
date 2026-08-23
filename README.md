@@ -39,3 +39,36 @@ data — nothing work-derived or proprietary is committed here (see
 This is a solo portfolio repo, but it's built and merged through the same
 PR/branch discipline as a team project. See
 [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
+
+## Use of Claude
+
+After successfully installing claude, make sure you use the following to reduce downtime related to explaining things to Claude over and over again.
+
+> Create and Use The Following
+
+What is [Claude.md](/Users/jarody07/Repositories/Personal/Personal_BIDevelopment/CLAUDE.md)?
+
+A plain text Markdown document placed in the root directory of a repo. It acts as a persistent memory and onboarding manual for Claude Code, automatically loading project rules, tech stacks, and commands at the start of every session so you never have to re-explain them.
+
+Your [Claude.md](/Users/jarody07/Repositories/Personal/Personal_BIDevelopment/CLAUDE.md) typically follows the following structure:
+
+#### What Goes in a CLAUDE.md File:
+
+`- Project Overview: A brief 2-to-3 sentence summary of what the 
+project does and its target audience.`
+
+- Tech Stack: Explicit lists of frameworks, languages, and core
+libraries being used (e.g., TypeScript, Next.js, Tailwind).
+
+- Development Commands: Exact terminal instructions for building,
+running tests, linting, or starting the dev server.
+
+- Coding Standards: Preferred patterns, architectural layout, naming
+conventions, and constraints (e.g., use server components, prefer
+named exports).
+
+#### What goes in .claude/rules/
+
+Here you can actually enforce these files, in the context of preventing Claude from modifying certain files this is your go to. Avoid relying on [.claudeignore](/Users/jarody07/Repositories/Personal/Personal_BIDevelopment/.claudeignore) it for secrets, Claude usually tells users to put .env files into .claudeignore to protect secrets, but native support is inconsistent because it acts primarily as a context filter rather than a rigid sandbox barrier, Claude can still accidentally read files matching your ignore patterns if its sub-agents or shell tools explicitly look for them.
+
+In order to provide Claude with context, with things such as business logic or posting personas, you can also use Claude rules to do so. For example, we can create something like .claude/rules/linkedin-voice.md alongside business-logic.md and schemas.md, then add a reference line to it in CLAUDE.md's "Conventions" or a new "Content" section.

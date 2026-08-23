@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "7662c5b453a1c5b683dd",
   "position": {
     "x": 0,
     "y": 0,
     "z": 1000,
-    "height": 72.406779661016941,
-    "width": 219.66101694915253,
+    "height": 72.228571428571428,
+    "width": 216.68571428571428,
     "tabOrder": 1000
   },
   "visual": {
@@ -27,9 +27,9 @@
                 }
               },
               "queryRef": "DimDate.YearMonth",
-              "nativeQueryRef": "Current Month Expenses",
+              "nativeQueryRef": "Current Month",
               "active": true,
-              "displayName": "Current Month Expenses"
+              "displayName": "Current Month"
             }
           ]
         }

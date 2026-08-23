@@ -49,6 +49,9 @@ table AmazonCategoryMap
 				            {"VITAMIN", "Health & Wellness", 2},
 				            {"SUPPLEMENT", "Health & Wellness", 2},
 				            {"TOALLITAS", "Health & Wellness", 2},
+				            {"WIPES", "Health & Wellness", 2},
+				            {"NIKZON", "Health & Wellness", 2},
+				            {"DESITIN", "Health & Wellness", 2},
 				
 				            // Personal Hygiene
 				            {"CERAVE", "Personal Hygiene", 1},
@@ -82,6 +85,11 @@ table AmazonCategoryMap
 				            {"PRINTER", "Household & Home Goods", 1},
 				            {"INK CARTRIDGE", "Household & Home Goods", 1},
 				            {"PORTABLE AIR CONDITIONER", "Household & Home Goods", 1},
+				            {"LEAF BLOWER", "Household & Home Goods", 1},
+				            {"POWER STRIP", "Household & Home Goods", 1},
+				            {"Abnii Clips", "Household & Home Goods", 1},
+				            {"CINMOORE", "Household & Home Goods", 1},
+				            {"Cargador Rapido", "Household & Home Goods", 1},
 				
 				            // Fitness
 				            {"TREADMILL", "Fitness", 1},
@@ -96,6 +104,7 @@ table AmazonCategoryMap
 				            {"TRANSMISSION FLUID", "Car Maintenance", 1},
 				            {"OIL FILTER", "Car Maintenance", 1},
 				            {"KEY FOB", "Car Maintenance", 1},
+				            {"OBD2", "Car Maintenance", 1},
 				
 				            // Clothing & Apparel
 				            {"VESTIDO", "Clothing & Apparel", 1},
@@ -115,7 +124,12 @@ table AmazonCategoryMap
 				            {"MONEDEROS", "Clothing & Apparel", 1},
 				            {"MONEDERO", "Clothing & Apparel", 1},
 				            {"BOLSOS", "Clothing & Apparel", 1},
-				            {"BOLSO", "Clothing & Apparel", 1}
+				            {"BOLSO", "Clothing & Apparel", 1},
+				            {"T-Shirt", "Clothing & Apparel", 1},
+				
+				
+				            // Eating Out
+				            {"Starbucks", "Eating Out", 1}
 				        }
 				    )
 				in
