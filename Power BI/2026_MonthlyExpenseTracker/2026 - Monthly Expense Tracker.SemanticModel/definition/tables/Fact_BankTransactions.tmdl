@@ -207,6 +207,78 @@ table Fact_BankTransactions
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Month-End Balance' = ```
+			
+			    VAR CurrentAccount = SELECTEDVALUE(Fact_BankTransactions[AccountSource])
+			    VAR MonthEndDate = MAX(DimDate[MonthEnd])
+			    VAR OpeningBal =
+			        LOOKUPVALUE(
+			            StartingBalances[OpeningBalance],
+			            StartingBalances[AccountSource], CurrentAccount
+			        )
+			    VAR CumulativeTransactions =
+			        CALCULATE(
+			            [Total Transactions],
+			            FILTER(
+			                ALL(Fact_BankTransactions),
+			                Fact_BankTransactions[Transaction Date] <= MonthEndDate
+			                    && Fact_BankTransactions[AccountSource] = CurrentAccount
+			            )
+			        )
+			    RETURN
+			        OpeningBal + CumulativeTransactions
+			```
+		lineageTag: ec79c758-9363-4b0d-ac1e-365ac50086f2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Month-End Balance Variance' = ```
+			
+			    VAR PreviousMonthStart = EDATE(MAX(DimDate[MonthStart]), -1)
+			    VAR PreviousBalance =
+			        CALCULATE(
+			            [Month-End Balance],
+			            ALL(DimDate),
+			            DimDate[MonthStart] = PreviousMonthStart
+			        )
+			    RETURN
+			        [Month-End Balance] - PreviousBalance
+			```
+		lineageTag: e4642bd7-d051-4370-8752-82a2d78b2b71
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Forecasted Expenses' = ```
+			
+			    VAR CurrentMonthStart = MAX(DimDate[MonthStart])
+			    VAR TrailingMonths = 3
+			    VAR WindowStart = EDATE(CurrentMonthStart, -TrailingMonths)
+			    VAR WindowEnd = EDATE(CurrentMonthStart, -1)
+			    RETURN
+			        ABS(
+			            CALCULATE(
+			                AVERAGEX(
+			                    VALUES(DimDate[MonthStart]),
+			                    [Total Expenses]
+			                ),
+			                ALL(DimDate),
+			                DimDate[MonthStart] >= WindowStart,
+			                DimDate[MonthStart] <= WindowEnd
+			            )
+			        )
+			```
+		lineageTag: 6b25069b-bbba-49b5-9506-300bb61571b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Forecast Variance' = ```
+			
+			    [Total Expenses (Display)] - [Forecasted Expenses]
+			```
+		lineageTag: e0c39db7-7011-4075-8121-da1a16914d91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Transaction Date'
 		dataType: dateTime
 		formatString: Long Date

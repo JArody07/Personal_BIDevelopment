@@ -2064,6 +2064,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.6
 			          }
+			        },
+			        {
+			          "Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -2249,6 +2259,16 @@ cultureInfo en-US
 			        },
 			        {
 			          "Current Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Year": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -13844,6 +13864,280 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "fact_bank_transaction.monthend_balance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_BankTransactions",
+			          "ConceptualProperty": "Month-End Balance"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month-end balance": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "month end balance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "balance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "end balance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "mth -end balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "month-completion balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "month-conclusion balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "month-expiration balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "mth end balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "month completion balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "month conclusion balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "month expiration balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "completion balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "conclusion balance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        }
+			      ]
+			    },
+			    "fact_bank_transaction.monthend_balance_variance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_BankTransactions",
+			          "ConceptualProperty": "Month-End Balance Variance"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "month-end balance variance": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "month end balance variance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "variance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "balance variance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "end balance variance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "mth -end balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "month-completion balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "month-conclusion balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "month-expiration balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "mth end balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "month completion balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "month conclusion balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "month expiration balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "completion balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        },
+			        {
+			          "conclusion balance variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.609
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -17005,6 +17299,138 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_fact_bank_transactions"
+			        }
+			      ]
+			    },
+			    "starting_balance_has_fact_bank_transaction_monthend_balance_variance": {
+			      "Binding": {
+			        "ConceptualEntity": "StartingBalances"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "starting_balance": {
+			          "Target": {
+			            "Entity": "starting_balance"
+			          }
+			        },
+			        "fact_bank_transaction.monthend_balance_variance": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.monthend_balance_variance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "starting_balance"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.monthend_balance_variance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "starting_balances_have_monthend_balance_variance"
+			        }
+			      ]
+			    },
+			    "fact_bank_transaction_has_monthend_balance_variance": {
+			      "Binding": {
+			        "ConceptualEntity": "Fact_BankTransactions"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_bank_transaction": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction"
+			          }
+			        },
+			        "fact_bank_transaction.monthend_balance_variance": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.monthend_balance_variance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_bank_transaction"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.monthend_balance_variance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_bank_transactions_have_monthend_balance_variance"
+			        }
+			      ]
+			    },
+			    "starting_balance_has_fact_bank_transaction_monthend_balance": {
+			      "Binding": {
+			        "ConceptualEntity": "StartingBalances"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "starting_balance": {
+			          "Target": {
+			            "Entity": "starting_balance"
+			          }
+			        },
+			        "fact_bank_transaction.monthend_balance": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.monthend_balance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "starting_balance"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.monthend_balance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "starting_balances_have_monthend_balance"
+			        }
+			      ]
+			    },
+			    "fact_bank_transaction_has_monthend_balance": {
+			      "Binding": {
+			        "ConceptualEntity": "Fact_BankTransactions"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_bank_transaction": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction"
+			          }
+			        },
+			        "fact_bank_transaction.monthend_balance": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.monthend_balance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_bank_transaction"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.monthend_balance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_bank_transactions_have_monthend_balance"
 			        }
 			      ]
 			    },
