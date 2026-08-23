@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "34fda5f3d04e090a2194",
   "position": {
-    "x": 594.42424242424238,
-    "y": 84.36363636363636,
+    "x": 489.6880733944954,
+    "y": 84.550458715596321,
     "z": 4000,
-    "height": 635.15151515151513,
-    "width": 685.57575757575762,
+    "height": 635.00917431192659,
+    "width": 790.01834862385317,
     "tabOrder": 4000
   },
   "visual": {
@@ -52,6 +52,21 @@
                       "Entity": "Fact_BankTransactions"
                     }
                   },
+                  "Property": "Previous Month Expenses"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Previous Month Expenses",
+              "nativeQueryRef": "Previous Month Expenses",
+              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
                   "Property": "Benchmark Month Expenses"
                 }
               },
@@ -82,12 +97,25 @@
                       "Entity": "Fact_BankTransactions"
                     }
                   },
-                  "Property": "Previous Month Expenses"
+                  "Property": "Forecasted Expenses"
                 }
               },
-              "queryRef": "Fact_BankTransactions.Previous Month Expenses",
-              "nativeQueryRef": "Previous Month Expenses",
-              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+              "queryRef": "Fact_BankTransactions.Forecasted Expenses",
+              "nativeQueryRef": "Forecasted Expenses"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Forecast Variance"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Forecast Variance",
+              "nativeQueryRef": "Forecast Variance"
             }
           ]
         }
@@ -112,6 +140,147 @@
               }
             }
           }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Fact_BankTransactions"
+                                        }
+                                      },
+                                      "Property": "Forecast Variance"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "-1e+21D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 4,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Fact_BankTransactions"
+                                        }
+                                      },
+                                      "Property": "Forecast Variance"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#036809'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 1,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Fact_BankTransactions"
+                                        }
+                                      },
+                                      "Property": "Forecast Variance"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "Fact_BankTransactions"
+                                        }
+                                      },
+                                      "Property": "Forecast Variance"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "1e+23D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#900101'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Fact_BankTransactions.Forecast Variance"
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Fact_BankTransactions.Current Month Expenses"
+          }
         }
       ],
       "columnHeaders": [
@@ -127,7 +296,7 @@
             "columnAdjustment": {
               "expr": {
                 "Literal": {
-                  "Value": "'growToFit'"
+                  "Value": "'fitToContent'"
                 }
               }
             },
@@ -227,6 +396,29 @@
                   "Value": "true"
                 }
               }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C98600'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
             }
           },
           "selector": {
@@ -252,6 +444,148 @@
           },
           "selector": {
             "metadata": "Fact_BankTransactions.Previous Month Expenses"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Forecasted Expenses"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Forecast Variance"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "228.22191653163978D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCategory.Category"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "96.63302752293578D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Benchmark Month Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.9632924472073D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Current Month Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.44037770162385D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Previous Month Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "77.00917431192661D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Forecasted Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.66972167070395D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Forecast Variance"
           }
         }
       ]
@@ -312,20 +646,6 @@
               }
             },
             "Property": "Current Month Expenses"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "eca34c0738d9e221ea67",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_BankTransactions"
-              }
-            },
-            "Property": "Previous Month Expenses"
           }
         },
         "type": "Advanced"
