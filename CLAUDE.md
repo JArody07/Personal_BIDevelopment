@@ -20,7 +20,7 @@ Personal BI repository. Primary project: **2026 Monthly Expense Tracker**, a Pow
 
 - `main` is protected — no direct commits. Branch and open a PR for every change (see `CONTRIBUTING.md`).
 - Branch prefixes: `feature/`, `fix/`, `chore/`.
-- **Read access to `.tmdl`/`.json` files is fine; do not Edit/Write them directly** — these are Power BI's generated project format. Make model/report changes in Power BI Desktop and let it regenerate the files, unless explicitly asked to hand-edit TMDL/JSON. (Enforced in `.claude/settings.json`.)
+- **`.tmdl`/`.json` files are read-only, no exceptions** — never Edit or Write them, even if asked to hand-edit. These are Power BI's generated project format; all model/report changes must be made in Power BI Desktop and let it regenerate the files. (Enforced in `.claude/settings.json`.)
 - `LocalDateTable_*.tmdl` and `DateTableTemplate_*.tmdl` files are Power BI's auto-generated hidden date tables — not user-authored, ignore when reasoning about the model.
 - `cultures/en-US.tmdl` is auto-generated translation metadata — very large, not useful context.
 
