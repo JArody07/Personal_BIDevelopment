@@ -974,6 +974,16 @@ cultureInfo en-US
 			            },
 			            "Weight": 0.485
 			          }
+			        },
+			        {
+			          "YTD - Net Cash Flow": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -14138,141 +14148,253 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "fact_bank_transaction.forecasted_expenses": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_BankTransactions",
+			          "ConceptualProperty": "Forecasted Expenses"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "forecasted expenses": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "expenses": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "forecasted expenditure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "expenditure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "forecasted incidental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "forecasted outlay": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "forecasted cost": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "forecasted overhead": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "forecasted outgoing": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "incidental": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "outlay": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "cost": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "fact_bank_transaction.forecast_variance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Fact_BankTransactions",
+			          "ConceptualProperty": "Forecast Variance"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "forecast variance": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "variance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "prediction variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "projection variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "report variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "estimate variance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "forecast alteration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "forecast modification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "forecast adjustment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "alteration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "modification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "adjustment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_quarter": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.quarter": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.quarter"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.quarter"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_quarters"
-			        }
-			      ]
-			    },
-			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_year": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.year": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_years"
-			        }
-			      ]
-			    },
-			    "benchmark_month_selector_month_start_has_date_hierarchy": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_starts_have_month_start_date_hierarchies"
-			        }
-			      ]
-			    },
-			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_day": {
-			      "Binding": {
-			        "ConceptualEntity": "Amazon_BankMatch"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "amazon_bank_match.transaction_date.date_hierarchy": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
-			          }
-			        },
-			        "amazon_bank_match.transaction_date.day": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.day"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "amazon_bank_match.transaction_date.day"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_days"
-			        }
-			      ]
-			    },
 			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_month": {
 			      "Binding": {
 			        "ConceptualEntity": "Amazon_BankMatch"
@@ -14434,7 +14556,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_days1"
+			          "ID": "transaction_date_hierarchies_have_transaction_days"
 			        }
 			      ]
 			    },
@@ -14929,7 +15051,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_days2"
+			          "ID": "transaction_date_hierarchies_have_transaction_days1"
 			        }
 			      ]
 			    },
@@ -16612,7 +16734,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_quarters1"
+			          "ID": "month_start_date_hierarchies_have_month_start_quarters"
 			        }
 			      ]
 			    },
@@ -16645,7 +16767,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_years1"
+			          "ID": "month_start_date_hierarchies_have_month_start_years"
 			        }
 			      ]
 			    },
@@ -16678,7 +16800,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_starts_have_month_start_date_hierarchies1"
+			          "ID": "month_starts_have_month_start_date_hierarchies"
 			        }
 			      ]
 			    },
@@ -17299,6 +17421,138 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_fact_bank_transactions"
+			        }
+			      ]
+			    },
+			    "fact_bank_transaction_has_forecast_variance": {
+			      "Binding": {
+			        "ConceptualEntity": "Fact_BankTransactions"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_bank_transaction": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction"
+			          }
+			        },
+			        "fact_bank_transaction.forecast_variance": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.forecast_variance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_bank_transaction"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.forecast_variance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_bank_transactions_have_forecast_variance"
+			        }
+			      ]
+			    },
+			    "dim_date_has_fact_bank_transaction_forecast_variance": {
+			      "Binding": {
+			        "ConceptualEntity": "DimDate"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "fact_bank_transaction.forecast_variance": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.forecast_variance"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.forecast_variance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_forecast_variance"
+			        }
+			      ]
+			    },
+			    "fact_bank_transaction_has_forecasted_expenses": {
+			      "Binding": {
+			        "ConceptualEntity": "Fact_BankTransactions"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_bank_transaction": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction"
+			          }
+			        },
+			        "fact_bank_transaction.forecasted_expenses": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.forecasted_expenses"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_bank_transaction"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.forecasted_expenses"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_bank_transactions_have_forecasted_expenses"
+			        }
+			      ]
+			    },
+			    "dim_date_has_fact_bank_transaction_forecasted_expenses": {
+			      "Binding": {
+			        "ConceptualEntity": "DimDate"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_date": {
+			          "Target": {
+			            "Entity": "dim_date"
+			          }
+			        },
+			        "fact_bank_transaction.forecasted_expenses": {
+			          "Target": {
+			            "Entity": "fact_bank_transaction.forecasted_expenses"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_date"
+			            },
+			            "Object": {
+			              "Role": "fact_bank_transaction.forecasted_expenses"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_dates_have_forecasted_expenses"
 			        }
 			      ]
 			    },
@@ -20918,6 +21172,138 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.75,
 			          "ID": "benchmark_month_selectors_select"
+			        }
+			      ]
+			    },
+			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_day": {
+			      "Binding": {
+			        "ConceptualEntity": "Amazon_BankMatch"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_bank_match.transaction_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
+			          }
+			        },
+			        "amazon_bank_match.transaction_date.day": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "amazon_bank_match.transaction_date.day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "transaction_date_hierarchies_have_transaction_days2"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_has_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_starts_have_month_start_date_hierarchies1"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_year": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.year": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_start_date_hierarchies_have_month_start_years1"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.quarter": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_start_date_hierarchies_have_month_start_quarters1"
 			        }
 			      ]
 			    },

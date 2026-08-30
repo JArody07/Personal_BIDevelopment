@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "774a6f864e00d1213ed3",
   "position": {
     "x": 819.622641509434,
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Fact_BankTransactions.Net Cash Flow",
-              "nativeQueryRef": "Net Cash Flow",
+              "nativeQueryRef": "YTD - Net Cash Flow",
+              "displayName": "YTD - Net Cash Flow",
               "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
