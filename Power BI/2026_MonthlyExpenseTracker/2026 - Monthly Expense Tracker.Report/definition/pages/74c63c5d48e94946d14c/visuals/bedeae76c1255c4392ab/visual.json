@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "bedeae76c1255c4392ab",
   "position": {
     "x": 550.28571428571422,
@@ -189,59 +189,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "57c17f2420e0d7d04ac1",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "DimDate"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Month"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8118de30109ec200c0bc",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "DimDate"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Day"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

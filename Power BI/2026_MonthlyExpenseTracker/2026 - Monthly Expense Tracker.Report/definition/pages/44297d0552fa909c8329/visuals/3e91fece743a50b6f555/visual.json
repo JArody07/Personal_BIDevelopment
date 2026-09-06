@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 234.85714285714283,
-    "z": 1,
+    "z": 1000,
     "height": 485.99999999999994,
     "width": 1279.7142857142856,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "lineChart",
@@ -488,20 +488,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e31f64954ed429fa2306",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "YearMonth"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "02874b4d19d23c369196",
         "field": {
           "Column": {
@@ -553,34 +539,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "7f85655124077136ffa8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_BankTransactions"
-              }
-            },
-            "Property": "Month-End Balance"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bde27ce60dce3aafbf8e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "MonthName"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

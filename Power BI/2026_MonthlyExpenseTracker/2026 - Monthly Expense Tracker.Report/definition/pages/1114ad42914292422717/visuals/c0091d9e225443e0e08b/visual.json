@@ -423,48 +423,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "69a5ee6fd04a063b94b4",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "DimDate"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "Date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Month"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "a7efc6438d8cded9eddb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Gross_Income"
-              }
-            },
-            "Property": "Gross Income"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
