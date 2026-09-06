@@ -1,0 +1,278 @@
+{
+  "name": "Golden Amber",
+  "dataColors": [
+    "#FFC15E",
+    "#FFD98A",
+    "#FFA733",
+    "#E8A63F",
+    "#F2B65B",
+    "#CC8B2E",
+    "#FFDFAE",
+    "#B87A22"
+  ],
+  "background": "#FFC15E",
+  "foreground": "#FFFFFF",
+  "tableAccent": "#FFC15E",
+  "textClasses": {
+    "callout": { "color": "#FFFFFF" },
+    "title": { "color": "#FFFFFF" },
+    "header": { "color": "#FFFFFF" },
+    "label": { "color": "#FFFFFF" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          { "color": { "solid": { "color": "#FFC15E" } }, "transparency": 0 }
+        ],
+        "border": [
+          { "show": true, "color": { "solid": { "color": "#FFC15E" } } }
+        ],
+        "title": [
+          { "fontColor": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          { "color": { "solid": { "color": "#FFC15E" } }, "transparency": 0 }
+        ],
+        "wallpaper": [
+          { "color": { "solid": { "color": "#FFC15E" } }, "transparency": 0 }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ],
+        "categoryLabels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "multiRowCard": {
+      "*": {
+        "dataLabels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ],
+        "categoryLabels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "background": [
+          { "color": { "solid": { "color": "#000000" } }, "transparency": 0 }
+        ],
+        "header": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "background": { "solid": { "color": "#000000" } }
+          }
+        ],
+        "items": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "background": { "solid": { "color": "#000000" } }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "grid": [
+          {
+            "gridVertical": true,
+            "gridVerticalColor": { "solid": { "color": "#FFC15E" } },
+            "gridHorizontal": true,
+            "gridHorizontalColor": { "solid": { "color": "#FFC15E" } },
+            "outlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "columnHeaders": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "backColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "values": [
+          {
+            "fontColorPrimary": { "solid": { "color": "#FFFFFF" } },
+            "backColorPrimary": { "solid": { "color": "#FFC15E" } },
+            "fontColorSecondary": { "solid": { "color": "#FFFFFF" } },
+            "backColorSecondary": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "total": [
+          {
+            "fontColor": { "solid": { "color": "#000000" } },
+            "backColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ]
+      }
+    },
+    "pivotTable": {
+      "*": {
+        "grid": [
+          {
+            "gridVertical": true,
+            "gridVerticalColor": { "solid": { "color": "#FFC15E" } },
+            "gridHorizontal": true,
+            "gridHorizontalColor": { "solid": { "color": "#FFC15E" } },
+            "outlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "columnHeaders": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "backColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "rowHeaders": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "backColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "values": [
+          {
+            "fontColorPrimary": { "solid": { "color": "#FFFFFF" } },
+            "backColorPrimary": { "solid": { "color": "#FFC15E" } },
+            "fontColorSecondary": { "solid": { "color": "#FFFFFF" } },
+            "backColorSecondary": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "total": [
+          {
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "backColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ]
+      }
+    },
+    "columnChart": {
+      "*": {
+        "dataPoint": [
+          { "defaultColor": { "solid": { "color": "#FFC15E" } } }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "labels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "clusteredColumnChart": {
+      "*": {
+        "dataPoint": [
+          { "defaultColor": { "solid": { "color": "#FFC15E" } } }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "labels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "barChart": {
+      "*": {
+        "dataPoint": [
+          { "defaultColor": { "solid": { "color": "#FFC15E" } } }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "labels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "clusteredBarChart": {
+      "*": {
+        "dataPoint": [
+          { "defaultColor": { "solid": { "color": "#FFC15E" } } }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "labels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "dataPoint": [
+          { "defaultColor": { "solid": { "color": "#FFC15E" } } }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": { "solid": { "color": "#FFFFFF" } },
+            "axisColor": { "solid": { "color": "#FFC15E" } },
+            "gridlineColor": { "solid": { "color": "#FFC15E" } }
+          }
+        ],
+        "labels": [
+          { "color": { "solid": { "color": "#FFFFFF" } } }
+        ]
+      }
+    }
+  }
+}
