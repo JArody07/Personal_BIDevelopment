@@ -378,7 +378,7 @@
             "dataLabelHorizontalPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'right'"
+                  "Value": "'left'"
                 }
               }
             },
