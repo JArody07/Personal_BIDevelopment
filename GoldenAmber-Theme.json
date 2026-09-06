@@ -134,14 +134,14 @@
         ],
         "columnHeaders": [
           {
-            "fontColor": { "solid": { "color": "#000000" } },
-            "backColor": { "solid": { "color": "#FFC15E" } }
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "backColor": { "solid": { "color": "#000000" } }
           }
         ],
         "rowHeaders": [
           {
-            "fontColor": { "solid": { "color": "#000000" } },
-            "backColor": { "solid": { "color": "#FFC15E" } }
+            "fontColor": { "solid": { "color": "#FFFFFF" } },
+            "backColor": { "solid": { "color": "#000000" } }
           }
         ],
         "values": [
