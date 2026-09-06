@@ -49,7 +49,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "null"
+                          "Value": "'Car Insurance'"
                         }
                       }
                     ]
@@ -78,6 +78,43 @@
               }
             },
             "Property": "Category"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFC15E'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
           }
         }
       }

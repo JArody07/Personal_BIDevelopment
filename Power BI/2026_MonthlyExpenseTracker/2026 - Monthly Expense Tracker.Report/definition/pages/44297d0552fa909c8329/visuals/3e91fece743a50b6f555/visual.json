@@ -428,7 +428,7 @@
             "dataLabelText": {
               "expr": {
                 "Literal": {
-                  "Value": "'ValueAndName'"
+                  "Value": "'Value'"
                 }
               }
             },
@@ -457,6 +457,32 @@
               "expr": {
                 "Literal": {
                   "Value": "1000D"
+                }
+              }
+            },
+            "shadeShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "shadeTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            },
+            "dataLabelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

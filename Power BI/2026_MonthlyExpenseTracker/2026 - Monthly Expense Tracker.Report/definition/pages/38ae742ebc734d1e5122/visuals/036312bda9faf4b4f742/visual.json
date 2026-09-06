@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 335.54285714285714,
-    "z": 6002,
+    "z": 8000,
     "height": 98.666666666666671,
     "width": 160.88888888888889,
-    "tabOrder": 6002
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "Gross_Income.Average Monthly Amount",
-              "nativeQueryRef": "Monthly Gross",
-              "displayName": "Monthly Gross",
+              "nativeQueryRef": "Avg Monthly Gross",
+              "displayName": "Avg Monthly Gross",
               "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]

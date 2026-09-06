@@ -14514,7 +14514,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Monthly Gross": {
+			          "Avg Monthly Gross": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

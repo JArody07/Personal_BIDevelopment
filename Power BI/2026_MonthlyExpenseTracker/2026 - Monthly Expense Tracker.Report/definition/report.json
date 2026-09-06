@@ -11,13 +11,13 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Bloom",
+      "name": "Golden_Amber6893252116970237.json",
       "reportVersionAtImport": {
-        "visual": "2.10.0",
+        "visual": "2.12.0",
         "report": "3.4.0",
         "page": "2.3.1"
       },
-      "type": "SharedResources"
+      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -54,14 +54,20 @@
       "type": "SharedResources",
       "items": [
         {
-          "name": "Bloom",
-          "path": "BuiltInThemes/Bloom.json",
-          "type": "CustomTheme"
-        },
-        {
           "name": "CY26SU05",
           "path": "BaseThemes/CY26SU05.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Golden_Amber6893252116970237.json",
+          "path": "Golden_Amber6893252116970237.json",
+          "type": "CustomTheme"
         }
       ]
     }
