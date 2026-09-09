@@ -529,7 +529,8 @@
               "solid": {
                 "color": "#FFFFFF"
               }
-            }
+            },
+            "alignment": "center"
           }
         ],
         "outspacePane": [
@@ -629,7 +630,7 @@
             "transparency": 0
           }
         ],
-        "wallpaper": [
+        "outspace": [
           {
             "color": {
               "solid": {
@@ -771,7 +772,8 @@
               "solid": {
                 "color": "#000000"
               }
-            }
+            },
+            "alignment": "Center"
           }
         ],
         "values": [
@@ -858,7 +860,8 @@
               "solid": {
                 "color": "#000000"
               }
-            }
+            },
+            "alignment": "Center"
           }
         ],
         "rowHeaders": [
@@ -1178,7 +1181,8 @@
               "solid": {
                 "color": "#000000"
               }
-            }
+            },
+            "alignment": "center"
           }
         ],
         "dataPoint": [

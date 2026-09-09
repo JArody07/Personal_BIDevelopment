@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Golden_Amber6893252116970237.json",
+      "name": "Golden_Amber45734204851787874.json",
       "reportVersionAtImport": {
         "visual": "2.12.0",
         "report": "3.4.0",
@@ -65,8 +65,8 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Golden_Amber6893252116970237.json",
-          "path": "Golden_Amber6893252116970237.json",
+          "name": "Golden_Amber45734204851787874.json",
+          "path": "Golden_Amber45734204851787874.json",
           "type": "CustomTheme"
         }
       ]

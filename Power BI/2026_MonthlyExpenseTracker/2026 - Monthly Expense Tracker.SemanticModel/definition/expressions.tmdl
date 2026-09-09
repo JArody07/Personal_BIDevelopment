@@ -169,6 +169,7 @@ expression CategoryMap = ```
 		
 		            // Car Insurance
 		            {"STATE FARM", "Car Insurance", "Needs", 1},
+		            {"Debit Card Purchase - CHIME SAN FRANCISC CA", "Car Insurance", "Needs", 1},
 		
 		            // Subscriptions & Recurring
 		            {"APPLE COM BILL", "Subscriptions", "Wants", 1},
