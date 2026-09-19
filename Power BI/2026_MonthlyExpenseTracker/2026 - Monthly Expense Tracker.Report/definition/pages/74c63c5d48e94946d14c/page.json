@@ -5,40 +5,38 @@
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
-  "filterConfig": {
-    "filters": [
+  "objects": {
+    "outspace": [
       {
-        "name": "0a27962723591356084c",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCategory"
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#FFC15E'"
+                  }
+                }
               }
-            },
-            "Property": "Category"
+            }
           }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
+        }
       }
-    ]
-  },
-  "pageBinding": {
-    "name": "7e7760d87105ec14dcc0",
-    "type": "Drillthrough",
-    "parameters": [
+    ],
+    "outspacePane": [
       {
-        "name": "df4e0373ab47608b3d82",
-        "boundFilter": "0a27962723591356084c",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCategory"
+        "properties": {
+          "backgroundColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
               }
-            },
-            "Property": "Category"
+            }
           }
         }
       }

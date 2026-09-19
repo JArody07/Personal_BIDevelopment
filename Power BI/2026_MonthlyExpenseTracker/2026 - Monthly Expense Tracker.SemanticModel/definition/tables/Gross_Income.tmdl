@@ -12,11 +12,22 @@ table Gross_Income
 	measure 'Median Monthly Amount' =
 			
 			MEDIANX(
-			    VALUES(DimDate[YearMonth]),
-			    SUM(Gross_Income[Income])
+			    SUMMARIZE(Gross_Income, DimDate[YearMonth]),
+			    CALCULATE(SUM(Gross_Income[Income]))
 			)
 		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
 		lineageTag: 816dded7-2c17-4853-994b-251a4ef4fdfc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Average Monthly Amount' =
+			
+			AVERAGEX(
+			    SUMMARIZE(Gross_Income, DimDate[YearMonth]),
+			    CALCULATE(SUM(Gross_Income[Income]))
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0f4f6a06-795c-434d-a807-e3bd969d5984
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 

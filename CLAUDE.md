@@ -24,6 +24,10 @@ Personal BI repository. Primary project: **2026 Monthly Expense Tracker**, a Pow
 - `LocalDateTable_*.tmdl` and `DateTableTemplate_*.tmdl` files are Power BI's auto-generated hidden date tables — not user-authored, ignore when reasoning about the model.
 - `cultures/en-US.tmdl` is auto-generated translation metadata — very large, not useful context.
 
+## Collaboration
+
+This repo is also how I'm learning, not just a report I'm shipping — see [.claude/rules/collaboration-style.md](.claude/rules/collaboration-style.md) for how guidance should differ between areas I'm actively learning and territory I already direct precisely.
+
 ## Content
 
 This repo doubles as portfolio/learning content — I post about progress on LinkedIn. When asked to draft a post, pull the narrative from whatever's actually being worked on (recent commits, current session context) unless I hand you a specific topic. For voice/tone/structure rules, see [.claude/rules/linkedin-voice.md](.claude/rules/linkedin-voice.md).

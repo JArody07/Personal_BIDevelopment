@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 234.85714285714283,
-    "z": 1,
+    "z": 1000,
     "height": 485.99999999999994,
     "width": 1279.7142857142856,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "lineChart",
@@ -79,7 +79,8 @@
                 }
               },
               "queryRef": "Fact_BankTransactions.Month-End Balance",
-              "nativeQueryRef": "Month-End Balance"
+              "nativeQueryRef": "Month-End Balance",
+              "format": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############"
             }
           ]
         }
@@ -380,6 +381,117 @@
             }
           }
         }
+      ],
+      "referenceLine": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Median Savings Balance'"
+                }
+              }
+            },
+            "value": {
+              "expr": {
+                "Aggregation": {
+                  "Expression": {
+                    "SelectRef": {
+                      "ExpressionName": "Fact_BankTransactions.Month-End Balance"
+                    }
+                  },
+                  "Function": 6
+                }
+              }
+            },
+            "dataLabelShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "dataLabelDecimalPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "dataLabelText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Value'"
+                }
+              }
+            },
+            "autoScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "26D"
+                }
+              }
+            },
+            "dataLabelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1000D"
+                }
+              }
+            },
+            "shadeShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "shadeTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            },
+            "dataLabelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Month-End Balance",
+            "id": "1"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -401,20 +513,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "e31f64954ed429fa2306",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "YearMonth"
-          }
-        },
-        "type": "Categorical"
-      },
       {
         "name": "02874b4d19d23c369196",
         "field": {
@@ -467,34 +565,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "7f85655124077136ffa8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_BankTransactions"
-              }
-            },
-            "Property": "Month-End Balance"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bde27ce60dce3aafbf8e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "MonthName"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

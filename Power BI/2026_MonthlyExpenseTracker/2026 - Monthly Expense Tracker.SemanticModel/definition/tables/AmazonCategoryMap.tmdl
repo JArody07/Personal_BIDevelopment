@@ -52,6 +52,10 @@ table AmazonCategoryMap
 				            {"WIPES", "Health & Wellness", 2},
 				            {"NIKZON", "Health & Wellness", 2},
 				            {"DESITIN", "Health & Wellness", 2},
+				            {"SCALES", "Health & Wellness", 1},
+				            {"Meditations: The Annotated Edition", "Health & Wellness", 1},
+				            {"Tratamiento de hongos", "Health & Wellness", 1},
+				            {"almohadas ortopédicas", "Health & Wellness", 1},
 				
 				            // Personal Hygiene
 				            {"CERAVE", "Personal Hygiene", 1},
@@ -89,7 +93,7 @@ table AmazonCategoryMap
 				            {"POWER STRIP", "Household & Home Goods", 1},
 				            {"Abnii Clips", "Household & Home Goods", 1},
 				            {"CINMOORE", "Household & Home Goods", 1},
-				            {"Cargador Rapido", "Household & Home Goods", 1},
+				            {"Cargador rápido", "Household & Home Goods", 1},
 				
 				            // Fitness
 				            {"TREADMILL", "Fitness", 1},

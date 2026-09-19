@@ -398,34 +398,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "4bf246171a3429de650d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_BankTransactions"
-              }
-            },
-            "Property": "Month-End Balance"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e332edae4769467a71b4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "YearMonth"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "d49c187b8f3209efda93",
         "field": {
           "Column": {
