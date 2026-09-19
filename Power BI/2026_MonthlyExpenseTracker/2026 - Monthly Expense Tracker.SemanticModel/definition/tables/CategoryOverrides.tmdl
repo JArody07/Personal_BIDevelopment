@@ -58,8 +58,8 @@ table CategoryOverrides
 				            Category                  = text
 				        ],
 				        {
-				
-				
+				            {#date(2026, 9, 09), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -62.17, "Clothing & Apparel"},
+				            {#date(2026, 9, 07), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -52.40, "Clothing & Apparel"},
 				            {#date(2026, 9, 05), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -40.00, "Groceries"},
 				            {#date(2026, 9, 05), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
 				            {#date(2026, 8, 26), "WGU Refund - Preauthorized Deposit from THE BANCORP BANK checking account XXXXXXXX8311", 80.38, "Income"},
