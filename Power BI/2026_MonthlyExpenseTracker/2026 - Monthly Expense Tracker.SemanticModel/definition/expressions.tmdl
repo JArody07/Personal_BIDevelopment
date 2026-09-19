@@ -129,6 +129,7 @@ expression CategoryMap = ```
 		            {"MARTIN", "Groceries", "Needs", 1},
 		            {"DOLLARTREE", "Groceries", "Needs", 1},
 		            {"WAL-MART", "Groceries", "Needs", 1},
+		            {"WALMART", "Groceries", "Needs", 1},
 		
 		            // Rent
 		            {"DIANA MATIESU", "Rent", "Needs", 1},
@@ -157,6 +158,7 @@ expression CategoryMap = ```
 		            {"SOPHIA", "Health & Wellness", "Needs", 1},
 		            {"CVS/PHARMACY", "Health & Wellness", "Needs", 1},
 		            {"VIACARECOMMUNITY", "Health & Wellness", "Needs", 1},
+		            {"CVS PHARMACY", "Health & Wellness", "Needs", 1},
 		
 		            // Fitness
 		            {"BLINK BELLFLOWER", "Fitness", "Wants", 1},
@@ -191,7 +193,8 @@ expression CategoryMap = ```
 		
 		            // Entertainment & Social
 		            {"THE FOAT", "Entertainment & Social", "Wants", 1},
-		            {"CINEMARK", "Entertainment & Social", "Wants", 1},            
+		            {"CINEMARK", "Entertainment & Social", "Wants", 1},
+		            {"LADOT METER PARKING", "Entertainment & Social", "Wants", 1},
 		
 		            // Clothing & Apparel
 		            {"SEPHORA", "Clothing & Apparel", "Wants", 1},
@@ -205,6 +208,7 @@ expression CategoryMap = ```
 		            {"LOWES", "Household & Home Goods", "Wants", 1},
 		            {"Mcm, Inc. Mcmpay.com", "Household & Home Goods", "Wants", 1},
 		            {"BEST BUY", "Household & Home Goods", "Wants", 1},
+		            {"THE HOME DEPOT", "Household & Home Goods", "Wants", 1},
 		
 		            // Eating Out
 		            {"OUTBACK", "Eating Out", "Wants", 1},
@@ -244,6 +248,7 @@ expression CategoryMap = ```
 		            {"365 VEND TROY", "Eating Out", "Wants", 1},
 		            {"RICCIS ITALIAN", "Eating Out", "Wants", 1},
 		            {"GAUCHO GRILL", "Eating Out", "Wants", 1},
+		            {"NORMS", "Eating Out", "Wants", 1},
 		
 		            // Shoppping
 		            {"AMAZON", "Online Shopping", "Wants", 2},

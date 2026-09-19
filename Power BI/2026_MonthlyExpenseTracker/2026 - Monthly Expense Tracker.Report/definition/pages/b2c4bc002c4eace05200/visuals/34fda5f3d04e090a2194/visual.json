@@ -619,6 +619,123 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "7D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "38cb07169404ae275c77",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c016c767a3c2a5445eac",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Budget_2026"
+              }
+            },
+            "Property": "Monthly Budget"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8bfaf7393bcd8273a528",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Previous Month Expenses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "df2f41df2824ee45b9e5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Benchmark Month Expenses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "8bdf749430e7898951b7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Current Month Expenses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c50e8800c78b54cd4204",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Forecasted Expenses"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5be8f0b1d000b81293d9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_BankTransactions"
+              }
+            },
+            "Property": "Forecast Variance"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

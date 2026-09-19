@@ -59,6 +59,9 @@ table CategoryOverrides
 				        ],
 				        {
 				
+				
+				            {#date(2026, 9, 05), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -40.00, "Groceries"},
+				            {#date(2026, 9, 05), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
 				            {#date(2026, 8, 26), "WGU Refund - Preauthorized Deposit from THE BANCORP BANK checking account XXXXXXXX8311", 80.38, "Income"},
 				            {#date(2026, 8, 21), "AMAZON MKTPL*5A2E97SC2 AMZN.COM/BILLWA5H8NCP40OPA", -26.84, "Clothing & Apparel"},
 				            {#date(2026, 8, 21), "AMAZON MKTPL*5A8RU2WO0 AMZN.COM/BILLWA7F7CJLIX8Y7", -26.84, "Clothing & Apparel"},
