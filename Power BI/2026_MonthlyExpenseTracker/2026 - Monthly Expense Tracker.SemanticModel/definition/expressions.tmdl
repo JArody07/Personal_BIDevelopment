@@ -4,9 +4,10 @@ expression '2026-03-22_360Checking   9096' =
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
 		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Transaction Date", Order.Ascending}}),
-		    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 0, 1, Int64.Type)
+		    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 0, 1, Int64.Type),
+		  #"Sorted rows 1" = Table.Sort(#"Added Index", {{"Transaction Date", Order.Descending}})
 		in
-		    #"Added Index"
+		    #"Sorted rows 1"
 	lineageTag: 33e9ccd4-17a2-4135-89ce-85cb071e1314
 	queryGroup: CapitalOne_Source
 
