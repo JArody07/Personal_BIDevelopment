@@ -1,0 +1,22 @@
+table BancorpPath
+	lineageTag: cf2269ed-b1d1-43de-88ec-cc9aa05016f2
+
+	column BancorpPath
+		dataType: string
+		lineageTag: c923f24e-644c-46bc-aa43-030e8d30d8fa
+		summarizeBy: none
+		sourceColumn: BancorpPath
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BancorpPath = m
+		mode: import
+		queryGroup: 'Parameters & Paths'
+		source =
+				let
+				  Source = TrackerRoot & "Bank Statements\Bancorp Bank\"
+				in
+				  Source
+
+	annotation PBI_ResultType = Text
+

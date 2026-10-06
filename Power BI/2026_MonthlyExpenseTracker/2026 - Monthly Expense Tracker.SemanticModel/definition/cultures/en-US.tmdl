@@ -14524,273 +14524,1073 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "amazon_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "AmazonPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "amazon path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AmazonPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "amazon pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "amazon footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "amazon trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "amazon track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "amazon route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "amazon_path.amazon_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "AmazonPath",
+			          "ConceptualProperty": "AmazonPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "amazon path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "amazon path name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AmazonPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "amazon pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "amazon footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "amazon trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "amazon track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "amazon route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "bancorp_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BancorpPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "bancorp path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "BancorpPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "bancorp pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "bancorp footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "bancorp trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bancorp track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bancorp route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "bancorp_path.bancorp_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "BancorpPath",
+			          "ConceptualProperty": "BancorpPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "bancorp path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "bancorp path name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "BancorpPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "bancorp pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "bancorp footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "bancorp trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bancorp track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "bancorp route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "discover_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DiscoverPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "discover path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DiscoverPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "discover pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "discover footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "discover trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "discover track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "discover route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "discover lane": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover alleyway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover conduit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover corridor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover passageway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ]
+			    },
+			    "discover_path.discover_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DiscoverPath",
+			          "ConceptualProperty": "DiscoverPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "discover path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "discover path name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DiscoverPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "discover pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "discover footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "discover trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "discover track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "discover route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "discover lane": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover alleyway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover conduit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover corridor": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "discover passageway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
+			    },
+			    "capital_one_savings_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "CapitalOneSavingsPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "capital one savings path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "CapitalOneSavingsPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "savings path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "one savings path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "capital one savings pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "capital one savings footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "one savings pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "one savings footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "savings pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "savings footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "capital one savings trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "capital one savings track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "capital one savings route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "one savings trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "capital_one_savings_path.capital_one_savings_path": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "CapitalOneSavingsPath",
+			          "ConceptualProperty": "CapitalOneSavingsPath"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "capital one savings path": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "capital one savings path name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "CapitalOneSavingsPath": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "savings path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "one savings path": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "capital one savings pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "capital one savings footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.514
+			          }
+			        },
+			        {
+			          "one savings pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "one savings footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "savings pathway": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "savings footpath": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "capital one savings trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "capital one savings track": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "capital one savings route": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.499
+			          }
+			        },
+			        {
+			          "one savings trail": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ],
+			      "NameType": "Name"
 			    }
 			  },
 			  "Relationships": {
-			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_quarter": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.quarter": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.quarter"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.quarter"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_quarters"
-			        }
-			      ]
-			    },
-			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_year": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.year": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_years"
-			        }
-			      ]
-			    },
-			    "benchmark_month_selector_month_start_has_date_hierarchy": {
-			      "Binding": {
-			        "ConceptualEntity": "BenchmarkMonthSelector"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "benchmark_month_selector.month_start": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start"
-			          }
-			        },
-			        "benchmark_month_selector.month_start.date_hierarchy": {
-			          "Target": {
-			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "benchmark_month_selector.month_start"
-			            },
-			            "Object": {
-			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "month_starts_have_month_start_date_hierarchies"
-			        }
-			      ]
-			    },
-			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_day": {
-			      "Binding": {
-			        "ConceptualEntity": "Amazon_BankMatch"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "amazon_bank_match.transaction_date.date_hierarchy": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
-			          }
-			        },
-			        "amazon_bank_match.transaction_date.day": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.day"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "amazon_bank_match.transaction_date.day"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_days"
-			        }
-			      ]
-			    },
-			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_month": {
-			      "Binding": {
-			        "ConceptualEntity": "Amazon_BankMatch"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "amazon_bank_match.transaction_date.date_hierarchy": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
-			          }
-			        },
-			        "amazon_bank_match.transaction_date.month": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.month"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "amazon_bank_match.transaction_date.month"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_months"
-			        }
-			      ]
-			    },
-			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_quarter": {
-			      "Binding": {
-			        "ConceptualEntity": "Amazon_BankMatch"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "amazon_bank_match.transaction_date.date_hierarchy": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
-			          }
-			        },
-			        "amazon_bank_match.transaction_date.quarter": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.quarter"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "amazon_bank_match.transaction_date.quarter"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_quarters"
-			        }
-			      ]
-			    },
-			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_year": {
-			      "Binding": {
-			        "ConceptualEntity": "Amazon_BankMatch"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "amazon_bank_match.transaction_date.date_hierarchy": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
-			          }
-			        },
-			        "amazon_bank_match.transaction_date.year": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.year"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
-			            },
-			            "Object": {
-			              "Role": "amazon_bank_match.transaction_date.year"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_years"
-			        }
-			      ]
-			    },
-			    "amazon_bank_match_transaction_date_has_date_hierarchy": {
-			      "Binding": {
-			        "ConceptualEntity": "Amazon_BankMatch"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "amazon_bank_match.transaction_date": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date"
-			          }
-			        },
-			        "amazon_bank_match.transaction_date.date_hierarchy": {
-			          "Target": {
-			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "amazon_bank_match.transaction_date"
-			            },
-			            "Object": {
-			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "transaction_dates_have_transaction_date_hierarchies"
-			        }
-			      ]
-			    },
 			    "fact_bank_transactions_pre_override_transaction_date_date_hierarchy_has_fact_bank_transactions_pre_override_transaction_date_day": {
 			      "Binding": {
 			        "ConceptualEntity": "Fact_BankTransactions_PreOverride"
@@ -14820,7 +15620,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_days1"
+			          "ID": "transaction_date_hierarchies_have_transaction_days"
 			        }
 			      ]
 			    },
@@ -14853,7 +15653,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_months1"
+			          "ID": "transaction_date_hierarchies_have_transaction_months"
 			        }
 			      ]
 			    },
@@ -14886,7 +15686,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_quarters1"
+			          "ID": "transaction_date_hierarchies_have_transaction_quarters"
 			        }
 			      ]
 			    },
@@ -14919,7 +15719,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_years1"
+			          "ID": "transaction_date_hierarchies_have_transaction_years"
 			        }
 			      ]
 			    },
@@ -14952,7 +15752,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_dates_have_transaction_date_hierarchies1"
+			          "ID": "transaction_dates_have_transaction_date_hierarchies"
 			        }
 			      ]
 			    },
@@ -15315,7 +16115,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_days2"
+			          "ID": "transaction_date_hierarchies_have_transaction_days1"
 			        }
 			      ]
 			    },
@@ -15348,7 +16148,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_months2"
+			          "ID": "transaction_date_hierarchies_have_transaction_months1"
 			        }
 			      ]
 			    },
@@ -15381,7 +16181,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_quarters2"
+			          "ID": "transaction_date_hierarchies_have_transaction_quarters1"
 			        }
 			      ]
 			    },
@@ -15414,7 +16214,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_date_hierarchies_have_transaction_years2"
+			          "ID": "transaction_date_hierarchies_have_transaction_years1"
 			        }
 			      ]
 			    },
@@ -15447,7 +16247,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "transaction_dates_have_transaction_date_hierarchies2"
+			          "ID": "transaction_dates_have_transaction_date_hierarchies1"
 			        }
 			      ]
 			    },
@@ -16998,7 +17798,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_quarters1"
+			          "ID": "month_start_date_hierarchies_have_month_start_quarters"
 			        }
 			      ]
 			    },
@@ -17031,7 +17831,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_start_date_hierarchies_have_month_start_years1"
+			          "ID": "month_start_date_hierarchies_have_month_start_years"
 			        }
 			      ]
 			    },
@@ -17064,7 +17864,7 @@ cultureInfo en-US
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "month_starts_have_month_start_date_hierarchies1"
+			          "ID": "month_starts_have_month_start_date_hierarchies"
 			        }
 			      ]
 			    },
@@ -17685,6 +18485,190 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_dates_have_fact_bank_transactions"
+			        }
+			      ]
+			    },
+			    "capital_one_savings_path_has_capital_one_savings_path": {
+			      "Binding": {
+			        "ConceptualEntity": "CapitalOneSavingsPath"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "capital_one_savings_path": {
+			          "Target": {
+			            "Entity": "capital_one_savings_path"
+			          }
+			        },
+			        "capital_one_savings_path.capital_one_savings_path": {
+			          "Target": {
+			            "Entity": "capital_one_savings_path.capital_one_savings_path"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "capital_one_savings_path"
+			            },
+			            "Object": {
+			              "Role": "capital_one_savings_path.capital_one_savings_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "capital_one_savings_paths_have_capital_one_savings_paths"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "capital_one_savings_path"
+			            },
+			            "Name": {
+			              "Role": "capital_one_savings_path.capital_one_savings_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "capital_one_savings_paths_are_names_IDs_of_capital_one_savings_paths"
+			        }
+			      ]
+			    },
+			    "discover_path_has_discover_path": {
+			      "Binding": {
+			        "ConceptualEntity": "DiscoverPath"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "discover_path": {
+			          "Target": {
+			            "Entity": "discover_path"
+			          }
+			        },
+			        "discover_path.discover_path": {
+			          "Target": {
+			            "Entity": "discover_path.discover_path"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "discover_path"
+			            },
+			            "Object": {
+			              "Role": "discover_path.discover_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "discover_path_have_discover_path"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "discover_path"
+			            },
+			            "Name": {
+			              "Role": "discover_path.discover_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "discover_path_are_names_IDs_of_discover_path"
+			        }
+			      ]
+			    },
+			    "bancorp_path_has_bancorp_path": {
+			      "Binding": {
+			        "ConceptualEntity": "BancorpPath"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "bancorp_path": {
+			          "Target": {
+			            "Entity": "bancorp_path"
+			          }
+			        },
+			        "bancorp_path.bancorp_path": {
+			          "Target": {
+			            "Entity": "bancorp_path.bancorp_path"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "bancorp_path"
+			            },
+			            "Object": {
+			              "Role": "bancorp_path.bancorp_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bancorp_paths_have_bancorp_paths"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "bancorp_path"
+			            },
+			            "Name": {
+			              "Role": "bancorp_path.bancorp_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "bancorp_paths_are_names_IDs_of_bancorp_paths"
+			        }
+			      ]
+			    },
+			    "amazon_path_has_amazon_path": {
+			      "Binding": {
+			        "ConceptualEntity": "AmazonPath"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_path": {
+			          "Target": {
+			            "Entity": "amazon_path"
+			          }
+			        },
+			        "amazon_path.amazon_path": {
+			          "Target": {
+			            "Entity": "amazon_path.amazon_path"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_path"
+			            },
+			            "Object": {
+			              "Role": "amazon_path.amazon_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "amazon_paths_have_amazon_paths"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "amazon_path"
+			            },
+			            "Name": {
+			              "Role": "amazon_path.amazon_path"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "amazon_paths_are_names_IDs_of_amazon_paths"
 			        }
 			      ]
 			    },
@@ -21502,6 +22486,270 @@ cultureInfo en-US
 			          "State": "Generated",
 			          "Weight": 0.75,
 			          "ID": "benchmark_month_selectors_select"
+			        }
+			      ]
+			    },
+			    "amazon_bank_match_transaction_date_has_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "Amazon_BankMatch"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_bank_match.transaction_date": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date"
+			          }
+			        },
+			        "amazon_bank_match.transaction_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_bank_match.transaction_date"
+			            },
+			            "Object": {
+			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "transaction_dates_have_transaction_date_hierarchies2"
+			        }
+			      ]
+			    },
+			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_year": {
+			      "Binding": {
+			        "ConceptualEntity": "Amazon_BankMatch"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_bank_match.transaction_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
+			          }
+			        },
+			        "amazon_bank_match.transaction_date.year": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "amazon_bank_match.transaction_date.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "transaction_date_hierarchies_have_transaction_years2"
+			        }
+			      ]
+			    },
+			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "Amazon_BankMatch"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_bank_match.transaction_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
+			          }
+			        },
+			        "amazon_bank_match.transaction_date.quarter": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "amazon_bank_match.transaction_date.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "transaction_date_hierarchies_have_transaction_quarters2"
+			        }
+			      ]
+			    },
+			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_month": {
+			      "Binding": {
+			        "ConceptualEntity": "Amazon_BankMatch"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_bank_match.transaction_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
+			          }
+			        },
+			        "amazon_bank_match.transaction_date.month": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "amazon_bank_match.transaction_date.month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "transaction_date_hierarchies_have_transaction_months2"
+			        }
+			      ]
+			    },
+			    "amazon_bank_match_transaction_date_date_hierarchy_has_amazon_bank_match_transaction_date_day": {
+			      "Binding": {
+			        "ConceptualEntity": "Amazon_BankMatch"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "amazon_bank_match.transaction_date.date_hierarchy": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.date_hierarchy"
+			          }
+			        },
+			        "amazon_bank_match.transaction_date.day": {
+			          "Target": {
+			            "Entity": "amazon_bank_match.transaction_date.day"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "amazon_bank_match.transaction_date.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "amazon_bank_match.transaction_date.day"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "transaction_date_hierarchies_have_transaction_days2"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_has_date_hierarchy": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_starts_have_month_start_date_hierarchies1"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_year": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.year": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.year"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.year"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_start_date_hierarchies_have_month_start_years1"
+			        }
+			      ]
+			    },
+			    "benchmark_month_selector_month_start_date_hierarchy_has_benchmark_month_selector_month_start_quarter": {
+			      "Binding": {
+			        "ConceptualEntity": "BenchmarkMonthSelector"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "benchmark_month_selector.month_start.date_hierarchy": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.date_hierarchy"
+			          }
+			        },
+			        "benchmark_month_selector.month_start.quarter": {
+			          "Target": {
+			            "Entity": "benchmark_month_selector.month_start.quarter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "benchmark_month_selector.month_start.date_hierarchy"
+			            },
+			            "Object": {
+			              "Role": "benchmark_month_selector.month_start.quarter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "month_start_date_hierarchies_have_month_start_quarters1"
 			        }
 			      ]
 			    },

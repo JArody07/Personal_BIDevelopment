@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "d73ccf17970588874b0a",
   "position": {
     "x": 0,
-    "y": 85.431192660550451,
+    "y": 85.028571428571425,
     "z": 0,
-    "height": 635.00917431192659,
-    "width": 472.95412844036696,
+    "height": 635.42857142857144,
+    "width": 480.91428571428571,
     "tabOrder": 0
   },
   "visual": {
@@ -56,7 +56,8 @@
                 }
               },
               "queryRef": "Fact_BankTransactions.Total Expenses (Display)",
-              "nativeQueryRef": "Total Expenses (Display)",
+              "nativeQueryRef": "Total Expenses",
+              "displayName": "Total Expenses",
               "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             },
             {
@@ -444,6 +445,36 @@
           },
           "selector": {
             "metadata": "Fact_BankTransactions.Budget Variance"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.0857142857143D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCategory.Category"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "121.11428571428571D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Total Expenses (Display)"
           }
         }
       ]

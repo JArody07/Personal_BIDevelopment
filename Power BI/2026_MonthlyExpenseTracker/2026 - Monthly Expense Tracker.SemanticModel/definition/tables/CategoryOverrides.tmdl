@@ -1,6 +1,3 @@
-/// Helps categorize Transaction Descriptions that might be too vague and end up falling in the incorrect categories.
-/// 
-/// Requires manual input but helps clean up the data since the data from the bank is at a higher grain level.
 table CategoryOverrides
 	lineageTag: 87a1deb4-55fc-4972-93c0-67e8ec744619
 
@@ -58,6 +55,14 @@ table CategoryOverrides
 				            Category                  = text
 				        ],
 				        {
+				            {#date(2026, 10, 04), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -50.00, "Groceries"},
+				            {#date(2026, 10, 04), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -300.00, "Groceries"},
+				            {#date(2026, 10, 03), "ATM Withdrawal - 7ELEVEN-FCTI 7E006903 PARAMOUNT, CA", -160.00, "Car Maintenance"},
+				            {#date(2026, 10, 03), "ATM Withdrawal - 7ELEVEN-FCTI 7E006903 PARAMOUNT, CA", -200.00, "Car Maintenance"},
+				            {#date(2026, 10, 03), "ATM Withdrawal - 7ELEVEN-FCTI 7E006903 PARAMOUNT, CA", -200.00, "Car Maintenance"},
+				            {#date(2026, 9, 24), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -62.18, "Health & Wellness"},
+				            {#date(2026, 9, 21), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -40.63, "Clothing & Apparel"},
+				            {#date(2026, 9, 21), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -52.40, "Clothing & Apparel"},
 				            {#date(2026, 9, 09), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -62.17, "Clothing & Apparel"},
 				            {#date(2026, 9, 07), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -52.40, "Clothing & Apparel"},
 				            {#date(2026, 9, 05), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -40.00, "Groceries"},

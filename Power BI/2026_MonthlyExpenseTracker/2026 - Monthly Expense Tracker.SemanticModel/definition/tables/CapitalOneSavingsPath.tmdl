@@ -1,0 +1,22 @@
+table CapitalOneSavingsPath
+	lineageTag: 332f387c-c52b-4639-bff3-ac4eac5bebf4
+
+	column CapitalOneSavingsPath
+		dataType: string
+		lineageTag: 7ccf871c-249d-4dd4-bb8a-3bc6313463eb
+		summarizeBy: none
+		sourceColumn: CapitalOneSavingsPath
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CapitalOneSavingsPath = m
+		mode: import
+		queryGroup: 'Parameters & Paths'
+		source =
+				let
+				  Source = TrackerRoot & "Bank Statements\Capital One Bank\Performance_Savings\"
+				in
+				  Source
+
+	annotation PBI_ResultType = Text
+
