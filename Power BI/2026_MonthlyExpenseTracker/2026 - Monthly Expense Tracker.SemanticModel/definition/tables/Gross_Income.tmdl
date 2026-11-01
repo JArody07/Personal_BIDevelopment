@@ -67,7 +67,7 @@ table Gross_Income
 		queryGroup: Facts
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("\\Mac\iCloud\Numbers\Tracker\Annual & Monthly Tracker\2026\Master Tracker 2026 (Power BI Model).xlsx"), null, true),
+				    Source = Excel.Workbook(File.Contents("\\Mac\iCloud\Finance\Tracker\Annual & Monthly Tracker\2026\Master Tracker 2026 (Power BI Model).xlsx"), null, true),
 				    Gross_Income_Sheet = Source{[Item="Gross_Income",Kind="Sheet"]}[Data],
 				    #"Promoted Headers" = Table.PromoteHeaders(Gross_Income_Sheet, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Month", Int64.Type}, {"Transaction_Date", type date}, {"Income", type number}}),

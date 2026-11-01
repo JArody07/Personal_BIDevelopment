@@ -1,0 +1,22 @@
+table DiscoverPath
+	lineageTag: 97d1e63f-76d6-47ec-8e3c-fdb153618400
+
+	column DiscoverPath
+		dataType: string
+		lineageTag: 45778ddd-c52b-482a-a66c-0e7b16b0d8d8
+		summarizeBy: none
+		sourceColumn: DiscoverPath
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DiscoverPath = m
+		mode: import
+		queryGroup: 'Parameters & Paths'
+		source =
+				let
+				  Source = TrackerRoot & "Bank Statements\Discover Bank\"
+				in
+				  Source
+
+	annotation PBI_ResultType = Text
+

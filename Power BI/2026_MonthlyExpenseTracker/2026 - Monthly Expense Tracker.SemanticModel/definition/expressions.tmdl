@@ -1,12 +1,13 @@
 expression '2026-03-22_360Checking   9096' =
 		let
-		    Source = Csv.Document(File.Contents("Y:\Numbers\Tracker\Bank Statements\Capital One Bank\2026-360Checking.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(CapitalOneCheckingPath & "2026-360Checking.csv"), [Delimiter = ",", Columns = 6, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}}),
 		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Transaction Date", Order.Ascending}}),
-		    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 0, 1, Int64.Type)
+		    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 0, 1, Int64.Type),
+		  #"Sorted rows 1" = Table.Sort(#"Added Index", {{"Transaction Date", Order.Descending}})
 		in
-		    #"Added Index"
+		    #"Sorted rows 1"
 	lineageTag: 33e9ccd4-17a2-4135-89ce-85cb071e1314
 	queryGroup: CapitalOne_Source
 
@@ -16,7 +17,7 @@ expression '2026-03-22_360Checking   9096' =
 
 expression DFS-Search-20260323 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Discover Bank\Discover_CC_2026.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(DiscoverPath & "Discover_CC_2026.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Trans. Date", type date}, {"Post Date", type date}, {"Description", type text}, {"Amount", type number}, {"Category", type text}})
 		in
@@ -91,9 +92,6 @@ expression Discover_StagingQuery = ```
 
 	annotation PBI_ResultType = Table
 
-/// Matches the Transaction Description with the corresponding Category, Financial Plan, and Priority.
-/// 
-/// This will get overwritten by CategoryOverrides.
 expression CategoryMap = ```
 		let
 		    Source = #table(
@@ -130,6 +128,7 @@ expression CategoryMap = ```
 		            {"DOLLARTREE", "Groceries", "Needs", 1},
 		            {"WAL-MART", "Groceries", "Needs", 1},
 		            {"WALMART", "Groceries", "Needs", 1},
+		            {"FOOD4LESS", "Groceries", "Needs", 1},          
 		
 		            // Rent
 		            {"DIANA MATIESU", "Rent", "Needs", 1},
@@ -141,6 +140,7 @@ expression CategoryMap = ```
 		            {"MINT MOBILE", "Phone Bill", "Needs", 1},
 		            {"SPECTRUM", "Internet Bill", "Needs", 2},
 		            {"FRONTIER COMMUNI STAMFORD", "Internet Bill", "Needs", 2},
+		            {"SOCAL GAS", "Gas Bill", "Needs", 1},
 		
 		            // Car Maintenance
 		            {"G&J", "Car Maintenance", "Needs", 1},
@@ -173,6 +173,9 @@ expression CategoryMap = ```
 		            {"STATE FARM", "Car Insurance", "Needs", 1},
 		            {"Debit Card Purchase - CHIME SAN FRANCISC CA", "Car Insurance", "Needs", 1},
 		
+		            // Credit Card Payment
+		            {"ANNUAL FEE", "Credit Card Payment", "Wants", 1},
+		
 		            // Subscriptions & Recurring
 		            {"APPLE COM BILL", "Subscriptions", "Wants", 1},
 		            {"MICROSOFT", "Subscriptions", "Wants", 1},
@@ -187,6 +190,8 @@ expression CategoryMap = ```
 		            {"Google You Tube Premium", "Subscriptions", "Wants", 1},
 		            {"CBI PARALLELS", "Subscriptions", "Wants", 1},
 		            {"CANVA", "Subscriptions", "Wants", 1},
+		            {"CLOUDFLARE", "Subscriptions", "Wants", 1},
+		            {"HBOMAX", "Subscriptions", "Wants", 1},
 		            
 		            // Lifestyle
 		            {"U HAUL", "U_Haul", "Wants", 1},
@@ -195,6 +200,7 @@ expression CategoryMap = ```
 		            {"THE FOAT", "Entertainment & Social", "Wants", 1},
 		            {"CINEMARK", "Entertainment & Social", "Wants", 1},
 		            {"LADOT METER PARKING", "Entertainment & Social", "Wants", 1},
+		            {"KUXIU PEAKHURST", "Entertainment & Social", "Wants", 1},
 		
 		            // Clothing & Apparel
 		            {"SEPHORA", "Clothing & Apparel", "Wants", 1},
@@ -249,6 +255,11 @@ expression CategoryMap = ```
 		            {"RICCIS ITALIAN", "Eating Out", "Wants", 1},
 		            {"GAUCHO GRILL", "Eating Out", "Wants", 1},
 		            {"NORMS", "Eating Out", "Wants", 1},
+		            {"EL GALLO GIRO", "Eating Out", "Wants", 1},
+		            {"SUBWAY", "Eating Out", "Wants", 1},
+		            {"KFC", "Eating Out", "Wants", 1},
+		            {"CASA ADELITA", "Eating Out", "Wants", 1},
+		            {"JAMBA JUICE", "Eating Out", "Wants", 1},
 		
 		            // Shoppping
 		            {"AMAZON", "Online Shopping", "Wants", 2},
@@ -340,6 +351,7 @@ expression fnAssignCategory =
 		in
 		    fnAssignCategory
 	lineageTag: febccf17-1e0d-4aab-80ec-7c7141449047
+	queryGroup: 'Parameters & Paths'
 
 	annotation PBI_NavigationStepName = Navigation
 
@@ -347,7 +359,7 @@ expression fnAssignCategory =
 
 expression 'tabula-Statement 01-23-26' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 01-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 01-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
 		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
 		    #"Changed Type"
@@ -360,7 +372,7 @@ expression 'tabula-Statement 01-23-26' =
 
 expression 'tabula-Statement 02-23-26' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 02-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 02-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
 		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
 		    #"Changed Type"
@@ -373,7 +385,7 @@ expression 'tabula-Statement 02-23-26' =
 
 expression 'tabula-Statement 03-23-26' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 03-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 03-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
 		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
 		    #"Changed Type"
@@ -386,7 +398,7 @@ expression 'tabula-Statement 03-23-26' =
 
 expression Avant_StagingQuery = ```
 		let
-		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format", #"tabula-Statement 07-23-26 format", #"tabula-Statement 08-23-26 format"}),
+		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format", #"tabula-Statement 07-23-26 format", #"tabula-Statement 08-23-26 format", #"tabula-Statement 09-23-26 format", #"tabula-Statement 10-23-26 format"}),
 		    #"Sorted Rows" = Table.Sort(Source,{{"Date", Order.Ascending}}),
 		    #"Removed Columns" = Table.RemoveColumns(#"Sorted Rows",{"Date_1"}),
 		    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Date", "Transaction Date"}}),
@@ -460,7 +472,7 @@ expression 'tabula-Statement 03-23-26_format' =
 
 expression 'tabula-Statement 04-23-26' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 04-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 04-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
 		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
 		    #"Changed Type"
@@ -489,7 +501,7 @@ expression 'tabula-Statement 04-23-26 format' =
 
 expression 'tabula-Statement 05-23-26' =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 05-23-26.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 05-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
 		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
 		    #"Changed Type"
@@ -518,7 +530,7 @@ expression 'tabula-Statement 05-23-26 format' =
 
 expression tabula-Chime-Checking-Statement-January-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Checking-Statement-January-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Checking-Statement-January-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"NET AMOUNT", Currency.Type}, {"SETTLEMENT DATE", type date}})
 		in
@@ -532,7 +544,7 @@ expression tabula-Chime-Checking-Statement-January-2026 =
 
 expression tabula-Chime-Checking-Statement-February-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Checking-Statement-February-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Checking-Statement-February-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"NET AMOUNT", Currency.Type}, {"SETTLEMENT DATE", type date}})
 		in
@@ -546,7 +558,7 @@ expression tabula-Chime-Checking-Statement-February-2026 =
 
 expression tabula-Chime-Checking-Statement-March-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Checking-Statement-March-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Checking-Statement-March-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"NET AMOUNT", Currency.Type}, {"SETTLEMENT DATE", type date}})
 		in
@@ -624,7 +636,7 @@ expression tabula-Chime-Checking-Statement-March-2026_format =
 
 expression tabula-Chime-Credit-Statement-January-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-January-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Credit-Statement-January-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type text}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
 		in
@@ -638,7 +650,7 @@ expression tabula-Chime-Credit-Statement-January-2026 =
 
 expression tabula-Chime-Credit-Statement-February-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-February-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Credit-Statement-February-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
 		in
@@ -652,7 +664,7 @@ expression tabula-Chime-Credit-Statement-February-2026 =
 
 expression tabula-Chime-Credit-Statement-March-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-March-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Credit-Statement-March-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type text}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
 		in
@@ -666,7 +678,7 @@ expression tabula-Chime-Credit-Statement-March-2026 =
 
 expression tabula-Chime-Credit-Statement-April-2026 =
 		let
-		    Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Bancorp Bank\tabula-Chime-Credit-Statement-April-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    Source = Csv.Document(File.Contents(BancorpPath & "tabula-Chime-Credit-Statement-April-2026.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"TRANSACTION DATE", type date}, {"DESCRIPTION", type text}, {"TYPE", type text}, {"AMOUNT", Currency.Type}, {"ACCOUNT", type text}, {"SETTLEMENT DATE", type date}})
 		in
@@ -768,10 +780,10 @@ expression 'tabula-Statement 06-23-26 format' =
 
 expression 'tabula-Statement 06-23-26' =
 		let
-		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 06-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
-		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 06-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
-		  #"Changed column type"
+		    #"Changed Type"
 	lineageTag: 27e3b323-db42-48c2-b745-296720118086
 	queryGroup: Avant_Source
 
@@ -797,10 +809,10 @@ expression 'tabula-Statement 07-23-26 format' =
 
 expression 'tabula-Statement 07-23-26' =
 		let
-		  Source = Csv.Document(File.Contents("Y:\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 07-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
-		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 07-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
-		  #"Changed column type"
+		    #"Changed Type"
 	lineageTag: a3930a62-0eff-454d-91e9-93701ba92506
 	queryGroup: Avant_Source
 
@@ -838,11 +850,10 @@ expression fnAssignAmazonCategory =
 
 expression '2026-08-11_360PerformanceSavings   0002' =
 		let
-		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Capital One Bank\Performance_Savings\2026-360Savings.csv"),[Delimiter=",", Columns=6, QuoteStyle=QuoteStyle.None]),
-		  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-		  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Account Number", Int64.Type}, {"Transaction Description", type text}, {"Transaction Date", type date}, {"Transaction Type", type text}, {"Transaction Amount", type number}, {"Balance", type number}})
+		  Source = Csv.Document(File.Contents(CapitalOneSavingsPath & "2026-360Savings.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+		  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true])
 		in
-		  #"Changed column type"
+		    #"Promoted headers"
 	lineageTag: a0f9f9a7-d191-49b1-9a13-5ca3668fc91b
 	queryGroup: CapitalOne_Source
 
@@ -874,10 +885,10 @@ expression CapitalOneSavings_StagingQuery =
 
 	annotation PBI_ResultType = Table
 
-/// Main path of the Capital One CSV export
-expression CapitalOne_RootSource = "/Users/jarody07/Library/Mobile Documents/com~apple~Numbers/Documents/Tracker/Bank Statements/" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+/// Main path of the CSV exports
+expression TrackerRoot = "\\Mac\iCloud\Finance\Tracker\" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text]
 	lineageTag: 1863b744-dc04-4b2d-9ddc-b5e5e3d02261
-	queryGroup: Sources
+	queryGroup: 'Parameters & Paths'
 
 	annotation PBI_NavigationStepName = Navigation
 
@@ -901,14 +912,88 @@ expression 'tabula-Statement 08-23-26 format' =
 
 expression 'tabula-Statement 08-23-26' =
 		let
-		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Numbers\Tracker\Bank Statements\Avant Bank\tabula-Statement 08-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
-		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 08-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
 		in
-		  #"Changed column type"
+		    #"Changed Type"
 	lineageTag: 2045f7b0-4892-4b9b-8bd5-6630560bd131
 	queryGroup: Avant_Source
 
 	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 09-23-26' =
+		let
+		    Source = Csv.Document(File.Contents(AvantPath & "tabula-Statement 09-23-26.csv"), [Delimiter = ",", Columns = 5, Encoding = 1252, QuoteStyle = QuoteStyle.None]),
+		    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 14d73d80-f16d-462e-9ecb-f6cbd7ada258
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 09-23-26 format' =
+		let
+		    Source = #"tabula-Statement 09-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}}),
+		    #"Removed Bottom Rows" = Table.RemoveLastN(#"Changed Type",1)
+		in
+		    #"Removed Bottom Rows"
+	lineageTag: 5011f94e-9017-4f6c-9566-eec6ed3ad752
+	queryGroup: Avant_Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression AvantPath =
+		let
+		  Source = TrackerRoot & "Bank Statements\Avant Bank\"
+		in
+		  Source
+	lineageTag: ceedcbd5-eca3-4008-815a-90600ea77b58
+	queryGroup: 'Parameters & Paths'
+
+	annotation PBI_ResultType = Text
+
+expression CapitalOneCheckingPath =
+		let
+		  Source = TrackerRoot & "Bank Statements\Capital One Bank\"
+		in
+		  Source
+	lineageTag: c62e77fb-7976-4eb3-8c7e-bbb932bb7832
+	queryGroup: 'Parameters & Paths'
+
+	annotation PBI_ResultType = Text
+
+expression 'tabula-Statement 10-23-26' =
+		let
+		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Finance\Tracker\Bank Statements\Avant Bank\tabula-Statement 10-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}}),
+		  #"Filtered rows" = Table.SelectRows(#"Changed column type", each ([Column1] <> ""))
+		in
+		  #"Filtered rows"
+	lineageTag: a2dcd605-f330-461e-877f-72707095df8a
+	queryGroup: Avant_Source
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 10-23-26 format' =
+		let
+		  Source = #"tabula-Statement 10-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}})
+		in
+		    #"Changed Type"
+	lineageTag: 57bbda25-8ded-4bed-b3f5-42b46e936f91
+	queryGroup: Avant_Source
 
 	annotation PBI_ResultType = Table
 

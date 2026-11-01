@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "d73ccf17970588874b0a",
   "position": {
     "x": 0,
-    "y": 85.431192660550451,
+    "y": 85.333333333333329,
     "z": 0,
-    "height": 635.00917431192659,
-    "width": 472.95412844036696,
+    "height": 635.15151515151513,
+    "width": 538.18181818181813,
     "tabOrder": 0
   },
   "visual": {
@@ -52,12 +52,12 @@
                       "Entity": "Fact_BankTransactions"
                     }
                   },
-                  "Property": "Total Expenses (Display)"
+                  "Property": "Income #1 Expenses"
                 }
               },
-              "queryRef": "Fact_BankTransactions.Total Expenses (Display)",
-              "nativeQueryRef": "Total Expenses (Display)",
-              "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
+              "queryRef": "Fact_BankTransactions.Income #1 Expenses",
+              "nativeQueryRef": "Income #1 Expenses",
+              "format": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############"
             },
             {
               "field": {
@@ -67,11 +67,27 @@
                       "Entity": "Fact_BankTransactions"
                     }
                   },
-                  "Property": "Budget Variance"
+                  "Property": "Income #2 Expenses"
                 }
               },
-              "queryRef": "Fact_BankTransactions.Budget Variance",
-              "nativeQueryRef": "Budget Variance",
+              "queryRef": "Fact_BankTransactions.Income #2 Expenses",
+              "nativeQueryRef": "Income #2 Expenses",
+              "format": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_BankTransactions"
+                    }
+                  },
+                  "Property": "Total Expenses (Display)"
+                }
+              },
+              "queryRef": "Fact_BankTransactions.Total Expenses (Display)",
+              "nativeQueryRef": "Total Expenses",
+              "displayName": "Total Expenses",
               "format": "\\$#,0.00;(\\$#,0.00);\\$#,0.00"
             }
           ]
@@ -80,248 +96,6 @@
     },
     "objects": {
       "values": [
-        {
-          "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 2,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "0D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 3,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "1000000000000000D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#006715'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 1,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "-10000000000000D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 3,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "0D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#900604'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Conditional": {
-                      "Cases": [
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 2,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "0D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 3,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "100000000000000000D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFFFFF'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "And": {
-                              "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 1,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "-10000000000000D"
-                                    }
-                                  }
-                                }
-                              },
-                              "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 3,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "Fact_BankTransactions"
-                                        }
-                                      },
-                                      "Property": "Budget Variance"
-                                    }
-                                  },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "0D"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#FFFFFF'"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "Fact_BankTransactions.Budget Variance"
-          }
-        },
         {
           "properties": {
             "fontSize": {
@@ -409,7 +183,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "'Auto'"
                 }
               }
             },
@@ -443,7 +217,100 @@
             }
           },
           "selector": {
-            "metadata": "Fact_BankTransactions.Budget Variance"
+            "metadata": "Fact_BankTransactions.Income #1 Expenses"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #2 Expenses"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.0857142857143D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCategory.Category"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.9014017251794D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Total Expenses (Display)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.28560224089637D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #1 Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.33287077736861D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #2 Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111.6D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Budget_2026.Monthly Budget"
           }
         }
       ]

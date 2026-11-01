@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "396ec118f86c6cc8fb2d",
   "position": {
     "x": 0,
@@ -638,7 +638,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "1824e7930ebbb56d906a",
+        "name": "4489462e4aac896be85b",
         "field": {
           "Column": {
             "Expression": {
@@ -652,7 +652,7 @@
         "type": "Categorical"
       },
       {
-        "name": "60a7600d4618c09b4291",
+        "name": "d9d8a7e63cdb43d4e83c",
         "field": {
           "Column": {
             "Expression": {
@@ -666,7 +666,7 @@
         "type": "Categorical"
       },
       {
-        "name": "d79624630d93e3801114",
+        "name": "5ff67556abc0040b043b",
         "field": {
           "Column": {
             "Expression": {
@@ -680,7 +680,7 @@
         "type": "Categorical"
       },
       {
-        "name": "bd5bbbd2293285428793",
+        "name": "e518e73e575122ac190e",
         "field": {
           "Column": {
             "Expression": {
@@ -694,7 +694,7 @@
         "type": "Categorical"
       },
       {
-        "name": "01a5db071003e0eae948",
+        "name": "b3075347d8a600157451",
         "field": {
           "Column": {
             "Expression": {
@@ -708,7 +708,7 @@
         "type": "Categorical"
       },
       {
-        "name": "584da0e4e00174d2ac06",
+        "name": "3f71f470177a88650c26",
         "field": {
           "Measure": {
             "Expression": {
@@ -722,7 +722,7 @@
         "type": "Advanced"
       },
       {
-        "name": "a3d156385b81ebae85d5",
+        "name": "d3b80965b253ad082012",
         "field": {
           "Measure": {
             "Expression": {
@@ -736,7 +736,7 @@
         "type": "Advanced"
       },
       {
-        "name": "a947ab820b6a4520a231",
+        "name": "dd03ddca1beae0069d1c",
         "field": {
           "Column": {
             "Expression": {

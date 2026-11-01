@@ -1,4 +1,3 @@
-/// - Used as reference ONLY.
 table Budget_2026
 	lineageTag: 6af2fb49-8627-4d91-a509-6c13b7053285
 
@@ -43,7 +42,7 @@ table Budget_2026
 		mode: import
 		source =
 				let
-				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("hZPRb5swEMb/FSva3jJkMBjymiltoqVr1GzqQ1pNHpwSq/RAtqnEfz8nNnhTyfqIvh939919PhxmD4BmNp+RT/G8yGhEKbFfrIh48Xn2PD/MfiiBum2UEUY26Mh04JJowRx2q5oSlAR9IXI6EHEa8dQjQpOlrGtPDECUcqevaiiNkqU0feCKwPHccY/CgAoEz0aC8XFmffqLCDWSzBEbtDUQTICys+gg6hvtTg1CINjQiEa5d70VHVaqHxxlgyNf4KtQ5E5I2wsFluAMsXGY3C9mB0o3KGqy7o8S0HFxlg/HiBJ/izWI2pzIU0dpwskj1DWC1h4fh2Oxo2+kGWVGR5n72dfNK5AHaIVUvgQPHdOFg+6xlnYH+1PTthKPF+4LIa4SpcHmTvSvQ5ImgQ3qTo1biMebsIj5m+y737pUsj3nzE2UMRtDt6s4cdDPX2vR+QgtokX2bzRWNqR4JPedGyQP0cg88YETBZU0xM5b/d/RqurK8CDeyXvTVfZfsm2EtxKHAyT+PkuBL+QG/JN5V+NO6nJaWX7fba/0RVG+XA3EXrxZ504urM6Ty27s1f0FUhp/u2aoGQpPLK1vrdwpBVj208ytjbWyCd/gG+jzWqdqPf8B", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Transactions = _t, Amount = _t, #"% Occupancy" = _t]),
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("hZRdb9owFIb/ihVtvWJWPkgCl2OiBI2uqNnUC1RNnnNErKZ2ZDuV8u/nxCamArY70Hn8no/3nBwOwRNwHcwC9CmaLdIQhyEy/5IFzhafg5fZIfgpCVetkJpoJvhIxtHAmZ8xXiaW2khBQTJQI+CFojnO5g4hCq1Y04xEMgF4ntn4ugGqJaNM956LvBLOcgs+Ew3SI1k6EUk21azqM8JrxKklttxocNAeSoeghUKXaF8LDmc1nxKFOHdt70jHK9mP4S8IuYbc829EogfCTCZOOAU7mWQqJXdz2YNUgpMGFf2RAQfXd36yAsfOiQJIo2t0h56haTgo5cipqiSy4D3TU3gadIgzV3Qh3gA9QUuYdBKZTzZfWuiRN8w0X9aibRk/nnc4KPoO96R/O63QVWDLVSenAXhDE5w4M8ruj6KStcOC2YpS72kUW+jX74J01oh8iZfpx51Ym+3kR/TY2UKS3AukDvlPKxIqppEpuPp3S+uqo/4ULsKl7irzFu0Ecb1E3oHYGbQi/BXdg7uWC40Hpuj1yOrHfncjLyf09eZGlOTddO6O08SzeJyNsd1ZMA+j77caEifhK0PrWxPupARO++vMxqy0NNu95e+ghrHe0mqErgcP79DXtiUS3AcgTu23xpOF6BTUoqkMOu7yRojKquYX8Ho4dG2ucEhtHpSCMjJIG1/CD/DLXw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Transactions = _t, Amount = _t, #"% Occupancy" = _t]),
 				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Transactions", type text}, {"Amount", type text}, {"% Occupancy", Percentage.Type}}),
 				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Amount", Currency.Type}}),
 				    #"Replaced Errors" = Table.ReplaceErrorValues(#"Changed Type1", {{"Amount", 0}}),

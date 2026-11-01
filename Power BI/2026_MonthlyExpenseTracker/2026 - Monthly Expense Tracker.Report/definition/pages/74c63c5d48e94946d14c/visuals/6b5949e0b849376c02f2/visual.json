@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "6b5949e0b849376c02f2",
   "position": {
     "x": 560.8,
@@ -236,5 +236,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "08d8f791505e0d0ba0d0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimPayPeriod"
+              }
+            },
+            "Property": "PayPeriod"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

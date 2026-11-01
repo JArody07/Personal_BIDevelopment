@@ -1,0 +1,22 @@
+table AmazonPath
+	lineageTag: da3af0c0-a6ad-42a7-af78-98ea047c9abf
+
+	column AmazonPath
+		dataType: string
+		lineageTag: 52210eae-68d1-4fe7-9bce-d477001db873
+		summarizeBy: none
+		sourceColumn: AmazonPath
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AmazonPath = m
+		mode: import
+		queryGroup: 'Parameters & Paths'
+		source =
+				let
+				  Source = TrackerRoot & "Bank Statements\Amazon Purchases\"
+				in
+				  Source
+
+	annotation PBI_ResultType = Text
+

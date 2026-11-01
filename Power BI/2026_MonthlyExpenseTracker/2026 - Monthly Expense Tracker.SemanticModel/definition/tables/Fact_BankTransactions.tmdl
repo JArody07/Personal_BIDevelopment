@@ -279,6 +279,27 @@ table Fact_BankTransactions
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Income #1 Expenses' =
+			
+			ABS( CALCULATE( [Total Expenses], DimDate[DayOfMonth] <= 15 ) )
+		lineageTag: ddbcd18e-f4e0-424b-9b09-d2f10a241a50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Income #2 Expenses' =
+			
+			ABS( CALCULATE( [Total Expenses], DimDate[DayOfMonth] > 15 ) )
+		lineageTag: aab6ef1f-25b5-431e-895a-0dd372fe0695
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Income #1 Share' =
+			
+			DIVIDE( [Income #1 Expenses], [Total Expenses (Display)] )
+		lineageTag: 504be94b-c2e3-46bd-b722-b13be4aec3a4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Transaction Date'
 		dataType: dateTime
 		formatString: Long Date
@@ -339,11 +360,11 @@ table Fact_BankTransactions
 				let
 				    Source = Fact_BankTransactions_PreOverride,
 				
-				    #"Merged Overrides"  = Table.NestedJoin(Source,
-				                              {"Transaction Date", "Transaction Description", "Transaction Amount"},
-				                              CategoryOverrides,
-				                              {"Transaction Date", "Transaction Description", "Transaction Amount"},
-				                              "_Override", JoinKind.LeftOuter),
+				#"Merged Overrides"  = Table.NestedJoin(Source,
+				                          {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                          Table.Distinct(CategoryOverrides, {"Transaction Date", "Transaction Description", "Transaction Amount"}),
+				                          {"Transaction Date", "Transaction Description", "Transaction Amount"},
+				                          "_Override", JoinKind.LeftOuter),
 				    #"Expanded Override" = Table.ExpandTableColumn(#"Merged Overrides", "_Override", {"Category"}, {"_Override.Category"}),
 				
 				    #"Merged AmazonMatch"  = Table.NestedJoin(#"Expanded Override",
