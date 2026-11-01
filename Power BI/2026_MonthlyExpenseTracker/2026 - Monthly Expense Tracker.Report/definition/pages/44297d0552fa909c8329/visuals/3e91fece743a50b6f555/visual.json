@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "3e91fece743a50b6f555",
   "position": {
     "x": 0,
@@ -10,7 +10,7 @@
     "tabOrder": 1000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -181,6 +181,27 @@
                   "Value": "1D"
                 }
               }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "20L"
+                }
+              }
+            },
+            "concatenateLabels": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "autoExpand": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -224,7 +245,7 @@
             "gridlineStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "'solid'"
+                  "Value": "'dashed'"
                 }
               }
             },
@@ -241,6 +262,34 @@
                   "Value": "true"
                 }
               }
+            },
+            "gridlineAutoScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridlineTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "53D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "12000D"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "6000D"
+                }
+              }
             }
           }
         }
@@ -252,75 +301,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "lineStyles": [
-        {
-          "properties": {
-            "lineChartType": {
-              "expr": {
-                "Literal": {
-                  "Value": "'smooth'"
-                }
-              }
-            },
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "interpolationSmooth": {
-              "expr": {
-                "Literal": {
-                  "Value": "'cardinal'"
-                }
-              }
-            },
-            "interpolationSmoothParam": {
-              "expr": {
-                "Literal": {
-                  "Value": "37D"
-                }
-              }
-            },
-            "lineStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'solid'"
-                }
-              }
-            },
-            "strokeAutoScale": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "areaShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "strokeShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "strokeTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
                 }
               }
             }
@@ -358,13 +338,6 @@
                 }
               }
             },
-            "leaderLines": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "enableDetailDataLabel": {
               "expr": {
                 "Literal": {
@@ -378,118 +351,109 @@
                   "Value": "false"
                 }
               }
+            },
+            "backgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "80D"
+                }
+              }
             }
           }
         }
       ],
-      "referenceLine": [
+      "dataPoint": [
         {
           "properties": {
-            "show": {
+            "fillTransparency": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "0D"
                 }
               }
-            },
-            "displayName": {
+            }
+          }
+        },
+        {
+          "properties": {
+            "borderShow": {
               "expr": {
                 "Literal": {
-                  "Value": "'Median Savings Balance'"
+                  "Value": "false"
                 }
               }
             },
-            "value": {
-              "expr": {
-                "Aggregation": {
-                  "Expression": {
-                    "SelectRef": {
-                      "ExpressionName": "Fact_BankTransactions.Month-End Balance"
-                    }
-                  },
-                  "Function": 6
-                }
-              }
-            },
-            "dataLabelShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "dataLabelDecimalPoints": {
+            "borderSize": {
               "expr": {
                 "Literal": {
                   "Value": "2D"
                 }
               }
             },
-            "dataLabelText": {
+            "borderColorMatchFill": {
               "expr": {
                 "Literal": {
-                  "Value": "'Value'"
+                  "Value": "false"
                 }
               }
             },
-            "autoScale": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "26D"
-                }
-              }
-            },
-            "dataLabelDisplayUnits": {
-              "expr": {
-                "Literal": {
-                  "Value": "1000D"
-                }
-              }
-            },
-            "shadeShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "shadeTransparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "88D"
-                }
-              }
-            },
-            "dataLabelColor": {
+            "borderColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 1,
                       "Percent": 0
                     }
                   }
                 }
               }
+            },
+            "borderTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           },
           "selector": {
-            "metadata": "Fact_BankTransactions.Month-End Balance",
-            "id": "1"
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_BankTransactions"
+                          }
+                        },
+                        "Property": "AccountSource"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Capital One Savings'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ]
@@ -502,6 +466,24 @@
               "expr": {
                 "Literal": {
                   "Value": "'Savings EoM Balance by Month'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "d73ccf17970588874b0a",
   "position": {
     "x": 0,
@@ -183,7 +183,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "'Auto'"
                 }
               }
             },
@@ -197,6 +197,48 @@
           },
           "selector": {
             "metadata": "Fact_BankTransactions.Total Expenses (Display)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #1 Expenses"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #2 Expenses"
           }
         }
       ],
@@ -220,13 +262,55 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "121.11428571428571D"
+                  "Value": "91.9014017251794D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Fact_BankTransactions.Total Expenses (Display)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.28560224089637D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #1 Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.33287077736861D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_BankTransactions.Income #2 Expenses"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111.6D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Budget_2026.Monthly Budget"
           }
         }
       ]

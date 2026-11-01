@@ -49,7 +49,7 @@
                     [
                       {
                         "Literal": {
-                          "Value": "'Car Insurance'"
+                          "Value": "'Health & Wellness'"
                         }
                       }
                     ]
@@ -70,8 +70,6 @@
       {
         "name": "0007fb7e20e42db03a0d",
         "boundFilter": "5b30974fce1dd225c044",
-        "asAggregation": false,
-        "qnaSingleSelectRequired": false,
         "fieldExpr": {
           "Column": {
             "Expression": {

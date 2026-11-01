@@ -173,6 +173,9 @@ expression CategoryMap = ```
 		            {"STATE FARM", "Car Insurance", "Needs", 1},
 		            {"Debit Card Purchase - CHIME SAN FRANCISC CA", "Car Insurance", "Needs", 1},
 		
+		            // Credit Card Payment
+		            {"ANNUAL FEE", "Credit Card Payment", "Wants", 1},
+		
 		            // Subscriptions & Recurring
 		            {"APPLE COM BILL", "Subscriptions", "Wants", 1},
 		            {"MICROSOFT", "Subscriptions", "Wants", 1},
@@ -188,6 +191,7 @@ expression CategoryMap = ```
 		            {"CBI PARALLELS", "Subscriptions", "Wants", 1},
 		            {"CANVA", "Subscriptions", "Wants", 1},
 		            {"CLOUDFLARE", "Subscriptions", "Wants", 1},
+		            {"HBOMAX", "Subscriptions", "Wants", 1},
 		            
 		            // Lifestyle
 		            {"U HAUL", "U_Haul", "Wants", 1},
@@ -196,6 +200,7 @@ expression CategoryMap = ```
 		            {"THE FOAT", "Entertainment & Social", "Wants", 1},
 		            {"CINEMARK", "Entertainment & Social", "Wants", 1},
 		            {"LADOT METER PARKING", "Entertainment & Social", "Wants", 1},
+		            {"KUXIU PEAKHURST", "Entertainment & Social", "Wants", 1},
 		
 		            // Clothing & Apparel
 		            {"SEPHORA", "Clothing & Apparel", "Wants", 1},
@@ -250,6 +255,11 @@ expression CategoryMap = ```
 		            {"RICCIS ITALIAN", "Eating Out", "Wants", 1},
 		            {"GAUCHO GRILL", "Eating Out", "Wants", 1},
 		            {"NORMS", "Eating Out", "Wants", 1},
+		            {"EL GALLO GIRO", "Eating Out", "Wants", 1},
+		            {"SUBWAY", "Eating Out", "Wants", 1},
+		            {"KFC", "Eating Out", "Wants", 1},
+		            {"CASA ADELITA", "Eating Out", "Wants", 1},
+		            {"JAMBA JUICE", "Eating Out", "Wants", 1},
 		
 		            // Shoppping
 		            {"AMAZON", "Online Shopping", "Wants", 2},
@@ -388,7 +398,7 @@ expression 'tabula-Statement 03-23-26' =
 
 expression Avant_StagingQuery = ```
 		let
-		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format", #"tabula-Statement 07-23-26 format", #"tabula-Statement 08-23-26 format", #"tabula-Statement 09-23-26 format"}),
+		    Source = Table.Combine({#"tabula-Statement 01-23-26_format", #"tabula-Statement 02-23-26_format", #"tabula-Statement 03-23-26_format", #"tabula-Statement 04-23-26 format", #"tabula-Statement 05-23-26 format", #"tabula-Statement 06-23-26 format", #"tabula-Statement 07-23-26 format", #"tabula-Statement 08-23-26 format", #"tabula-Statement 09-23-26 format", #"tabula-Statement 10-23-26 format"}),
 		    #"Sorted Rows" = Table.Sort(Source,{{"Date", Order.Ascending}}),
 		    #"Removed Columns" = Table.RemoveColumns(#"Sorted Rows",{"Date_1"}),
 		    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Date", "Transaction Date"}}),
@@ -961,4 +971,29 @@ expression CapitalOneCheckingPath =
 	queryGroup: 'Parameters & Paths'
 
 	annotation PBI_ResultType = Text
+
+expression 'tabula-Statement 10-23-26' =
+		let
+		  Source = Csv.Document(File.Contents("\\Mac\iCloud\Finance\Tracker\Bank Statements\Avant Bank\tabula-Statement 10-23-26.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+		  #"Changed column type" = Table.TransformColumnTypes(Source, {{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}}),
+		  #"Filtered rows" = Table.SelectRows(#"Changed column type", each ([Column1] <> ""))
+		in
+		  #"Filtered rows"
+	lineageTag: a2dcd605-f330-461e-877f-72707095df8a
+	queryGroup: Avant_Source
+
+	annotation PBI_ResultType = Table
+
+expression 'tabula-Statement 10-23-26 format' =
+		let
+		  Source = #"tabula-Statement 10-23-26",
+		    #"Removed Top Rows" = Table.Skip(Source,1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Date_1", type date}, {"Reference Number", type text}, {"Transaction Description", type text}, {"Amount", type number}})
+		in
+		    #"Changed Type"
+	lineageTag: 57bbda25-8ded-4bed-b3f5-42b46e936f91
+	queryGroup: Avant_Source
+
+	annotation PBI_ResultType = Table
 

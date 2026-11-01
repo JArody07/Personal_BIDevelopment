@@ -56,6 +56,12 @@ table CategoryOverrides
 				        ],
 				        {
 				
+				            {#date(2026, 10, 18), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -250.00, "Groceries"},
+				            {#date(2026, 10, 18), "ATM Withdrawal - CVS STORE #0-XE1 AXE10221 PARAMOUNT, CA", -200.00, "Groceries"},
+				            {#date(2026, 10, 19), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -52.40, "Clothing & Apparel"},
+				            {#date(2026, 10, 22), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -62.17, "Clothing & Apparel"},
+				            {#date(2026, 10, 08), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -62.18, "Clothing & Apparel"},
+				            {#date(2026, 10, 06), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -40.64, "Clothing & Apparel"},
 				            {#date(2026, 10, 05), "Debit Card Purchase - ZIP APP PAY LATER 8337823729 NY", -52.40, "Clothing & Apparel"},
 				            {#date(2026, 10, 03), "ATM Withdrawal - 7ELEVEN-FCTI 7E006903 PARAMOUNT, CA", -160.00, "Car Maintenance"},
 				            {#date(2026, 10, 03), "ATM Withdrawal - 7ELEVEN-FCTI 7E006903 PARAMOUNT, CA", -200.00, "Car Maintenance"},
