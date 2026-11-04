@@ -31,6 +31,16 @@ table Gross_Income
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
+	measure 'Gross Hourly Rate' =
+			
+			VAR MonthsPaid = COUNTROWS( SUMMARIZE( Gross_Income, DimDate[YearMonth] ) )
+			RETURN
+			    DIVIDE( [Gross Income], MonthsPaid * 2080 / 12 )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 35940b5d-556c-4124-bbbd-0f822dde1d40
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
 	column Month
 		dataType: int64
 		formatString: 0

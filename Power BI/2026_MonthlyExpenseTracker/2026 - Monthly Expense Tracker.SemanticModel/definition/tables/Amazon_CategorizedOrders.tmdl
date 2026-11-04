@@ -74,10 +74,9 @@ table Amazon_CategorizedOrders
 		source =
 				let
 				    Source = Amazon_StagingQuery,
-				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignAmazonCategory([PrimaryItemTitle], [AllItemTitles]), type text),
-				  #"Filtered rows" = Table.SelectRows(#"Added Category", each ([Category] = "Uncategorized - Amazon Review"))
+				    #"Added Category" = Table.AddColumn(Source, "Category", each fnAssignAmazonCategory([PrimaryItemTitle], [AllItemTitles]), type text)
 				in
-				    #"Filtered rows"
+				    #"Added Category"
 
 	annotation PBI_NavigationStepName = Navigation
 

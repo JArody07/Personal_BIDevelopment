@@ -73,6 +73,10 @@ table AmazonCategoryMap
 				            {"CLEANSING", "Personal Hygiene", 1},
 				            {"EAU DE PARFUM", "Personal Hygiene", 1},
 				            {"BODY LOTION", "Personal Hygiene", 1},
+				            {"Odor Eliminator", "Personal Hygiene", 1},
+				            {"Odor Spray", "Personal Hygiene", 1},
+				            {"Odor", "Personal Hygiene", 1},
+				            {"Suave Keratin", "Personal Hygiene", 1},
 				
 				            // Household & Home Goods
 				            {"WINIX", "Household & Home Goods", 1},
@@ -95,6 +99,9 @@ table AmazonCategoryMap
 				            {"CINMOORE", "Household & Home Goods", 1},
 				            {"Cargador rápido", "Household & Home Goods", 1},
 				            {"Horno freidora", "Household & Home Goods", 1},
+				            {"Power mop", "Household & Home Goods", 1},
+				            {"Micro SD Card", "Household & Home Goods", 1},
+				            {"Alarm Clock", "Household & Home Goods", 1},
 				
 				            // Fitness
 				            {"TREADMILL", "Fitness", 1},
